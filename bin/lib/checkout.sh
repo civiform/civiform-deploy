@@ -8,6 +8,54 @@
 # tag the user specifies in the command.
 
 #######################################
+# Delegates a command to the main CiviForm repo at a specific git revision.
+# Expects arguments to include "--tag=<tag name>" for resolving which revsion
+# to check out for the command. Then passes all arguments to the delegated
+# command in the main repo.
+# Arguments:
+#   @: arguments for the command, must include --tag= flag
+# Globals:
+#   CMD_NAME: the name of the command to run
+#######################################
+function checkout::exec_delegated_command() {
+  if [[ -z "${CMD_NAME}" ]]; then
+    out::error "CMD_NAME must be set for delegated command."
+    exit 1
+  fi
+
+  checkout::get_image_tag "$@"
+  checkout::ensure_initialized
+  checkout::from_image_tag "${IMAGE_TAG}"
+
+  (
+    cd checkout
+    exec "cloud/shared/bin/${CMD_NAME}" "$@"
+  )
+}
+
+#######################################
+# Retrieves the image tag from a list of aguments.
+# Exits with an error message if --tag flag is not found.
+# Arguments:
+#   @: An arguments list
+# Globals:
+#   Sets the IMAGE_TAG variable
+#######################################
+function checkout::get_image_tag() {
+  for i in "$@"; do
+    case "${i}" in
+      --tag=*)
+        export IMAGE_TAG="${i#*=}"
+        return
+        ;;
+    esac
+  done
+
+  out::error "--tag argument is required"
+  exit 1
+}
+
+#######################################
 # Sets the checkout directory to the commit corresponding
 # to the provided image tag.
 # Arguments:

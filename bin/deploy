@@ -1,22 +1,8 @@
 #! /usr/bin/env bash
 
-# DOC: Deploy an image to an environment. Usage: deploy [--tag=imageTag] [env]; env defaults to "staging", tag defaults to "latest".
+# DOC: Deploy an image to an environment. Usage: bin/deploy --tag=<image tag>
 
 source bin/lib.sh
 source civiform_config.sh
 
-image_tag="latest"
-
-for i in "$@"; do
-  case "${i}" in
-    --tag=*)
-      image_tag="${i#*=}"
-      break
-      ;;
-  esac
-done
-
-checkout::ensure_initialized
-checkout::from_image_tag "${image_tag}"
-
-exec checkout/cloud/shared/bin/deploy "$@"
+CMD_NAME=deploy checkout::exec_delegated_command "$@"
