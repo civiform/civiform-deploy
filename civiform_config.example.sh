@@ -1,6 +1,10 @@
 #! /usr/bin/env bash
 
-# CiviForm deployment configuration file
+# CiviForm deployment configuration file.
+#
+# Copy this file to civiform_config.sh in the same directory and edit the copy.
+#
+# cp civiform_config.example.sh civiform_config.sh
 #
 # Configuration variables must be specified in SCREAMING_SNAKE_CASE with the
 # "export" keyword preceding them. All values must be quoted as strings. There
