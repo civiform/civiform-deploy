@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-# DOC: Deploy an image to an environment. Usage: bin/deploy --tag=<image tag>
+# DOC: Deploy an image. Usage: bin/deploy --tag=<image tag>
 
 source bin/lib.sh
 source civiform_config.sh
