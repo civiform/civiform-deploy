@@ -55,9 +55,6 @@ export DOCKER_REPOSITORY_NAME="civiform"
 # The docker user name for retrieving server images.
 export DOCKER_USERNAME="civiform"
 
-# TO BE REMOVED
-export DOCKER_TAG="latest"
-
 # REQUIRED
 # The email address to use for the "from" field in emails sent from CiviForm.
 export SENDER_EMAIL_ADDRESS=""
