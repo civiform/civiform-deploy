@@ -27,6 +27,26 @@ export CIVIFORM_MODE="staging"
 export TERRAFORM_TEMPLATE_DIR="cloud/azure/templates/azure_saml_ses"
 
 # REQUIRED
+# The short name for the civic entity. Ex. "Rochester"
+export CIVIC_ENTITY_SHORT_NAME=""
+
+# REQUIRED
+# The full name for the civic entity. Ex. "City of Rochester"
+export CIVIC_ENTITY_FULL_NAME=""
+
+# REQUIRED
+# The email address to contact for support with using Civiform. Ex. "Civiform@CityOfRochester.gov
+export CIVIC_ENTITY_SUPPORT_EMAIL_ADDRESS=""
+
+# REQUIRED
+# A link to an image of the civic entity logo that includes the entity name, to be used in the header for the "Get Benefits" page
+export CIVIC_ENTITY_LOGO_WITH_NAME_URL=""
+
+# REQUIRED
+# A link to an image of the civic entity logo, to be used on the login page
+export CIVIC_ENTITY_SMALL_LOGO_URL=""
+
+# REQUIRED
 # The authentication backend for admin accounts.
 export ADMIN_AUTH_PROVIDER="activeDirectory"
 
