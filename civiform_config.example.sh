@@ -142,7 +142,8 @@ export SAML_KEYSTORE_ACCOUNT_NAME=""
 export KEY_VAULT_NAME=""
 
 # REQUIRED
-# The ADFS group name for specifying CiviForm admins.
+# The ADFS group name for specifying CiviForm admins. If usinge
+# Azure AD this is the group's object ID
 export ADFS_ADMIN_GROUP=""
 
 # REQUIRED
