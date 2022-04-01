@@ -1,2 +1,2 @@
 # civiform-deploy
-Use this repo to store standardized Terraform deployment configurations for CiviForm.
+Some Run Books and Documentation Live [Here](https://github.com/seattle-uat/civiform/wiki/Terraform-Deploy-System)
