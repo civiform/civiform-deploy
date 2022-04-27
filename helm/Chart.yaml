@@ -1,0 +1,7 @@
+---
+apiVersion:  'v2'
+name:        'civiform'
+description: 'The application server deployment for CiviForm'
+type:        'application'
+version:     '0.1.0'
+...

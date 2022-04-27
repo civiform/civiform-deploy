@@ -1,0 +1,79 @@
+---
+replicaCount: 1
+
+image:
+  repository: 'civiform/civiform'
+  pullPolicy: 'Always'
+  tag: "" # Specify the tag on the helm command line
+
+service:
+  type: 'ClusterIP'
+  port: 80
+
+ingress:
+  enabled: true
+  hosts:
+    - host: "kubernetes.somewhere.org"
+      paths:
+        - path: '/civiform'
+          pathType: ImplementationSpecific
+
+
+  tls:
+    - secretName: 'cert-wildcard'
+      hosts:
+        - "kubernetes.somerwhere.org"
+
+config:
+  # The custom domain name for this CiviForm deployment, not including the
+  # protocol. E.g. "civiform.seattle.gov"
+  HOSTNAME: ''
+
+  CIVIC_ENTITY_SHORT_NAME: 'Bloomington'
+  CIVIC_ENTITY_FULL_NAME:  'City of Bloomington'
+  TIMEZONE: 'America/Indiana/Indianpolis'
+
+  # The email address to contact for support with using Civiform. Ex. "Civiform@CityOfRochester.gov
+  SUPPORT_EMAIL_ADDRESS: ''
+
+  # A link to an image of the civic entity logo that includes the entity name, to be used in the header for the "Get Benefits" page
+  LOGO_WITH_NAME_URL: ''
+
+  # A link to an image of the civic entity logo, to be used on the login page
+  SMALL_LOGO_URL: ''
+
+  ADMIN_AUTH_PROVIDER:     'adfs'
+  ADMIN_AUTH_PROTOCOL:     'OIDC'
+  APPLICANT_AUTH_PROVIDER: 'idcs'
+  APPLICANT_AUTH_PROTOCOL: 'OIDC'
+
+  # The email address to use for the "from" field in emails sent from CiviForm.
+  SENDER_EMAIL_ADDRESS: ''
+
+  # The secret key is used to sign Play's session cookie.
+  # This should be at least 32 characters of random ascii
+  SECRET_KEY: ''
+
+  adfs:
+    client_id:
+    secret:
+    discovery_uri: 'https://sts.seattle.gov/adfs/.well-known/openid-configuration'
+    admin_group:   'ad\\ITD_CiviForm_Admins_Test'
+  idcs:
+    client_id:
+    secret:
+    discovery_uri: 'https://idcs-f582fefb879b4db5a88a370e8f2f6013.identity.oraclecloud.com/.well-known/openid-configuration'
+    register_uri:
+  login_radius:
+    api_key:
+    metadata_uri:      'https://civiform-staging.hub.loginradius.com/service/saml/idp/metadata'
+    saml_app_name:     'civiform'
+    keystore_name:     'civiformSamlKeystore.jks'
+    keystore_password:
+    private_key_password:
+
+  db:
+    url:  'jdbc:postgresql://localhost:5432/civiform'
+    user: 'civiform'
+    pass: 'secret password'
+...
