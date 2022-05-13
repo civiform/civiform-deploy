@@ -65,6 +65,8 @@ export CIVIFORM_APPLICANT_AUTH_PROTOCOL=""
 # REQUIRED
 # The name of the application in Azure App Service.
 # The Azure public DNS entry for the app will prepend this value.
+# Can only consist of lowercase letters and numbers, and must be between 3 and 24
+# characters long.
 export APPLICATION_NAME=""
 
 # REQUIRED
@@ -118,7 +120,7 @@ export AZURE_LOCATION="eastus"
 export AZURE_LOG_STORAGE_ACCOUNT_NAME=""
 
 # REQUIRED
-# The Azure subscription for this deployment, used for billing.
+# The Azure subscription ID for this deployment, used for billing.
 export AZURE_SUBSCRIPTION=""
 
 # REQUIRED
