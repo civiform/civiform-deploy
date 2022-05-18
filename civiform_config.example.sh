@@ -104,6 +104,12 @@ export STAGING_APPLICANT_NOTIFICATION_MAILING_LIST=""
 # protocol. E.g. "civiform.seattle.gov"
 export CUSTOM_HOSTNAME=""
 
+# OPTIONAL
+# The time zone to be used when rendering any times within the CiviForm
+# UI. A list of valid time zone identifiers can be found at:
+# https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+export CIVIFORM_TIME_ZONE_ID="America/Los_Angeles"
+
 #################################################
 # Template variables for: azure_saml_ses
 #################################################
