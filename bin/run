@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+# DOC: Run a command at a path. Usage: bin/run <path/to/command> --tag=<image tag>
+
+source bin/lib.sh
+source civiform_config.sh
+
+readonly command_path="${1}"
+shift 1
+
+CMD_NAME_PATH="${command_path}" checkout::exec_delegated_command_at_path "$@"
