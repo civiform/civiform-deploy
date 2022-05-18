@@ -8,7 +8,8 @@
 # tag the user specifies in the command.
 
 #######################################
-# Delegates a command to the main CiviForm repo at a specific git revision.
+# Delegates a command from a specified path to the main CiviForm repo at a 
+# specific git revision.
 # Expects arguments to include "--tag=<tag name>" for resolving which revsion
 # to check out for the command. Then passes all arguments to the delegated
 # command in the main repo.
@@ -17,8 +18,8 @@
 # Globals:
 #   CMD_NAME: the name of the command to run
 #######################################
-function checkout::exec_delegated_command() {
-  if [[ -z "${CMD_NAME}" ]]; then
+function checkout::exec_delegated_command_at_path() {
+  if [[ -z "${CMD_NAME_PATH}" ]]; then
     out::error "CMD_NAME must be set for delegated command."
     exit 1
   fi
@@ -29,8 +30,24 @@ function checkout::exec_delegated_command() {
 
   (
     cd checkout
-    exec "cloud/shared/bin/${CMD_NAME}" "$@"
+    exec "${CMD_NAME_PATH}" "$@"
   )
+}
+
+#######################################
+# Delegates a command from the shared bin to the main CiviForm repo at a 
+# specific git revision.
+# Expects arguments to include "--tag=<tag name>" for resolving which revsion
+# to check out for the command. Then passes all arguments to the delegated
+# command in the main repo.
+# Arguments:
+#   @: arguments for the command, must include --tag= flag
+# Globals:
+#   CMD_NAME: the name of the command to run
+#######################################
+function checkout::exec_delegated_command() {
+  CMD_NAME_PATH="cloud/shared/bin/${CMD_NAME}" \
+    checkout::exec_delegated_command_at_path "$@"
 }
 
 #######################################
