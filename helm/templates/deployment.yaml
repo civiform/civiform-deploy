@@ -15,30 +15,17 @@ spec:
       labels:
         {{- include "civiform.selectorLabels" . | nindent 8 }}
     spec:
-      volumes:
-        - name:   'application-conf'
-          configMap:
-            name: 'application-conf'
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "civiform.fullname" . }}
           ports:
             - name: http
               containerPort: 9000
               protocol: TCP
-          volumeMounts:
-            - name:      'application-conf'
-              mountPath: '/civiform-server-0.0.1/conf'
-
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
