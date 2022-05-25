@@ -61,4 +61,10 @@ environment:
   DB_JDBC_STRING: 'jdbc:postgresql://localhost5432/civiform'
   DB_USERNAME:    'civiform'
   DB_PASSWORD:    'secret password'
+
+  AWS_REGION: ''
+  AWS_SES_SENDER: ''
+  AWS_S3_BUCKET_NAME: ''
+  AWS_ACCESS_KEY_ID: ''
+  AWS_SECRET_ACCESS_KEY: ''
 ...
