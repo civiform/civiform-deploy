@@ -47,18 +47,6 @@ export CIVIC_ENTITY_LOGO_WITH_NAME_URL=""
 export CIVIC_ENTITY_SMALL_LOGO_URL=""
 
 # REQUIRED
-# The authentication backend for admin accounts.
-export ADMIN_AUTH_PROVIDER="activeDirectory"
-
-# REQUIRED
-# The authentication protocol used for admin accounts.
-export ADMIN_AUTH_FORMAT="OIDC"
-
-# REQUIRED
-# The authentication backend for applicants and trusted intermediary accounts.
-export RESIDENT_AUTH_PROVIDER="loginRadius"
-
-# REQUIRED
 # The authentication protocl used for applicant and trusted intermediary accounts.
 export CIVIFORM_APPLICANT_AUTH_PROTOCOL=""
 
