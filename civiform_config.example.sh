@@ -68,7 +68,8 @@ export CIVIC_ENTITY_LOGO_WITH_NAME_URL=""
 export CIVIC_ENTITY_SMALL_LOGO_URL=""
 
 # OPTIONAL
-# A link to an 16x16 of 32x32 pixel favicon of the civic entity
+# A link to an 16x16 of 32x32 pixel favicon of the civic entity,
+# in format .ico, .png, or .gif.
 # Defaults to "https://civiform.us/favicon.png"
 export FAVICON_URL=""
 
