@@ -14,8 +14,12 @@
 # Global variables for all CiviForm deployments
 #################################################
 
+# Terraform configuration
+#################################################
+
 # REQUIRED
 # A supported CiviForm cloud provider, lower case.
+# "aws" or "azure"
 export CIVIFORM_CLOUD_PROVIDER="azure"
 
 # REQUIRED
@@ -24,7 +28,24 @@ export CIVIFORM_MODE="staging"
 
 # REQUIRED
 # The template directory for this deployment.
-export TERRAFORM_TEMPLATE_DIR="cloud/azure/templates/azure_saml_ses"
+# For aws, use "cloud/aws/templates/aws_oidc"
+# For azure, use "cloud/azure/templates/azure_saml_ses"
+export TERRAFORM_TEMPLATE_DIR="cloud/aws/templates/aws_oidc"
+
+# REQUIRED
+# The docker repository name for retrieving server images.
+export DOCKER_REPOSITORY_NAME="civiform"
+
+# REQUIRED
+# The docker user name for retrieving server images.
+export DOCKER_USERNAME="civiform"
+
+# REQUIRED
+# The authentication protocal used for applicant and trusted intermediary accounts.
+export CIVIFORM_APPLICANT_AUTH_PROTOCOL=""
+
+# Deployment-specific Civiform configuration
+#################################################
 
 # REQUIRED
 # The short name for the civic entity. Ex. "Rochester"
@@ -46,28 +67,15 @@ export CIVIC_ENTITY_LOGO_WITH_NAME_URL=""
 # A link to an image of the civic entity logo, to be used on the login page
 export CIVIC_ENTITY_SMALL_LOGO_URL=""
 
-# REQUIRED
-# The authentication protocl used for applicant and trusted intermediary accounts.
-export CIVIFORM_APPLICANT_AUTH_PROTOCOL=""
-
-# REQUIRED
-# The name of the application in Azure App Service.
-# The Azure public DNS entry for the app will prepend this value.
-# Can only consist of lowercase letters and numbers, and must be between 3 and 24
-# characters long.
-export APPLICATION_NAME=""
-
-# REQUIRED
-# The docker repository name for retrieving server images.
-export DOCKER_REPOSITORY_NAME="civiform"
-
-# REQUIRED
-# The docker user name for retrieving server images.
-export DOCKER_USERNAME="civiform"
+# OPTIONAL
+# A link to an 16x16 of 32x32 pixel favicon of the civic entity
+# Defaults to "https://civiform.us/favicon.png"
+export FAVICON_URL=""
 
 # REQUIRED
 # The email address to use for the "from" field in emails sent from CiviForm.
 export SENDER_EMAIL_ADDRESS=""
+export SES_SENDER_EMAIL=""
 
 # REQUIRED
 # The email address that receives a notifications email each time an applicant
@@ -153,3 +161,68 @@ export LOGIN_RADIUS_METADATA_URI=""
 # REQUIRED
 # App name for CiviForm in LoginRadius. Copy from the LoginRadius dashboard.
 export LOGIN_RADIUS_SAML_APP_NAME=""
+
+# REQUIRED
+# The name of the application in Azure App Service.
+# The Azure public DNS entry for the app will prepend this value.
+# Can only consist of lowercase letters and numbers, and must be between 3 and 24
+# characters long.
+export APPLICATION_NAME=""
+
+#################################################
+# Template variables for: aws_oidc
+#################################################
+
+# REQUIRED
+# Which auth provider to use for applicants to login.
+# If set to a non-disabled value, you must configure the respective auth parameters
+export CIVIFORM_APPLICANT_IDP="generic-oidc"
+
+# generic-oidc Auth configuration
+#################################################
+
+# REQUIRED iff CIVIFORM_APPLICANT_IDP="generic-oidc"
+# The name to of the OIDC provider.  Must be URL-safe.
+# Gets appended to the auth callback URL.
+export APPLICANT_OIDC_PROVIDER_NAME=""
+
+# REQUIRED iff CIVIFORM_APPLICANT_IDP="generic-oidc"
+# The Client ID and Secret provided by the OIDC provider.
+export APPLICANT_OIDC_CLIENT_ID=""
+export APPLICANT_OIDC_CLIENT_SECRET=""
+
+# REQUIRED iff CIVIFORM_APPLICANT_IDP="generic-oidc"
+# The discovery metadata URI provideded by the OIDC provider.
+# Usually ends in .well-known/openid-configuration
+export APPLICANT_OIDC_DISCOVERY_URI="https://civiform-staging.us.auth0.com/.well-known/openid-configuration"
+
+# OPTIONAL
+# The type of OIDC flow to execute, and how the data is encoded.
+# Defaults to APPLICANT_OIDC_RESPONSE_MODE="form_post" and APPLICANT_OIDC_RESPONSE_TYPE="id_token token"
+# See https://auth0.com/docs/authenticate/protocols/oauth#authorization-endpoint
+export APPLICANT_OIDC_RESPONSE_MODE=""
+export APPLICANT_OIDC_RESPONSE_TYPE=""
+
+# OPTIONAL
+# Any additional claims to request, in addition to the default scopes "openid profile email"
+export APPLICANT_OIDC_ADDITIONAL_SCOPES=""
+
+# OPTIONAL
+# If your OIDC provider provides the user's language preference,
+# provide the profile field it's returned in.
+export APPLICANT_OIDC_LOCALE_ATTRIBUTE=""
+
+# OPTIONAL
+# The name of the profile field where the user's email is stored.
+# Defaults to "email"
+export APPLICANT_OIDC_EMAIL_ATTRIBUTE="email"
+
+# OPTIONAL
+# The name of the profile field where the user's name is stored.
+# If there is only one name field(the display name) use APPLICANT_OIDC_FIRST_NAME_ATTRIBUTE.
+# If the name is split into multiple fields, use the APPLICANT_OIDC_MIDDLE_NAME_ATTRIBUTE
+# and APPLICANT_OIDC_LAST_NAME_ATTRIBUTE as nessesary.
+# Defaults to APPLICANT_OIDC_FIRST_NAME_ATTRIBUTE="name"
+export APPLICANT_OIDC_FIRST_NAME_ATTRIBUTE=""
+export APPLICANT_OIDC_MIDDLE_NAME_ATTRIBUTE=""
+export APPLICANT_OIDC_LAST_NAME_ATTRIBUTE=""
