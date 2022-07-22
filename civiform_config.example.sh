@@ -175,6 +175,10 @@ export APPLICATION_NAME=""
 #################################################
 
 # REQUIRED
+# The name to prefix all resources with.
+export APP_PREFIX="my-deploy" # max 19 chars, only numbers, letters, dashes, and underscores
+
+# REQUIRED
 # Which auth provider to use for applicants to login.
 # If set to a non-disabled value, you must configure the respective auth parameters
 export CIVIFORM_APPLICANT_IDP="generic-oidc"
