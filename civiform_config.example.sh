@@ -97,9 +97,9 @@ export STAGING_TI_NOTIFICATION_MAILING_LIST=""
 export STAGING_APPLICANT_NOTIFICATION_MAILING_LIST=""
 
 # REQUIRED
-# The custom domain name for this CiviForm deployment, not including the
-# protocol. E.g. "civiform.seattle.gov"
-export CUSTOM_HOSTNAME=""
+# The domain name for this CiviForm deployment, including the protocol. 
+# E.g. "https://civiform.seattle.gov"
+export BASE_URL=""
 
 # OPTIONAL
 # The time zone to be used when rendering any times within the CiviForm
@@ -190,11 +190,6 @@ export CIVIFORM_APPLICANT_IDP="generic-oidc"
 # The name to of the OIDC provider.  Must be URL-safe.
 # Gets appended to the auth callback URL.
 export APPLICANT_OIDC_PROVIDER_NAME=""
-
-# REQUIRED iff CIVIFORM_APPLICANT_IDP="generic-oidc"
-# The Client ID and Secret provided by the OIDC provider.
-export APPLICANT_OIDC_CLIENT_ID=""
-export APPLICANT_OIDC_CLIENT_SECRET=""
 
 # REQUIRED iff CIVIFORM_APPLICANT_IDP="generic-oidc"
 # The discovery metadata URI provideded by the OIDC provider.
