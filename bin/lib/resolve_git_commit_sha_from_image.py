@@ -108,4 +108,10 @@ if __name__ == '__main__':
     if not _maybe_warn_for_unsupported_tag(args.tag):
         sys.exit(1)
 
+    try:
+        print(_extract_git_commit_sha(args.tag), file=sys.stdout)
+    except (_NoGitCommitInfoError, _TagOrDigestDoesNotExistError) as e:
+        print(f'Error: {e}', file=sys.stderr)
+        sys.exit(1)
+
     print(_extract_git_commit_sha(args.tag), file=sys.stdout)

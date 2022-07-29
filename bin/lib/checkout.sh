@@ -80,7 +80,9 @@ function checkout::get_image_tag() {
 #######################################
 function checkout::from_image_tag() {
   local image_tag="${1}"
-  local commit_sha=$(exec bin/lib/resolve_git_commit_sha_from_image.py --tag="${image_tag}")
+  if ! commit_sha=$(exec bin/lib/resolve_git_commit_sha_from_image.py --tag="${image_tag}"); then
+    exit $?
+  fi
   checkout::at_sha "${commit_sha}"
 }
 
