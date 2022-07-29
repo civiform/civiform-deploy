@@ -12,7 +12,6 @@ readonly LIB_DIR="${BASH_SOURCE%/*}/lib"
 
 if [[ "${SOURCED_LIB}" != "true" ]]; then
   source "${LIB_DIR}/out.sh"
-  source "${LIB_DIR}/snapshots.sh"
   source "${LIB_DIR}/checkout.sh"
 
   SOURCED_LIB="true"
