@@ -44,6 +44,8 @@ export DOCKER_USERNAME="civiform"
 # The authentication protocal used for applicant and trusted intermediary accounts.
 export CIVIFORM_APPLICANT_AUTH_PROTOCOL=""
 
+
+
 # Deployment-specific Civiform configuration
 #################################################
 
@@ -106,6 +108,8 @@ export BASE_URL=""
 # UI. A list of valid time zone identifiers can be found at:
 # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 export CIVIFORM_TIME_ZONE_ID="America/Los_Angeles"
+
+
 
 #################################################
 # Template variables for: azure_saml_ses
@@ -175,6 +179,8 @@ export APPLICATION_NAME=""
 # protocol. E.g. "civiform.seattle.gov"
 export CUSTOM_HOSTNAME=""
 
+
+
 #################################################
 # Template variables for: aws_oidc
 #################################################
@@ -184,12 +190,26 @@ export CUSTOM_HOSTNAME=""
 export APP_PREFIX="my-deploy" # max 19 chars, only numbers, letters, dashes, and underscores
 
 # REQUIRED
-# Which auth provider to use for applicants to login.
-# If set to a non-disabled value, you must configure the respective auth parameters
-export CIVIFORM_APPLICANT_IDP="generic-oidc"
+# ARN of the SSL certificate that will be used to handle HTTPS traffic. The certiciate
+# should be created and validated before the deployment is done. Certificate can be created
+# in AWS web console: https://console.aws.amazon.com/acm/home#/certificates/list
+export SSL_CERTIFICATE_ARN=""
+
+# RERUIRED
+# Number of Civiform server tasks to run. This value can be set to 0 to shutdown servers.
+# It can be useful, for example, when server continiously fails on startup: set this to 0
+# to shutdown servers while figuring out the error.
+export FARGATE_DESIRED_TASK_COUNT=1
+
+
 
 # generic-oidc Auth configuration
 #################################################
+
+# REQUIRED
+# Which auth provider to use for applicants to login.
+# If set to a non-disabled value, you must configure the respective auth parameters
+export CIVIFORM_APPLICANT_IDP="generic-oidc"
 
 # REQUIRED iff CIVIFORM_APPLICANT_IDP="generic-oidc"
 # The name to of the OIDC provider.  Must be URL-safe.
