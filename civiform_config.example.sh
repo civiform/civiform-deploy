@@ -170,6 +170,11 @@ export LOGIN_RADIUS_SAML_APP_NAME=""
 # characters long.
 export APPLICATION_NAME=""
 
+# REQUIRED
+# The custom domain name for this CiviForm deployment, not including the
+# protocol. E.g. "civiform.seattle.gov"
+export CUSTOM_HOSTNAME=""
+
 #################################################
 # Template variables for: aws_oidc
 #################################################
