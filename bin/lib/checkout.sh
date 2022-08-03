@@ -26,7 +26,11 @@ function checkout::exec_delegated_command_at_path() {
 
   checkout::get_image_tag "$@"
   checkout::ensure_initialized
-  checkout::from_image_tag "${IMAGE_TAG}"
+  if [[ "${USE_LATEST_GIT_COMMIT}" ]]; then
+    checkout::at_main
+  else
+    checkout::from_image_tag "${IMAGE_TAG}"
+  fi
 
   (
     cd checkout
@@ -141,6 +145,22 @@ function checkout::at_sha() {
 
   git pull --quiet origin main
   git checkout --quiet "${commit_sha}"
+
+  popd > /dev/null
+  echo "done"
+}
+
+#######################################
+# Pulls the latest git revisions for the checkout directory from the mainline
+# CiviForm repo.
+#######################################
+function checkout::at_main() {
+  printf "Syncing checkout directory to latest commit... "
+
+  pushd checkout > /dev/null
+
+  git checkout --quiet main
+  git pull --quiet origin main
 
   popd > /dev/null
   echo "done"

@@ -6,6 +6,7 @@ Contains functions for validating and resolving image tags.
 
 import argparse
 import json
+import os
 import re
 import urllib.error
 import urllib.request
@@ -29,7 +30,7 @@ class _NoGitCommitInfoError(Exception):
             f'Git commit information could not be obtained for "{tag_or_digest}"')
 
 
-def _maybe_warn_for_unsupported_tag(tag_or_digest):
+def _check_for_unsupported_tag(tag_or_digest):
     if _CIVIFORM_RELEASE_TAG_REGEX.match(tag_or_digest):
         return True
 
@@ -38,7 +39,10 @@ def _maybe_warn_for_unsupported_tag(tag_or_digest):
     sys.stderr.write(f'''
 The provided tag "{tag_or_digest}" does not reference a release tag and may not
 be stable.
-
+''')
+    if os.getenv('CF_SKIP_WARN'):
+        return True
+    sys.stderr.write(f'''
 If you would like to continue deployment, please type YES below.
 
 Continue: ''')
@@ -105,7 +109,7 @@ _parser.add_argument('--tag', required=True,
 if __name__ == '__main__':
     args = _parser.parse_args()
 
-    if not _maybe_warn_for_unsupported_tag(args.tag):
+    if not _check_for_unsupported_tag(args.tag):
         sys.exit(1)
 
     try:
