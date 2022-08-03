@@ -44,6 +44,8 @@ export DOCKER_USERNAME="civiform"
 # The authentication protocal used for applicant and trusted intermediary accounts.
 export CIVIFORM_APPLICANT_AUTH_PROTOCOL=""
 
+
+
 # Deployment-specific Civiform configuration
 #################################################
 
@@ -97,15 +99,17 @@ export STAGING_TI_NOTIFICATION_MAILING_LIST=""
 export STAGING_APPLICANT_NOTIFICATION_MAILING_LIST=""
 
 # REQUIRED
-# The custom domain name for this CiviForm deployment, not including the
-# protocol. E.g. "civiform.seattle.gov"
-export CUSTOM_HOSTNAME=""
+# The domain name for this CiviForm deployment, including the protocol. 
+# E.g. "https://civiform.seattle.gov"
+export BASE_URL=""
 
 # OPTIONAL
 # The time zone to be used when rendering any times within the CiviForm
 # UI. A list of valid time zone identifiers can be found at:
 # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 export CIVIFORM_TIME_ZONE_ID="America/Los_Angeles"
+
+
 
 #################################################
 # Template variables for: azure_saml_ses
@@ -170,6 +174,13 @@ export LOGIN_RADIUS_SAML_APP_NAME=""
 # characters long.
 export APPLICATION_NAME=""
 
+# REQUIRED
+# The custom domain name for this CiviForm deployment, not including the
+# protocol. E.g. "civiform.seattle.gov"
+export CUSTOM_HOSTNAME=""
+
+
+
 #################################################
 # Template variables for: aws_oidc
 #################################################
@@ -179,22 +190,31 @@ export APPLICATION_NAME=""
 export APP_PREFIX="my-deploy" # max 19 chars, only numbers, letters, dashes, and underscores
 
 # REQUIRED
-# Which auth provider to use for applicants to login.
-# If set to a non-disabled value, you must configure the respective auth parameters
-export CIVIFORM_APPLICANT_IDP="generic-oidc"
+# ARN of the SSL certificate that will be used to handle HTTPS traffic. The certiciate
+# should be created and validated before the deployment is done. Certificate can be created
+# in AWS web console: https://console.aws.amazon.com/acm/home#/certificates/list
+export SSL_CERTIFICATE_ARN=""
+
+# RERUIRED
+# Number of Civiform server tasks to run. This value can be set to 0 to shutdown servers.
+# It can be useful, for example, when server continiously fails on startup: set this to 0
+# to shutdown servers while figuring out the error.
+export FARGATE_DESIRED_TASK_COUNT=1
+
+
 
 # generic-oidc Auth configuration
 #################################################
+
+# REQUIRED
+# Which auth provider to use for applicants to login.
+# If set to a non-disabled value, you must configure the respective auth parameters
+export CIVIFORM_APPLICANT_IDP="generic-oidc"
 
 # REQUIRED iff CIVIFORM_APPLICANT_IDP="generic-oidc"
 # The name to of the OIDC provider.  Must be URL-safe.
 # Gets appended to the auth callback URL.
 export APPLICANT_OIDC_PROVIDER_NAME=""
-
-# REQUIRED iff CIVIFORM_APPLICANT_IDP="generic-oidc"
-# The Client ID and Secret provided by the OIDC provider.
-export APPLICANT_OIDC_CLIENT_ID=""
-export APPLICANT_OIDC_CLIENT_SECRET=""
 
 # REQUIRED iff CIVIFORM_APPLICANT_IDP="generic-oidc"
 # The discovery metadata URI provideded by the OIDC provider.
