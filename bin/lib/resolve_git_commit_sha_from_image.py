@@ -41,6 +41,8 @@ The provided tag "{tag_or_digest}" does not reference a release tag and may not
 be stable.
 ''')
     if os.getenv('CF_SKIP_WARN'):
+        sys.stderr.write(
+            'Proceeding automatically since the "CF_SKIP_WARN" environment variable was set.')
         return True
     sys.stderr.write(f'''
 If you would like to continue deployment, please type YES below.
