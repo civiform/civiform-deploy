@@ -20,7 +20,7 @@
 # REQUIRED
 # A supported CiviForm cloud provider, lower case.
 # "aws" or "azure"
-export CIVIFORM_CLOUD_PROVIDER="azure"
+export CIVIFORM_CLOUD_PROVIDER="aws"
 
 # REQUIRED
 # One of prod, staging, or dev.
