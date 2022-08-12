@@ -42,6 +42,7 @@ export DOCKER_USERNAME="civiform"
 
 # REQUIRED
 # The authentication protocal used for applicant and trusted intermediary accounts.
+# Supported values: "oidc", "saml"
 export CIVIFORM_APPLICANT_AUTH_PROTOCOL=""
 
 
