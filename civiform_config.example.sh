@@ -20,7 +20,7 @@
 # REQUIRED
 # A supported CiviForm cloud provider, lower case.
 # "aws" or "azure"
-export CIVIFORM_CLOUD_PROVIDER="azure"
+export CIVIFORM_CLOUD_PROVIDER="aws"
 
 # REQUIRED
 # One of prod, staging, or dev.
@@ -42,6 +42,7 @@ export DOCKER_USERNAME="civiform"
 
 # REQUIRED
 # The authentication protocal used for applicant and trusted intermediary accounts.
+# Supported values: "oidc", "saml"
 export CIVIFORM_APPLICANT_AUTH_PROTOCOL=""
 
 
@@ -63,17 +64,16 @@ export CIVIC_ENTITY_SUPPORT_EMAIL_ADDRESS=""
 
 # REQUIRED
 # A link to an image of the civic entity logo that includes the entity name, to be used in the header for the "Get Benefits" page
-export CIVIC_ENTITY_LOGO_WITH_NAME_URL=""
+export CIVIC_ENTITY_LOGO_WITH_NAME_URL="https://raw.githubusercontent.com/civiform/staging-aws-deploy/main/logos/civiform-staging-long.png"
 
 # REQUIRED
 # A link to an image of the civic entity logo, to be used on the login page
-export CIVIC_ENTITY_SMALL_LOGO_URL=""
+export CIVIC_ENTITY_SMALL_LOGO_URL="https://raw.githubusercontent.com/civiform/staging-aws-deploy/main/logos/civiform-staging.png"
 
 # OPTIONAL
 # A link to an 16x16 of 32x32 pixel favicon of the civic entity,
 # in format .ico, .png, or .gif.
-# Defaults to "https://civiform.us/favicon.png"
-export FAVICON_URL=""
+export FAVICON_URL="https://civiform.us/favicon.png"
 
 # REQUIRED
 # The email address to use for the "from" field in emails sent from CiviForm.
@@ -104,6 +104,12 @@ export STAGING_APPLICANT_NOTIFICATION_MAILING_LIST=""
 export BASE_URL=""
 
 # OPTIONAL
+# When set enables demo mode for the civiform application. Should be set for
+# staging but not prod. The value is hostname without protocol and should correspond
+# BASE_URl. Example: "civiform.seattle.gov"
+export STAGING_HOSTNAME=""
+
+# OPTIONAL
 # The time zone to be used when rendering any times within the CiviForm
 # UI. A list of valid time zone identifiers can be found at:
 # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -111,9 +117,9 @@ export CIVIFORM_TIME_ZONE_ID="America/Los_Angeles"
 
 
 
-#################################################
-# Template variables for: azure_saml_ses
-#################################################
+###########################################################################
+# Template variables for Azure. Skip if deploying to other cloud providers.
+###########################################################################
 
 # REQUIRED
 # The Azure region to use, must be lower case.
@@ -181,9 +187,13 @@ export CUSTOM_HOSTNAME=""
 
 
 
-#################################################
-# Template variables for: aws_oidc
-#################################################
+#########################################################################
+# Template variables for AWS. Skip if deploying to other cloud providers.
+#########################################################################
+
+# REQUIRED
+# AWS region where civiform server and supporting infra will be deployed.
+export AWS_REGION="us-east-1"
 
 # REQUIRED
 # The name to prefix all resources with.
@@ -193,6 +203,8 @@ export APP_PREFIX="my-deploy" # max 19 chars, only numbers, letters, dashes, and
 # ARN of the SSL certificate that will be used to handle HTTPS traffic. The certiciate
 # should be created and validated before the deployment is done. Certificate can be created
 # in AWS web console: https://console.aws.amazon.com/acm/home#/certificates/list
+# WARNING: certificate needs to be created in the same region as AWS_REGION above, make sure
+# select correct region in web AWS console when creating certificate.
 export SSL_CERTIFICATE_ARN=""
 
 # RERUIRED
@@ -212,9 +224,9 @@ export FARGATE_DESIRED_TASK_COUNT=1
 export CIVIFORM_APPLICANT_IDP="generic-oidc"
 
 # REQUIRED iff CIVIFORM_APPLICANT_IDP="generic-oidc"
-# The name to of the OIDC provider.  Must be URL-safe.
+# The name of the OIDC provider. Must be URL-safe.
 # Gets appended to the auth callback URL.
-export APPLICANT_OIDC_PROVIDER_NAME=""
+export APPLICANT_OIDC_PROVIDER_NAME="OidcClient"
 
 # REQUIRED iff CIVIFORM_APPLICANT_IDP="generic-oidc"
 # The discovery metadata URI provideded by the OIDC provider.
@@ -223,10 +235,9 @@ export APPLICANT_OIDC_DISCOVERY_URI="https://civiform-staging.us.auth0.com/.well
 
 # OPTIONAL
 # The type of OIDC flow to execute, and how the data is encoded.
-# Defaults to APPLICANT_OIDC_RESPONSE_MODE="form_post" and APPLICANT_OIDC_RESPONSE_TYPE="id_token token"
 # See https://auth0.com/docs/authenticate/protocols/oauth#authorization-endpoint
-export APPLICANT_OIDC_RESPONSE_MODE=""
-export APPLICANT_OIDC_RESPONSE_TYPE=""
+export APPLICANT_OIDC_RESPONSE_MODE="form_post"
+export APPLICANT_OIDC_RESPONSE_TYPE="id_token token"
 
 # OPTIONAL
 # Any additional claims to request, in addition to the default scopes "openid profile email"
@@ -251,3 +262,8 @@ export APPLICANT_OIDC_EMAIL_ATTRIBUTE="email"
 export APPLICANT_OIDC_FIRST_NAME_ATTRIBUTE=""
 export APPLICANT_OIDC_MIDDLE_NAME_ATTRIBUTE=""
 export APPLICANT_OIDC_LAST_NAME_ATTRIBUTE=""
+
+# REQUIRED
+# The discovery metadata URI provideded by the ADFS provider.
+# Usually ends in .well-known/openid-configuration
+export ADFS_DISCOVERY_URI="https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"
