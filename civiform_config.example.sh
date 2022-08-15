@@ -266,4 +266,4 @@ export APPLICANT_OIDC_LAST_NAME_ATTRIBUTE=""
 # REQUIRED
 # The discovery metadata URI provideded by the ADFS provider.
 # Usually ends in .well-known/openid-configuration
-export ADFS_DISCOVERY_URI="https://civiform-staging.us.auth0.com/.well-known/openid-configuration"
+export ADFS_DISCOVERY_URI="https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"
