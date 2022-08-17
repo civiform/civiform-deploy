@@ -1,8 +1,0 @@
-#! /usr/bin/env bash
-
-# DOC: Rollback to the previously deployed image. Usage: bin/rollback
-
-source bin/lib.sh
-source civiform_config.sh
-
-CMD_NAME=rollback checkout::exec_delegated_command "$@"

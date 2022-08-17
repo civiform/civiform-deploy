@@ -1,8 +1,8 @@
 #! /usr/bin/env bash
 
-# DOC: Set up a new environment. Usage: bin/setup --tag=<image tag>
+# DOC: Set up a new environment. Usage: bin/setup --tag=<image tag> --config=<config_file>
 
 source bin/lib.sh
-source civiform_config.sh
+source ${CONFIG_FILE}
 
 CMD_NAME=setup checkout::exec_delegated_command "$@"

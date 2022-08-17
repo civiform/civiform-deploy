@@ -1,9 +1,9 @@
 #! /usr/bin/env bash
 
-# DOC: Run a command at a path. Usage: bin/run <path/to/command> --tag=<image tag>
+# DOC: Run a command at a path. Usage: bin/run <path/to/command> --tag=<image tag> --config=<config_file>
 
 source bin/lib.sh
-source civiform_config.sh
+source ${CONFIG_FILE}
 
 readonly command_path="${1}"
 shift 1

@@ -1,8 +1,8 @@
 #! /usr/bin/env bash
 
-# DOC: Check that local environment is ready to run civiform commands. Usage: bin/deploy --tag=<image tag>
+# DOC: Check that local environment is ready to run civiform commands. Usage: bin/deploy --tag=<image tag> --config=<config_file>
 
 source bin/lib.sh
-source civiform_config.sh
+source ${CONFIG_FILE}
 
 CMD_NAME=doctor checkout::exec_delegated_command "$@"

@@ -16,3 +16,7 @@ if [[ "${SOURCED_LIB}" != "true" ]]; then
 
   SOURCED_LIB="true"
 fi
+
+checkout::get_config_file "$@"
+
+echo "Using config file ${CONFIG_FILE}"

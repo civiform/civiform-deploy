@@ -77,6 +77,26 @@ function checkout::get_image_tag() {
 }
 
 #######################################
+# Retrieves the config file name from a list of aguments if present.
+# Arguments:
+#   @: An arguments list
+# Globals:
+#   Sets the CONFIG_FILE variable
+#######################################
+function checkout::get_config_file() {
+  for i in "$@"; do
+    case "${i}" in
+      --config=*)
+        export CONFIG_FILE="${i#*=}"
+        return
+        ;;
+    esac
+  done
+
+  export CONFIG_FILE="civiform_config.sh"
+}
+
+#######################################
 # Sets the checkout directory to the commit corresponding
 # to the provided image tag.
 # Arguments:
