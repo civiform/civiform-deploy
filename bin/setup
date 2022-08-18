@@ -1,6 +1,10 @@
 #! /usr/bin/env bash
 
-# DOC: Set up a new environment. Usage: bin/setup --tag=<image tag> --config=<config_file>
+# DOC: Set up a new environment. Usage: bin/setup --tag=<image tag>
+# Optional params:
+#   --config=<config_file> to override config file
+#   --infra_commit=<commit_sha> to override infrastructure version. 
+#     Needs to be a valid config from https://github.com/civiform/civiform.
 
 source bin/lib.sh
 source ${CONFIG_FILE}
