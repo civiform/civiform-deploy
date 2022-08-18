@@ -4,7 +4,7 @@
 # Optional params:
 #   --config=<config_file> to override config file
 #   --infra_commit=<commit_sha> to override infrastructure version. 
-#     Needs to be a valid config from https://github.com/civiform/civiform.
+#     Needs to be a valid commit from https://github.com/civiform/civiform.
 
 source bin/lib.sh
 source ${CONFIG_FILE}
