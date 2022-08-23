@@ -25,9 +25,11 @@ function checkout::exec_delegated_command_at_path() {
   fi
 
   checkout::get_image_tag "$@"
+  checkout::get_infra_commit_sha "$@"
   checkout::ensure_initialized
-  if [[ "${USE_LATEST_GIT_COMMIT}" ]]; then
-    checkout::at_main
+  if [[ ! -z "${INFRA_COMMIT_SHA}" ]]; then
+    printf "Getting infra commit sha from the explicit flag. \n" 
+    checkout::at_sha "${INFRA_COMMIT_SHA}"
   else
     checkout::from_image_tag "${IMAGE_TAG}"
   fi
@@ -94,6 +96,24 @@ function checkout::get_config_file() {
   done
 
   export CONFIG_FILE="civiform_config.sh"
+}
+
+#######################################
+# Retrieves infra commit sha if present
+# Arguments:
+#   @: An arguments list
+# Globals:
+#   Sets the INFRA_COMMIT_SHA variable
+#######################################
+function checkout::get_infra_commit_sha() {
+  for i in "$@"; do
+    case "${i}" in
+      --infra_commit=*)
+        export INFRA_COMMIT_SHA="${i#*=}"
+        return
+        ;;
+    esac
+  done
 }
 
 #######################################
