@@ -115,6 +115,11 @@ export STAGING_HOSTNAME=""
 # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 export CIVIFORM_TIME_ZONE_ID="America/Los_Angeles"
 
+# OPTIONAL
+# If enabled, allows exporting Prometheus server metrics over HTTP at "/metrics"
+# Defaults to false.
+# export CIVIFORM_SERVER_METRICS_ENABLED=false
+
 
 
 ###########################################################################
