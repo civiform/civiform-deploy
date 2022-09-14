@@ -12,4 +12,4 @@ source ${CONFIG_FILE}
 readonly command_path="${1}"
 shift 1
 
-CMD_NAME_PATH="${command_path}" checkout::exec_delegated_command_at_path "$@"
+CMD_NAME="${command_path}" checkout::exec_delegated_command "$@"
