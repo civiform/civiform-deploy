@@ -25,6 +25,7 @@ function checkout::exec_delegated_command_at_path() {
   fi
 
   checkout::get_image_tag "$@"
+  checkout::get_config_file "$@"
   checkout::get_infra_commit_sha "$@"
   checkout::ensure_initialized
   if [[ ! -z "${INFRA_COMMIT_SHA}" ]]; then
@@ -36,7 +37,10 @@ function checkout::exec_delegated_command_at_path() {
 
   (
     cd checkout
-    exec "${CMD_NAME_PATH}" "$@"
+    CONFIG_FILE_ABSOLUTE_PATH="../${CONFIG_FILE}" \
+    args=("--command=${CMD_NAME}" "--tag=${IMAGE_TAG}" "--config=${CONFIG_FILE_ABSOLUTE_PATH}")
+    printf "Running ${CMD_NAME_PATH} ${args[@]}"
+    exec "${CMD_NAME_PATH}" "${args[@]}"
   )
 }
 
@@ -52,7 +56,7 @@ function checkout::exec_delegated_command_at_path() {
 #   CMD_NAME: the name of the command to run
 #######################################
 function checkout::exec_delegated_command() {
-  CMD_NAME_PATH="cloud/shared/bin/${CMD_NAME}" \
+  CMD_NAME_PATH="cloud/shared/bin/run.py" \
     checkout::exec_delegated_command_at_path "$@"
 }
 
