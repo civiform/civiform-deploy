@@ -64,11 +64,11 @@ export CIVIC_ENTITY_SUPPORT_EMAIL_ADDRESS=""
 
 # REQUIRED
 # A link to an image of the civic entity logo that includes the entity name, to be used in the header for the "Get Benefits" page
-export CIVIC_ENTITY_LOGO_WITH_NAME_URL="https://raw.githubusercontent.com/civiform/staging-aws-deploy/main/logos/civiform-staging-long.png"
+export CIVIC_ENTITY_LOGO_WITH_NAME_URL="https://raw.githubusercontent.com/civiform/civiform-staging-deploy/main/logos/civiform-staging-long.png"
 
 # REQUIRED
 # A link to an image of the civic entity logo, to be used on the login page
-export CIVIC_ENTITY_SMALL_LOGO_URL="https://raw.githubusercontent.com/civiform/staging-aws-deploy/main/logos/civiform-staging.png"
+export CIVIC_ENTITY_SMALL_LOGO_URL="https://raw.githubusercontent.com/civiform/civiform-staging-deploy/main/logos/civiform-staging.png"
 
 # OPTIONAL
 # A link to an 16x16 of 32x32 pixel favicon of the civic entity,
@@ -198,6 +198,7 @@ export CUSTOM_HOSTNAME=""
 
 # REQUIRED
 # AWS region where civiform server and supporting infra will be deployed.
+# Unofficial list of available regions: https://gist.github.com/colinvh/14e4b7fb6b66c29f79d3
 export AWS_REGION="us-east-1"
 
 # REQUIRED
@@ -262,13 +263,12 @@ export APPLICANT_OIDC_EMAIL_ATTRIBUTE="email"
 # The name of the profile field where the user's name is stored.
 # If there is only one name field(the display name) use APPLICANT_OIDC_FIRST_NAME_ATTRIBUTE.
 # If the name is split into multiple fields, use the APPLICANT_OIDC_MIDDLE_NAME_ATTRIBUTE
-# and APPLICANT_OIDC_LAST_NAME_ATTRIBUTE as nessesary.
-# Defaults to APPLICANT_OIDC_FIRST_NAME_ATTRIBUTE="name"
-export APPLICANT_OIDC_FIRST_NAME_ATTRIBUTE=""
+# and APPLICANT_OIDC_LAST_NAME_ATTRIBUTE as necessary.
+export APPLICANT_OIDC_FIRST_NAME_ATTRIBUTE="name"
 export APPLICANT_OIDC_MIDDLE_NAME_ATTRIBUTE=""
 export APPLICANT_OIDC_LAST_NAME_ATTRIBUTE=""
 
 # REQUIRED
 # The discovery metadata URI provideded by the ADFS provider.
 # Usually ends in .well-known/openid-configuration
-export ADFS_DISCOVERY_URI="https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"
+export ADFS_DISCOVERY_URI="https://civiform-staging.us.auth0.com/.well-known/openid-configuration"
