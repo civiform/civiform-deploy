@@ -12,7 +12,7 @@ shift 1
 
 if [[ ! -z "${USE_DOCKER}" ]]; then
     COMMAND="${command_path}"
-    exec "bin/lib/run-from-docker"
+    exec "bin/lib/run_from_docker"
 else 
     source ${CONFIG_FILE}
     CMD_NAME=${command_path} checkout::exec_delegated_command "$@"
