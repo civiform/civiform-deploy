@@ -17,3 +17,4 @@ services:
       # Mounting civiform config to the image in read only mode.
       - ${PWD}/${CONFIG_FILE}:/${CONFIG_FILE}:ro
     command: cloud/shared/bin/run.py --tag=${IMAGE_TAG} --command=${COMMAND} --config=${CONFIG}
+    
