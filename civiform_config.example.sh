@@ -78,7 +78,6 @@ export FAVICON_URL="https://civiform.us/favicon.png"
 # REQUIRED
 # The email address to use for the "from" field in emails sent from CiviForm.
 export SENDER_EMAIL_ADDRESS=""
-export SES_SENDER_EMAIL=""
 
 # REQUIRED
 # The email address that receives a notifications email each time an applicant
