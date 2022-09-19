@@ -3,8 +3,6 @@
 # DOC: Run a command at a path. Usage: bin/run <path/to/command> --tag=<image tag>
 # Optional params:
 #   --config=<config_file> to override config file
-#   --infra_commit=<commit_sha> to override infrastructure version. 
-#     Needs to be a valid commit from https://github.com/civiform/civiform.
 
 source bin/lib.sh
 source ${CONFIG_FILE}
@@ -12,4 +10,10 @@ source ${CONFIG_FILE}
 readonly command_path="${1}"
 shift 1
 
-CMD_NAME="${command_path}" checkout::exec_delegated_command "$@"
+if [[ ! -z "${USE_DOCKER}" ]]; then
+    COMMAND="${command_path}"
+    exec "bin/lib/run-from-docker"
+else 
+    source ${CONFIG_FILE}
+    CMD_NAME=${command_path} checkout::exec_delegated_command "$@"
+fi

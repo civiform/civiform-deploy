@@ -14,6 +14,16 @@
 # Global variables for all CiviForm deployments
 #################################################
 
+# REQUIRED
+# Version of the infrastructure to use.
+# Needs to be either:
+# - Label from https://hub.docker.com/r/civiform/civiform-cloud-deployment if USE_DOCKER=true
+# - Commit sha from https://github.com/civiform/cloud-deploy-infra if USE_DOCKER=false
+# - "latest" to use latest version of either docker image or code from the repo, 
+#    depending on USE_DOCKER flag.
+
+export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="latest"
+
 # Terraform configuration
 #################################################
 

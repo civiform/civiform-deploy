@@ -9,4 +9,10 @@
 source bin/lib.sh
 source ${CONFIG_FILE}
 
-CMD_NAME=doctor checkout::exec_delegated_command "$@"
+if [[ ! -z "${USE_DOCKER}" ]]; then
+    COMMAND="doctor"
+    exec "bin/lib/run-from-docker"
+else 
+    source ${CONFIG_FILE}
+    CMD_NAME=doctor checkout::exec_delegated_command "$@"
+fi

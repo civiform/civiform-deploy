@@ -3,10 +3,13 @@
 # DOC: Deploy an image. Usage: bin/deploy --tag=<image tag> 
 # Optional params:
 #   --config=<config_file> to override config file
-#   --infra_commit=<commit_sha> to override infrastructure version. 
-#     Needs to be a valid commit from https://github.com/civiform/civiform.
 
 source bin/lib.sh
 source ${CONFIG_FILE}
 
-CMD_NAME=deploy checkout::exec_delegated_command "$@"
+if [[ ! -z "${USE_DOCKER}" ]]; then
+    COMMAND="deploy"
+    exec "bin/lib/run-from-docker"
+else 
+    CMD_NAME=deploy checkout::exec_delegated_command "$@"
+fi
