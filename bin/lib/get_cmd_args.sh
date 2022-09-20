@@ -27,19 +27,19 @@ function get_cmd_args::get_image_tag() {
 # Arguments:
 #   @: An arguments list
 # Globals:
-#   Sets the CONFIG_FILE variable
+#   Sets the CONFIG variable
 #######################################
 function get_cmd_args::get_config_file() {
   for i in "$@"; do
     case "${i}" in
       --config=*)
-        export CONFIG_FILE="${i#*=}"
+        export CONFIG="${i#*=}"
         return
         ;;
     esac
   done
 
-  export CONFIG_FILE="civiform_config.sh"
+  export CONFIG="civiform_config.sh"
 }
 
 get_cmd_args::get_image_tag "$@"

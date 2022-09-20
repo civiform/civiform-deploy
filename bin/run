@@ -5,7 +5,7 @@
 #   --config=<config_file> to override config file
 
 source bin/lib.sh
-source ${CONFIG_FILE}
+source ${CONFIG}
 
 readonly command_path="${1}"
 shift 1
@@ -14,6 +14,5 @@ if [[ ! -z "${USE_DOCKER}" ]]; then
     COMMAND="${command_path}"
     exec "bin/lib/run_from_docker"
 else 
-    source ${CONFIG_FILE}
     CMD_NAME=${command_path} checkout::exec_delegated_command "$@"
 fi

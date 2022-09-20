@@ -5,7 +5,7 @@
 #   --config=<config_file> to override config file
 
 source bin/lib.sh
-source ${CONFIG_FILE}
+source ${CONFIG}
 
 if [[ ! -z "${USE_DOCKER}" ]]; then
     COMMAND="deploy"

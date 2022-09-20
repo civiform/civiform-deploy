@@ -18,4 +18,4 @@ if [[ "${SOURCED_LIB}" != "true" ]]; then
   SOURCED_LIB="true"
 fi
 
-echo "Using config file ${CONFIG_FILE}"
+echo "Using config file ${CONFIG}"
