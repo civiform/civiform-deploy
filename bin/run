@@ -1,17 +1,17 @@
 #! /usr/bin/env bash
 
-# DOC: Run a command at a path. Usage: bin/run <path/to/command> --tag=<image tag>
+# DOC: Run a command at a path. Usage: bin/run --tag=<image tag>
+# It will ask for keyboard input for the command to run.
 # Optional params:
 #   --config=<config_file> to override config file
 
 source bin/lib.sh
 source ${CONFIG}
 
-readonly command_path="${1}"
-shift 1
+read -p "Enter command to run : " command_path
 
 if [[ ! -z "${USE_DOCKER}" ]]; then
-    COMMAND="${command_path}"
+    export COMMAND="${command_path}"
     exec "bin/lib/run_from_docker"
 else 
     CMD_NAME=${command_path} checkout::exec_delegated_command "$@"

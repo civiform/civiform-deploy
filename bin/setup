@@ -8,7 +8,7 @@ source bin/lib.sh
 source ${CONFIG}
 
 if [[ ! -z "${USE_DOCKER}" ]]; then
-    COMMAND="setup"
+    export COMMAND="setup"
     exec "bin/lib/run_from_docker"
 else 
     CMD_NAME=setup checkout::exec_delegated_command "$@"

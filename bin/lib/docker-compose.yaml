@@ -1,5 +1,7 @@
 services:
   cloud:
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
     image: civiform/civiform-cloud-deployment:${CIVIFORM_CLOUD_DEPLOYMENT_VERSION}
     environment:
       - AWS_ACCESS_KEY_ID
@@ -16,4 +18,4 @@ services:
     volumes:
       # Mounting civiform config to the image in read only mode.
       - ${PWD}/${CONFIG}:/${CONFIG}:ro
-    command: cloud/shared/bin/run.py --tag=${IMAGE_TAG} --command=${COMMAND} --config=${CONFIG}
+    command: cloud/shared/bin/run.py --tag=${IMAGE_TAG} --command="${COMMAND}" --config=${CONFIG}
