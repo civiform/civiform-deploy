@@ -24,22 +24,19 @@ function checkout::exec_delegated_command_at_path() {
     exit 1
   fi
 
-  checkout::get_image_tag "$@"
-  checkout::get_config_file "$@"
-  checkout::get_infra_commit_sha "$@"
   checkout::ensure_initialized
-  if [[ ! -z "${INFRA_COMMIT_SHA}" ]]; then
-    printf "Getting infra commit sha from the explicit flag. \n" 
-    checkout::at_sha "${INFRA_COMMIT_SHA}"
+  if [[ -z "${CIVIFORM_CLOUD_DEPLOYMENT_VERSION}" ]]; then
+    out::error "CIVIFORM_CLOUD_DEPLOYMENT_VERSION needs to be set to 'latest' or commit sha from https://github.com/civiform/cloud-deploy-infra."
+    exit 1
   else
-    checkout::from_image_tag "${IMAGE_TAG}"
+    checkout::at_sha "${CIVIFORM_CLOUD_DEPLOYMENT_VERSION}"
   fi
 
   (
     cd checkout
-    CONFIG_FILE_ABSOLUTE_PATH="../${CONFIG_FILE}" \
+    CONFIG_FILE_ABSOLUTE_PATH="../${CONFIG}" \
     args=("--command=${CMD_NAME}" "--tag=${IMAGE_TAG}" "--config=${CONFIG_FILE_ABSOLUTE_PATH}")
-    printf "Running ${CMD_NAME_PATH} ${args[@]}"
+    echo "Running ${CMD_NAME_PATH} ${args[@]}"
     exec "${CMD_NAME_PATH}" "${args[@]}"
   )
 }
@@ -58,80 +55,6 @@ function checkout::exec_delegated_command_at_path() {
 function checkout::exec_delegated_command() {
   CMD_NAME_PATH="cloud/shared/bin/run.py" \
     checkout::exec_delegated_command_at_path "$@"
-}
-
-#######################################
-# Retrieves the image tag from a list of aguments.
-# Exits with an error message if --tag flag is not found.
-# Arguments:
-#   @: An arguments list
-# Globals:
-#   Sets the IMAGE_TAG variable
-#######################################
-function checkout::get_image_tag() {
-  for i in "$@"; do
-    case "${i}" in
-      --tag=*)
-        export IMAGE_TAG="${i#*=}"
-        return
-        ;;
-    esac
-  done
-
-  out::error "--tag argument is required"
-  exit 1
-}
-
-#######################################
-# Retrieves the config file name from a list of aguments if present.
-# Arguments:
-#   @: An arguments list
-# Globals:
-#   Sets the CONFIG_FILE variable
-#######################################
-function checkout::get_config_file() {
-  for i in "$@"; do
-    case "${i}" in
-      --config=*)
-        export CONFIG_FILE="${i#*=}"
-        return
-        ;;
-    esac
-  done
-
-  export CONFIG_FILE="civiform_config.sh"
-}
-
-#######################################
-# Retrieves infra commit sha if present
-# Arguments:
-#   @: An arguments list
-# Globals:
-#   Sets the INFRA_COMMIT_SHA variable
-#######################################
-function checkout::get_infra_commit_sha() {
-  for i in "$@"; do
-    case "${i}" in
-      --infra_commit=*)
-        export INFRA_COMMIT_SHA="${i#*=}"
-        return
-        ;;
-    esac
-  done
-}
-
-#######################################
-# Sets the checkout directory to the commit corresponding
-# to the provided image tag.
-# Arguments:
-#   1: The image tag for the server version.
-#######################################
-function checkout::from_image_tag() {
-  local image_tag="${1}"
-  if ! commit_sha=$(exec bin/lib/resolve_git_commit_sha_from_image.py --tag="${image_tag}"); then
-    exit $?
-  fi
-  checkout::at_sha "${commit_sha}"
 }
 
 #######################################
@@ -163,7 +86,7 @@ function checkout::initialize() {
   pushd checkout > /dev/null
 
   git init --initial-branch=main
-  git remote add origin http://github.com/civiform/civiform
+  git remote add origin http://github.com/civiform/cloud-deploy-infra
   git config core.sparseCheckout true
 
   echo "/cloud" >> .git/info/sparse-checkout
@@ -183,15 +106,19 @@ function checkout::initialize() {
 #######################################
 function checkout::at_sha() {
   local commit_sha="${1}"
-  printf "Setting checkout to ${commit_sha}... "
+  if [[ ${commit_sha} == 'latest' ]]; then
+    checkout::at_main
+  else 
+    printf "Setting checkout to ${commit_sha}... "
 
-  pushd checkout > /dev/null
+    pushd checkout > /dev/null
 
-  git pull --quiet origin main
-  git checkout --quiet "${commit_sha}"
+    git pull --quiet origin main
+    git checkout --quiet "${commit_sha}"
 
-  popd > /dev/null
-  echo "done"
+    popd > /dev/null
+    echo "done"
+  fi
 }
 
 #######################################

@@ -1,0 +1,27 @@
+#! /usr/bin/env bash
+
+# DOC: Run scripts from Docker.
+
+# Usage:
+# bin/build-cloud-deployment
+# cloud/shared/bin/run-cloud-deployment
+
+if [[ -z "${CIVIFORM_CLOUD_DEPLOYMENT_VERSION}" ]]; then
+  echo "CIVIFORM_CLOUD_DEPLOYMENT_VERSION needs to be set to 'latest' or image tag from https://hub.docker.com/r/civiform/civiform-cloud-deployment"
+  exit 1
+fi
+
+if [[ -z "${AWS_ACCESS_KEY_ID}" ]]; then
+  export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
+fi
+if [[ -z "${AWS_SECRET_ACCESS_KEY}" ]]; then
+  export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
+fi
+echo "Using civiform/civiform-cloud-deployment:${CIVIFORM_CLOUD_DEPLOYMENT_VERSION}"
+echo "Running: ${COMMAND} --tag=${IMAGE_TAG} --config=${CONFIG}"
+read -r -p "Do you want to proceed? [y/N] " response
+if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  exit
+fi
+
+docker compose -f bin/lib/docker-compose.yaml run --rm cloud

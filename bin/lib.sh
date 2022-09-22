@@ -12,11 +12,10 @@ readonly LIB_DIR="${BASH_SOURCE%/*}/lib"
 
 if [[ "${SOURCED_LIB}" != "true" ]]; then
   source "${LIB_DIR}/out.sh"
+  source "${LIB_DIR}/get_cmd_args.sh"
   source "${LIB_DIR}/checkout.sh"
 
   SOURCED_LIB="true"
 fi
 
-checkout::get_config_file "$@"
-
-echo "Using config file ${CONFIG_FILE}"
+echo "Using config file ${CONFIG}"
