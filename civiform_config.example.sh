@@ -161,11 +161,6 @@ export SAML_KEYSTORE_ACCOUNT_NAME=""
 export KEY_VAULT_NAME=""
 
 # REQUIRED
-# The ADFS group name for specifying CiviForm admins. If usinge
-# Azure AD this is the group's object ID
-export ADFS_ADMIN_GROUP=""
-
-# REQUIRED
 # API key for the LoginRadius application. Copy from the LoginRadius dashboard.
 export LOGIN_RADIUS_API_KEY=""
 
@@ -267,7 +262,26 @@ export APPLICANT_OIDC_FIRST_NAME_ATTRIBUTE="name"
 export APPLICANT_OIDC_MIDDLE_NAME_ATTRIBUTE=""
 export APPLICANT_OIDC_LAST_NAME_ATTRIBUTE=""
 
+
+
+# ADFS and Azure AD configuration
+# More information on https://docs.civiform.us/contributor-guide/developer-guide/authentication-providers
+#########################################################################################################
+
 # REQUIRED
 # The discovery metadata URI provideded by the ADFS provider.
 # Usually ends in .well-known/openid-configuration
 export ADFS_DISCOVERY_URI="https://civiform-staging.us.auth0.com/.well-known/openid-configuration"
+
+# OPTIONAL
+# Should be set to "allatclaims" for ADFS and empty value for Azure AD.
+export ADFS_ADDITIONAL_SCOPES="allatclaims"
+
+# OPTIONAL
+# Should be set to "group" for ADFS and "groups" for Azure AD.
+export AD_GROUPS_ATTRIBUTE_NAME="group"
+
+# OPTIONAL
+# The ADFS group name for specifying CiviForm admins. If using Azure AD this is
+# the group's object ID
+export ADFS_ADMIN_GROUP=""
