@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
-# DOC: Deploy an image. Usage: bin/deploy --tag=<image tag> 
+# DOC: Deploy an image. Usage: bin/deploy
+
 # Optional params:
 #   --config=<config_file> to override config file
 

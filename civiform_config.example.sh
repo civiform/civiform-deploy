@@ -21,8 +21,12 @@
 # - Commit sha from https://github.com/civiform/cloud-deploy-infra if USE_DOCKER=false
 # - "latest" to use latest version of either docker image or code from the repo, 
 #    depending on USE_DOCKER flag.
-
 export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="latest"
+
+# REQUIRED
+# Version of the CiviForm server to use.
+# Needs to be a version from https://github.com/civiform/civiform/releases.
+export CIVIFORM_VERSION="v1.8.2"
 
 # Terraform configuration
 #################################################

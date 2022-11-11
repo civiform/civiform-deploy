@@ -13,9 +13,9 @@ services:
       - AZURE_LOCAL_CONNECTION_STRING
       - AZURE_STORAGE_ACCOUNT_CONTAINER
       - CONFIG
-      - IMAGE_TAG
+      - CIVIFORM_VERSION
       - COMMAND
     volumes:
       # Mounting civiform config to the image in read only mode.
       - ${PWD}/${CONFIG}:/${CONFIG}:ro
-    command: cloud/shared/bin/run.py --tag=${IMAGE_TAG} --command="${COMMAND}" --config=${CONFIG}
+    command: cloud/shared/bin/run.py --tag="${CIVIFORM_VERSION}" --command="${COMMAND}" --config=${CONFIG}
