@@ -25,7 +25,10 @@ export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="latest"
 
 # REQUIRED
 # Version of the CiviForm server to use.
-# Needs to be a version from https://github.com/civiform/civiform/releases.
+# Needs to be either:
+# - A version from https://github.com/civiform/civiform/releases.
+# - "latest" to use the latest CiviForm version available. This is only
+#   recommended for staging environments.
 export CIVIFORM_VERSION="v1.8.2"
 
 # Terraform configuration
