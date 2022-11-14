@@ -15,6 +15,10 @@
 #################################################
 
 # REQUIRED
+# One of prod, staging, or dev.
+export CIVIFORM_MODE="staging"
+
+# REQUIRED
 # Version of the infrastructure to use.
 # Needs to be either:
 # - Label from https://hub.docker.com/r/civiform/civiform-cloud-deployment if USE_DOCKER=true
@@ -24,12 +28,11 @@
 export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="latest"
 
 # REQUIRED
-# Version of the CiviForm server to use.
-# Needs to be either:
-# - A version from https://github.com/civiform/civiform/releases.
-# - "latest" to use the latest CiviForm version available. This is only
-#   recommended for staging environments.
-export CIVIFORM_VERSION="v1.8.2"
+# CiviForm server version to deploy.
+#
+# For dev and staging civiform modes, can be "latest". For prod, must be a version from
+# https://github.com/civiform/civiform/releases.
+export CIVIFORM_VERSION="latest"
 
 # Terraform configuration
 #################################################
@@ -39,9 +42,6 @@ export CIVIFORM_VERSION="v1.8.2"
 # "aws" or "azure"
 export CIVIFORM_CLOUD_PROVIDER="aws"
 
-# REQUIRED
-# One of prod, staging, or dev.
-export CIVIFORM_MODE="staging"
 
 # REQUIRED
 # The template directory for this deployment.
