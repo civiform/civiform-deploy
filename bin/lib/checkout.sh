@@ -33,11 +33,11 @@ function checkout::exec_delegated_command_at_path() {
   fi
 
   if [[ -z "${CIVIFORM_VERSION}" ]]; then
-    out:error "CIVIFORM_VERSION needs to be either 'latest' or a version from https://github.com/civiform/civiform/releases"
+    out::error "CIVIFORM_VERSION needs to be either 'latest' or a version from https://github.com/civiform/civiform/releases"
     exit 1
   fi
   if [[ "${CIVIFORM_VERSION}" == 'latest' && "${CIVIFORM_MODE}" == 'prod' ]]; then
-    out:error "For production deployments, CIVIFORM_VERSION needs to be a version from https://github.com/civiform/civiform/releases"
+    out::error "For production deployments, CIVIFORM_VERSION needs to be a version from https://github.com/civiform/civiform/releases"
     exit 1
   fi
 
