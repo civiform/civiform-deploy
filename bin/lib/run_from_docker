@@ -12,11 +12,11 @@ if [[ -z "${CIVIFORM_CLOUD_DEPLOYMENT_VERSION}" ]]; then
 fi
 
 if [[ -z "${CIVIFORM_VERSION}" ]]; then
-  echo "CIVIFORM_VERSION needs to be set to version from https://github.com/civiform/civiform/releases"
+  echo "CIVIFORM_VERSION needs to be either 'latest' or a version from https://github.com/civiform/civiform/releases"
   exit 1
 fi
 if [[ "${CIVIFORM_VERSION}" == 'latest' && "${CIVIFORM_MODE}" == 'prod' ]]; then
-  echo "Production deployments are required to specify a specific version from https://github.com/civiform/civiform/releases"
+  echo "For production deployments, CIVIFORM_VERSION needs to be a version from https://github.com/civiform/civiform/releases"
   exit 1
 fi
 
