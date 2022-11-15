@@ -32,10 +32,19 @@ function checkout::exec_delegated_command_at_path() {
     checkout::at_sha "${CIVIFORM_CLOUD_DEPLOYMENT_VERSION}"
   fi
 
+  if [[ -z "${CIVIFORM_VERSION}" ]]; then
+    out::error "CIVIFORM_VERSION needs to be either 'latest' or a version from https://github.com/civiform/civiform/releases"
+    exit 1
+  fi
+  if [[ "${CIVIFORM_VERSION}" == 'latest' && "${CIVIFORM_MODE}" == 'prod' ]]; then
+    out::error "For production deployments, CIVIFORM_VERSION needs to be a version from https://github.com/civiform/civiform/releases"
+    exit 1
+  fi
+
   (
     cd checkout
     CONFIG_FILE_ABSOLUTE_PATH="../${CONFIG}" \
-    args=("--command=${CMD_NAME}" "--tag=${IMAGE_TAG}" "--config=${CONFIG_FILE_ABSOLUTE_PATH}")
+    args=("--command=${CMD_NAME}" "--tag=${CIVIFORM_VERSION}" "--config=${CONFIG_FILE_ABSOLUTE_PATH}")
     echo "Running ${CMD_NAME_PATH} ${args[@]}"
     exec "${CMD_NAME_PATH}" "${args[@]}"
   )
