@@ -24,7 +24,7 @@ function checkout::exec_delegated_command_at_path() {
     exit 1
   fi
 
-  checkout::ensure_initialized
+  checkout::initialize
   if [[ -z "${CIVIFORM_CLOUD_DEPLOYMENT_VERSION}" ]]; then
     out::error "CIVIFORM_CLOUD_DEPLOYMENT_VERSION needs to be set to 'latest' or commit sha from https://github.com/civiform/cloud-deploy-infra."
     exit 1
@@ -64,21 +64,6 @@ function checkout::exec_delegated_command_at_path() {
 function checkout::exec_delegated_command() {
   CMD_NAME_PATH="cloud/shared/bin/run.py" \
     checkout::exec_delegated_command_at_path "$@"
-}
-
-#######################################
-# Checks if the checkout directory is initialized and initializes it
-# if it isn't.
-#######################################
-function checkout::ensure_initialized() {
-  printf "Ensuring checkout is initialized... "
-
-  if cat checkout/.git/info/sparse-checkout 2> /dev/null | grep -q "\/cloud"; then
-    echo "done"
-  else
-    echo "not initialized"
-    checkout::initialize
-  fi
 }
 
 #######################################
