@@ -43,8 +43,11 @@ function checkout::exec_delegated_command_at_path() {
 
   (
     cd checkout
-    CONFIG_FILE_ABSOLUTE_PATH="../${CONFIG}" \
-    args=("--command=${CMD_NAME}" "--tag=${CIVIFORM_VERSION}" "--config=${CONFIG_FILE_ABSOLUTE_PATH}")
+    CONFIG_FILE_ABSOLUTE_PATH="${CONFIG}"
+    if [[ "${CONFIG:0:1}" != "/" ]]; then
+      CONFIG_FILE_ABSOLUTE_PATH="../${CONFIG}"
+    fi
+    args=("--command=${CMD_NAME}" "--tag=${IMAGE_TAG}" "--config=${CONFIG_FILE_ABSOLUTE_PATH}")
     echo "Running ${CMD_NAME_PATH} ${args[@]}"
     exec "${CMD_NAME_PATH}" "${args[@]}"
   )
