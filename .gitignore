@@ -3,5 +3,5 @@ civiform_config.sh
 .idea
 *.log
 tmp/
-
+nuke.yaml     # this file is created by developers when working on the deployment system. see https://docs.civiform.us/contributor-guide/developer-guide/deploy-system/prerequisites#setup-aws-nuke
 checkout/
