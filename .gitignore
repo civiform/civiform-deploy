@@ -3,5 +3,5 @@ civiform_config.sh
 .idea
 *.log
 tmp/
-
+nuke.yaml
 checkout/
