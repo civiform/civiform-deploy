@@ -2,6 +2,5 @@ This is a template repository that needs to be forked for new deploys.
 
 See documentation [here](https://docs.civiform.us/it-manual/sre-playbook/terraform-deploy-system).
 
-See our staging environment for examples: https://github.com/civiform/civiform-staging-deploy
-
-Developers, please update our staging environment repository as needed to reflect any changes made in this repository.
+See our staging environment for examples: https://github.com/civiform/civiform-staging-deploy <br>
+Developers, when making changes to this repository please also update our staging environment repository.
