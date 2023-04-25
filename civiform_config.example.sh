@@ -7,8 +7,8 @@
 # cp civiform_config.example.sh civiform_config.sh
 #
 # Configuration variables must be specified in SCREAMING_SNAKE_CASE with the
-# "export" keyword preceding them. All values must be quoted as strings. There
-# should be no spaces before or after the equals sign.
+# "export" keyword preceding them. If the value contains whitespace it must be
+# surrounded by quotes. There should be no spaces before or after the equals sign.
 
 #################################################
 # Global variables for all CiviForm deployments
