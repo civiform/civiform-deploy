@@ -242,12 +242,12 @@ export FARGATE_DESIRED_TASK_COUNT=1
 # If set to a non-disabled value, you must configure the respective auth parameters
 export CIVIFORM_APPLICANT_IDP="generic-oidc"
 
-# REQUIRED iff CIVIFORM_APPLICANT_IDP="generic-oidc"
+# REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc"
 # The name of the OIDC provider. Must be URL-safe.
 # Gets appended to the auth callback URL.
 export APPLICANT_OIDC_PROVIDER_NAME="OidcClient"
 
-# REQUIRED iff CIVIFORM_APPLICANT_IDP="generic-oidc"
+# REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc"
 # The discovery metadata URI provideded by the OIDC provider.
 # Usually ends in .well-known/openid-configuration
 export APPLICANT_OIDC_DISCOVERY_URI="https://civiform-staging.us.auth0.com/.well-known/openid-configuration"
