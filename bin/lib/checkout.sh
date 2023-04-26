@@ -82,7 +82,7 @@ function checkout::initialize() {
   # latency that is added by re-installing python dependencies, such as the
   # installation of env-var-docs.parser packages.
   cd checkout
-  find . ! -name "$.venv" -exec rm -r {} +
+  find . ! -name "$subfolder_name" ! -name '.' ! -name '..' -exec rm -r {} +
   cd ..
 
   pushd checkout > /dev/null
