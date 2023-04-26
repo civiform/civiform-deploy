@@ -152,7 +152,7 @@ export AWS_REGION="us-west-2"
 
 # REQUIRED
 # The name to prefix all resources with.
-export APP_PREFIX="civiform-test-" # max 19 chars, only numbers, letters, dashes, and underscores
+export APP_PREFIX="cf-test" # max 19 chars, only numbers, letters, dashes, and underscores
 
 # REQUIRED
 # ARN of the SSL certificate that will be used to handle HTTPS traffic. The certiciate
@@ -244,7 +244,7 @@ export AD_GROUPS_ATTRIBUTE_NAME="group"
 # OPTIONAL
 # The ADFS group name for specifying CiviForm admins. If using Azure AD this is
 # the group's object ID
-export ADFS_ADMIN_GROUP="ad\ITD_CiviForm_Admins_Test"
+export ADFS_ADMIN_GROUP="ad\\ITD_CiviForm_Admins_Test"
 
 
 
@@ -265,10 +265,10 @@ export MEASUREMENT_ID="G-HXM0Y35TGE"
 export ESRI_ADDRESS_CORRECTION_ENABLED=true
 export ESRI_FIND_ADDRESS_CANDIDATES_URL="https://gisdata.seattle.gov/cosgis/rest/services/locators/AddressPoints/GeocodeServer/findAddressCandidates"
 export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ENABLED=true
-export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_URLS.0="https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query"
-export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_LABELS.0="Seattle"
-export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_IDS.0="Seattle"
-export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES.0="CITYNAME"
+export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_URLS=("https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query")
+export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_LABELS=("Seattle")
+export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_IDS=("Seattle")
+export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES=("CITYNAME")
 
 # Allow Feature Flags
 export FEATURE_FLAG_OVERRIDES_ENABLED=true
