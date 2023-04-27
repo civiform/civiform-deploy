@@ -77,8 +77,13 @@ function checkout::exec_delegated_command() {
 function checkout::initialize() {
   printf "Initializing checkout... "
 
-  rm -rf checkout
-  mkdir checkout
+  # The checkout directory was getting larger on each run. Remove and re-create
+  # it to avoid the growth. However, keep the python virtual environment files 
+  # in .venv to avoid re-installing python dependencies every time. Re-installation
+  # adds multiple seconds of latency.
+  cd checkout
+  find . ! -name ".venv" ! -name '.' ! -name '..' -exec rm -rf {} +
+  cd ..
 
   pushd checkout > /dev/null
 
