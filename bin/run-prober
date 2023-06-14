@@ -15,7 +15,7 @@ docker pull civiform/civiform-browser-test:latest
 
 # Enable video recording on CI tests as it will be helpful to debug test
 # failures.
-export RECORD_VIDEO=1
+export RECORD_VIDEO=0
 
 docker run \
   -e BASE_URL="${BASE_URL}" \
