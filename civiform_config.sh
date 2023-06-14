@@ -264,11 +264,11 @@ export MEASUREMENT_ID="G-HXM0Y35TGE"
 # ESRI
 export ESRI_ADDRESS_CORRECTION_ENABLED=true
 export ESRI_FIND_ADDRESS_CANDIDATES_URL="https://gisdata.seattle.gov/cosgis/rest/services/locators/AddressPoints/GeocodeServer/findAddressCandidates"
-export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ENABLED=true
-export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_URLS=("https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query")
-export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_LABELS=("Seattle")
-export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_IDS=("Seattle")
-export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES=("CITYNAME")
+#export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ENABLED=true
+#export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_URLS=("https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query")
+#export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_LABELS=("Seattle")
+#export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_IDS=("Seattle")
+#export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES=("CITYNAME")
 
 # Allow Feature Flags
 export FEATURE_FLAG_OVERRIDES_ENABLED=true
