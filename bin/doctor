@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-# DOC: Check that local environment is ready to run civiform commands. Usage: bin/deploy --tag=<image tag>
+# DOC: Check that local environment is ready to run civiform commands. Usage: bin/deploy
 # Optional params:
 #   --config=<config_file> to override config file
 #   --infra_commit=<commit_sha> to override infrastructure version. 

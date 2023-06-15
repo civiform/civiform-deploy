@@ -10,11 +10,9 @@
 #######################################
 # Delegates a command from a specified path to the main CiviForm repo at a 
 # specific git revision.
-# Expects arguments to include "--tag=<tag name>" for resolving which revsion
-# to check out for the command. Then passes all arguments to the delegated
-# command in the main repo.
+# Then passes all arguments to the delegated command in the main repo.
 # Arguments:
-#   @: arguments for the command, must include --tag= flag
+#   @: arguments for the command
 # Globals:
 #   CMD_NAME: the name of the command to run
 #######################################
@@ -33,11 +31,13 @@ function checkout::exec_delegated_command_at_path() {
   fi
 
   if [[ -z "${CIVIFORM_VERSION}" ]]; then
-    out::error "CIVIFORM_VERSION needs to be either 'latest' or a version from https://github.com/civiform/civiform/releases"
+    out::error "CIVIFORM_VERSION needs to be either 'latest', a snapshot tag from https://hub.docker.com/r/civiform/civiform/tags, 
+      or a version from https://github.com/civiform/civiform/releases"
     exit 1
   fi
   if [[ "${CIVIFORM_VERSION}" == 'latest' && "${CIVIFORM_MODE}" == 'prod' ]]; then
-    out::error "For production deployments, CIVIFORM_VERSION needs to be a version from https://github.com/civiform/civiform/releases"
+    out::error "For production deployments, CIVIFORM_VERSION needs to be a version from https://github.com/civiform/civiform/releases 
+      or a snapshot tag from https://hub.docker.com/r/civiform/civiform/tags"
     exit 1
   fi
 
@@ -56,11 +56,9 @@ function checkout::exec_delegated_command_at_path() {
 #######################################
 # Delegates a command from the shared bin to the main CiviForm repo at a 
 # specific git revision.
-# Expects arguments to include "--tag=<tag name>" for resolving which revsion
-# to check out for the command. Then passes all arguments to the delegated
-# command in the main repo.
+# Then passes all arguments to the delegated command in the main repo.
 # Arguments:
-#   @: arguments for the command, must include --tag= flag
+#   @: arguments for the command
 # Globals:
 #   CMD_NAME: the name of the command to run
 #######################################
