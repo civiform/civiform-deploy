@@ -21,8 +21,15 @@ export CIVIFORM_MODE="staging"
 # REQUIRED
 # CiviForm server version to deploy.
 #
-# For dev and staging civiform modes, can be "latest". For prod, must be a version from
-# https://github.com/civiform/civiform/releases, for example "v1.2.3".
+# For dev and staging civiform modes, can be:
+# - "latest"
+# - A specific snapshot tag from https://hub.docker.com/r/civiform/civiform/tags
+# - A version from https://github.com/civiform/civiform/releases, for example "v1.2.3".
+# For prod:
+# - Should usually be a version from https://github.com/civiform/civiform/releases, 
+#   for example "v1.2.3".
+# - In the case where you need to quickly deploy a fix, can also be
+#   specific snapshot tag from https://hub.docker.com/r/civiform/civiform/tags
 export CIVIFORM_VERSION="latest"
 
 # REQUIRED
