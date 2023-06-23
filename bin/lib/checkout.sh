@@ -47,7 +47,7 @@ function checkout::exec_delegated_command_at_path() {
     if [[ "${CONFIG:0:1}" != "/" ]]; then
       CONFIG_FILE_ABSOLUTE_PATH="../${CONFIG}"
     fi
-    args=("--command=${CMD_NAME}" "--tag=${CIVIFORM_VERSION}" "--config=${CONFIG_FILE_ABSOLUTE_PATH}")
+    args=("-c${CMD_NAME}" "-t${CIVIFORM_VERSION}" "-s${CONFIG_FILE_ABSOLUTE_PATH}")
     echo "Running ${CMD_NAME_PATH} ${args[@]}"
     exec "${CMD_NAME_PATH}" "${args[@]}"
   )
@@ -63,7 +63,7 @@ function checkout::exec_delegated_command_at_path() {
 #   CMD_NAME: the name of the command to run
 #######################################
 function checkout::exec_delegated_command() {
-  CMD_NAME_PATH="cloud/shared/bin/run.py" \
+  CMD_NAME_PATH="cloud/shared/bin/run" \
     checkout::exec_delegated_command_at_path "$@"
 }
 
