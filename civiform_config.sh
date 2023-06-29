@@ -166,7 +166,7 @@ export SSL_CERTIFICATE_ARN="arn:aws:acm:us-west-2:405662711265:certificate/fc920
 # Number of Civiform server tasks to run. This value can be set to 0 to shutdown servers.
 # It can be useful, for example, when server continiously fails on startup: set this to 0
 # to shutdown servers while figuring out the error.
-export FARGATE_DESIRED_TASK_COUNT=2
+export FARGATE_DESIRED_TASK_COUNT=1
 
 
 
@@ -218,8 +218,8 @@ export APPLICANT_OIDC_MIDDLE_NAME_ATTRIBUTE=""
 export APPLICANT_OIDC_LAST_NAME_ATTRIBUTE=""
 
 # REQUIRED
-export APPLICANT_REGISTER_URI="https://qalogin.seattle.gov:12443/#/registration?appName=CIVIFORM_STAGE"
-export APPLICANT_OIDC_OVERRIDE_LOGOUT_URL="https://qalogin.seattle.gov:12443/#/logout?appName=CIVIFORM_STAGE"
+export APPLICANT_REGISTER_URI="https://qalogin.seattle.gov:12443/#/registration?appName=CIVIFORM_TEST"
+export APPLICANT_OIDC_OVERRIDE_LOGOUT_URL="https://qalogin.seattle.gov:12443/#/logout?appName=CIVIFORM_TEST"
 export APPLICANT_OIDC_POST_LOGOUT_REDIRECT_PARAM=""
 export APPLICANT_OIDC_PROVIDER_LOGOUT=true
 
@@ -231,20 +231,20 @@ export APPLICANT_OIDC_PROVIDER_LOGOUT=true
 # REQUIRED
 # The discovery metadata URI provideded by the ADFS provider.
 # Usually ends in .well-known/openid-configuration
-export ADFS_DISCOVERY_URI="https://sts.seattle.gov/adfs/.well-known/openid-configuration"
+export ADFS_DISCOVERY_URI="https://login.microsoftonline.com/78e61e45-6beb-4009-8f99-359d8b54f41b/v2.0/.well-known/openid-configuration"
 
 # OPTIONAL
 # Should be set to "allatclaims" for ADFS and empty value for Azure AD.
-export ADFS_ADDITIONAL_SCOPES="allatclaims"
+export ADFS_ADDITIONAL_SCOPES=""
 
 # OPTIONAL
 # Should be set to "group" for ADFS and "groups" for Azure AD.
-export AD_GROUPS_ATTRIBUTE_NAME="group"
+export AD_GROUPS_ATTRIBUTE_NAME="groups"
 
 # OPTIONAL
 # The ADFS group name for specifying CiviForm admins. If using Azure AD this is
 # the group's object ID
-export ADFS_ADMIN_GROUP="ad\\ITD_CiviForm_Admins_Test"
+export ADFS_ADMIN_GROUP="5909e7f3-3f4c-4ad1-93e8-17e6ba6ab8a3"
 
 
 
@@ -264,11 +264,11 @@ export MEASUREMENT_ID="G-HXM0Y35TGE"
 # ESRI
 export ESRI_ADDRESS_CORRECTION_ENABLED=true
 export ESRI_FIND_ADDRESS_CANDIDATES_URL="https://gisdata.seattle.gov/cosgis/rest/services/locators/AddressPoints/GeocodeServer/findAddressCandidates"
-#export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ENABLED=true
-#export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_URLS=("https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query")
-#export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_LABELS=("Seattle")
-#export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_IDS=("Seattle")
-#export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES=("CITYNAME")
+export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ENABLED=true
+export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_URLS="https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query"
+export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_LABELS="Seattle"
+export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_IDS="Seattle"
+export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES="CITYNAME"
 
 # Allow Feature Flags
 export FEATURE_FLAG_OVERRIDES_ENABLED=true
@@ -287,3 +287,11 @@ export COMMON_INTAKE_MORE_RESOURCES_LINK_HREF="https://www.affordableseattle.org
 # Email
 export SES_SENDER_EMAIL="civiform.staging@seattle.gov"
 export AWS_SES_SENDER="civiform.staging@seattle.gov"
+
+export CIVIFORM_SUPPORTED_LANGUAGES="en-US, am, zh-TW, ko, lo, so, es-US, tl, vi"
+
+# Nonsense to delete in the future
+export LOGIN_RADIUS_API_KEY=""
+export LOGIN_RADIUS_METADATA_URI=""
+export LOGIN_RADIUS_SAML_APP_NAME=""
+export ADMIN_SETTINGS_PANEL_ENABLED=true
