@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-# DOC: Set up a new environment. Usage: bin/setup --tag=<image tag>
+# DOC: Set up a new environment. Usage: bin/setup
 # Optional params:
 #   --config=<config_file> to override config file
 

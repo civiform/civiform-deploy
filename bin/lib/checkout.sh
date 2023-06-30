@@ -10,11 +10,9 @@
 #######################################
 # Delegates a command from a specified path to the main CiviForm repo at a 
 # specific git revision.
-# Expects arguments to include "--tag=<tag name>" for resolving which revsion
-# to check out for the command. Then passes all arguments to the delegated
-# command in the main repo.
+# Then passes all arguments to the delegated command in the main repo.
 # Arguments:
-#   @: arguments for the command, must include --tag= flag
+#   @: arguments for the command
 # Globals:
 #   CMD_NAME: the name of the command to run
 #######################################
@@ -33,11 +31,13 @@ function checkout::exec_delegated_command_at_path() {
   fi
 
   if [[ -z "${CIVIFORM_VERSION}" ]]; then
-    out::error "CIVIFORM_VERSION needs to be either 'latest' or a version from https://github.com/civiform/civiform/releases"
+    out::error "CIVIFORM_VERSION needs to be either 'latest', a snapshot tag from https://hub.docker.com/r/civiform/civiform/tags, 
+      or a version from https://github.com/civiform/civiform/releases"
     exit 1
   fi
   if [[ "${CIVIFORM_VERSION}" == 'latest' && "${CIVIFORM_MODE}" == 'prod' ]]; then
-    out::error "For production deployments, CIVIFORM_VERSION needs to be a version from https://github.com/civiform/civiform/releases"
+    out::error "For production deployments, CIVIFORM_VERSION needs to be a version from https://github.com/civiform/civiform/releases 
+      or a snapshot tag from https://hub.docker.com/r/civiform/civiform/tags"
     exit 1
   fi
 
@@ -47,7 +47,7 @@ function checkout::exec_delegated_command_at_path() {
     if [[ "${CONFIG:0:1}" != "/" ]]; then
       CONFIG_FILE_ABSOLUTE_PATH="../${CONFIG}"
     fi
-    args=("--command=${CMD_NAME}" "--tag=${CIVIFORM_VERSION}" "--config=${CONFIG_FILE_ABSOLUTE_PATH}")
+    args=("-c${CMD_NAME}" "-t${CIVIFORM_VERSION}" "-s${CONFIG_FILE_ABSOLUTE_PATH}")
     echo "Running ${CMD_NAME_PATH} ${args[@]}"
     exec "${CMD_NAME_PATH}" "${args[@]}"
   )
@@ -56,16 +56,14 @@ function checkout::exec_delegated_command_at_path() {
 #######################################
 # Delegates a command from the shared bin to the main CiviForm repo at a 
 # specific git revision.
-# Expects arguments to include "--tag=<tag name>" for resolving which revsion
-# to check out for the command. Then passes all arguments to the delegated
-# command in the main repo.
+# Then passes all arguments to the delegated command in the main repo.
 # Arguments:
-#   @: arguments for the command, must include --tag= flag
+#   @: arguments for the command
 # Globals:
 #   CMD_NAME: the name of the command to run
 #######################################
 function checkout::exec_delegated_command() {
-  CMD_NAME_PATH="cloud/shared/bin/run.py" \
+  CMD_NAME_PATH="cloud/shared/bin/run" \
     checkout::exec_delegated_command_at_path "$@"
 }
 
@@ -83,7 +81,8 @@ function checkout::initialize() {
   pushd checkout > /dev/null
 
   git init --initial-branch=main
-  git remote add origin http://github.com/civiform/cloud-deploy-infra
+  CLOUD_DEPLOY_INFRA_REMOTE=${CLOUD_DEPLOY_INFRA_REMOTE:-http:\/\/github.com\/civiform\/cloud-deploy-infra}
+  git remote add origin ${CLOUD_DEPLOY_INFRA_REMOTE}
   git config core.sparseCheckout true
 
   echo "/cloud" >> .git/info/sparse-checkout
