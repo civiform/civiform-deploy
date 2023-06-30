@@ -7,8 +7,8 @@
 # cp civiform_config.example.sh civiform_config.sh
 #
 # Configuration variables must be specified in SCREAMING_SNAKE_CASE with the
-# "export" keyword preceding them. If the value contains whitespace it must be
-# surrounded by quotes. There should be no spaces before or after the equals sign.
+# "export" keyword preceding them. All values must be quoted as strings. There
+# should be no spaces before or after the equals sign.
 
 #################################################
 # Global variables for all CiviForm deployments
@@ -61,10 +61,7 @@ export DOCKER_USERNAME="civiform"
 
 # REQUIRED
 # The authentication protocal used for applicant and trusted intermediary accounts.
-# Supported values: "oidc", "saml"
 export CIVIFORM_APPLICANT_AUTH_PROTOCOL="oidc"
-
-
 
 # Deployment-specific Civiform configuration
 #################################################
@@ -117,14 +114,9 @@ export STAGING_TI_NOTIFICATION_MAILING_LIST="civiform.staging@seattle.gov"
 export STAGING_APPLICANT_NOTIFICATION_MAILING_LIST="civiform.staging@seattle.gov"
 
 # REQUIRED
-# The domain name for this CiviForm deployment, including the protocol. 
+# The domain name for this CiviForm deployment, including the protocol.
 # E.g. "https://civiform.seattle.gov"
 export BASE_URL="https://civiformtest.seattle.gov"
-
-# OPTIONAL
-# When set enables demo mode for the civiform application. Should be set for
-# staging but not prod. The value is hostname without protocol and should correspond
-# BASE_URl. Example: "civiform.seattle.gov"
 export STAGING_HOSTNAME="civiformtest.seattle.gov"
 
 # OPTIONAL
@@ -140,43 +132,27 @@ export CIVIFORM_SERVER_METRICS_ENABLED=true
 
 
 
-
-#########################################################################
-# Template variables for AWS. Skip if deploying to other cloud providers.
-#########################################################################
+#################################################
+# Template variables for: aws_oidc
+#################################################
 
 # REQUIRED
-# AWS region where civiform server and supporting infra will be deployed.
-# Unofficial list of available regions: https://gist.github.com/colinvh/14e4b7fb6b66c29f79d3
 export AWS_REGION="us-west-2"
 
 # REQUIRED
 # The name to prefix all resources with.
 export APP_PREFIX="cf-test" # max 19 chars, only numbers, letters, dashes, and underscores
 
-# REQUIRED
-# ARN of the SSL certificate that will be used to handle HTTPS traffic. The certiciate
-# should be created and validated before the deployment is done. Certificate can be created
-# in AWS web console: https://console.aws.amazon.com/acm/home#/certificates/list
-# WARNING: certificate needs to be created in the same region as AWS_REGION above, make sure
-# select correct region in web AWS console when creating certificate.
 export SSL_CERTIFICATE_ARN="arn:aws:acm:us-west-2:405662711265:certificate/fc9201c7-c715-4c8e-bd1f-a20ae1828e8f"
-
-# RERUIRED
-# Number of Civiform server tasks to run. This value can be set to 0 to shutdown servers.
-# It can be useful, for example, when server continiously fails on startup: set this to 0
-# to shutdown servers while figuring out the error.
 export FARGATE_DESIRED_TASK_COUNT=1
-
-
-
-# generic-oidc Auth configuration
-#################################################
 
 # REQUIRED
 # Which auth provider to use for applicants to login.
 # If set to a non-disabled value, you must configure the respective auth parameters
 export CIVIFORM_APPLICANT_IDP="idcs"
+
+# generic-oidc Auth configuration
+#################################################
 
 # REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc"
 # The name of the OIDC provider. Must be URL-safe.
@@ -223,7 +199,6 @@ export APPLICANT_OIDC_OVERRIDE_LOGOUT_URL="https://qalogin.seattle.gov:12443/#/l
 export APPLICANT_OIDC_POST_LOGOUT_REDIRECT_PARAM=""
 export APPLICANT_OIDC_PROVIDER_LOGOUT=true
 
-
 # ADFS and Azure AD configuration
 # More information on https://docs.civiform.us/contributor-guide/developer-guide/authentication-providers
 #########################################################################################################
@@ -245,8 +220,6 @@ export AD_GROUPS_ATTRIBUTE_NAME="groups"
 # The ADFS group name for specifying CiviForm admins. If using Azure AD this is
 # the group's object ID
 export ADFS_ADMIN_GROUP="5909e7f3-3f4c-4ad1-93e8-17e6ba6ab8a3"
-
-
 
 #################################################
 # Additional settings
@@ -270,28 +243,22 @@ export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_LABELS="Seattle"
 export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_IDS="Seattle"
 export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES="CITYNAME"
 
-# Allow Feature Flags
-export FEATURE_FLAG_OVERRIDES_ENABLED=true
-
-# Feature Flags
-export ALLOW_CIVIFORM_ADMIN_ACCESS_PROGRAMS=true
-export CIVIFORM_APPLICATION_STATUS_TRACKING_ENABLED=true
-export PREDICATES_MULTIPLE_QUESTIONS_ENABLED=true
-export PROGRAM_ELIGIBILITY_CONDITIONS_ENABLED=true
-export CIVIFORM_ADMIN_REPORTING_UI_ENABLED=true
-
 # Common Intake
 export COMMON_INTAKE_MORE_RESOURCES_LINK_TEXT="Affordable Seattle"
 export COMMON_INTAKE_MORE_RESOURCES_LINK_HREF="https://www.affordableseattle.org"
 
 # Email
-export SES_SENDER_EMAIL="civiform.staging@seattle.gov"
 export AWS_SES_SENDER="civiform.staging@seattle.gov"
 
 export CIVIFORM_SUPPORTED_LANGUAGES="en-US, am, zh-TW, ko, lo, so, es-US, tl, vi"
+
+# Feature Flags
+export FEATURE_FLAG_OVERRIDES_ENABLED=true
+export ADMIN_SETTINGS_PANEL_ENABLED=true
+export ALLOW_CIVIFORM_ADMIN_ACCESS_PROGRAMS=true
+export PHONE_QUESTION_TYPE_ENABLED=true
 
 # Nonsense to delete in the future
 export LOGIN_RADIUS_API_KEY=""
 export LOGIN_RADIUS_METADATA_URI=""
 export LOGIN_RADIUS_SAML_APP_NAME=""
-export ADMIN_SETTINGS_PANEL_ENABLED=true
