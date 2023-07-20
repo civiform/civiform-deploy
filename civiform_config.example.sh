@@ -77,18 +77,6 @@ export CIVIFORM_APPLICANT_AUTH_PROTOCOL=""
 #################################################
 
 # REQUIRED
-# The short name for the civic entity. Ex. "Rochester"
-export CIVIC_ENTITY_SHORT_NAME=""
-
-# REQUIRED
-# The full name for the civic entity. Ex. "City of Rochester"
-export CIVIC_ENTITY_FULL_NAME=""
-
-# REQUIRED
-# The email address to contact for support with using Civiform. Ex. "Civiform@CityOfRochester.gov
-export CIVIC_ENTITY_SUPPORT_EMAIL_ADDRESS=""
-
-# REQUIRED
 # A link to an image of the civic entity logo that includes the entity name, to be used in the header for the "Get Benefits" page
 export CIVIC_ENTITY_LOGO_WITH_NAME_URL="https://raw.githubusercontent.com/civiform/civiform-staging-deploy/main/logos/civiform-staging-long.png"
 
@@ -259,6 +247,11 @@ export APPLICANT_OIDC_PROVIDER_NAME="OidcClient"
 # Usually ends in .well-known/openid-configuration
 export APPLICANT_OIDC_DISCOVERY_URI="https://civiform-staging.us.auth0.com/.well-known/openid-configuration"
 
+# REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc"
+# The URL applicants are redirected to for creating an account
+# with the identity provider.
+export APPLICANT_REGISTER_URI=""
+
 # OPTIONAL
 # The type of OIDC flow to execute, and how the data is encoded.
 # See https://auth0.com/docs/authenticate/protocols/oauth#authorization-endpoint
@@ -291,7 +284,6 @@ export APPLICANT_OIDC_LAST_NAME_ATTRIBUTE=""
 # The name of the authentication provider applicants use to login.
 # This value is displayed to the applicants to help them understand which account to use.
 export APPLICANT_PORTAL_NAME=""
-
 
 
 # ADFS and Azure AD configuration
