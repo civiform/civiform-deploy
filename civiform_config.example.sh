@@ -235,6 +235,13 @@ export FARGATE_DESIRED_TASK_COUNT=1
 # maintenance window.
 # export POSTGRES_INSTANCE_CLASS="db.t3.micro"
 
+# OPTIONAL
+# The storage capacity of the AWS RDS instance in GiB.
+#
+# Changes to this value should not result in database degradation or downtime.
+# export POSTGRES_STORAGE_GB=6
+
+
 # generic-oidc Auth configuration
 #################################################
 
