@@ -221,13 +221,19 @@ export APP_PREFIX="my-deploy" # max 19 chars, only numbers, letters, dashes, and
 # select correct region in web AWS console when creating certificate.
 export SSL_CERTIFICATE_ARN=""
 
-# RERUIRED
+# REQUIRED
 # Number of Civiform server tasks to run. This value can be set to 0 to shutdown servers.
 # It can be useful, for example, when server continiously fails on startup: set this to 0
 # to shutdown servers while figuring out the error.
 export FARGATE_DESIRED_TASK_COUNT=1
 
-
+# REQUIRED
+# The AWS RDS instance type for the Postgres database. For possible values, see:
+# https://github.com/civiform/cloud-deploy-infra/blob/main/cloud/aws/templates/aws_oidc/variable_definitions.json
+#
+# Changes to this value will result in database downtime, and should be applied during a
+# maintenance window.
+export POSTGRES_INSTANCE_CLASS="db.t3.micro"
 
 # generic-oidc Auth configuration
 #################################################
