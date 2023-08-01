@@ -15,7 +15,7 @@
 #################################################
 
 # REQUIRED
-# One of prod, staging, or dev.
+# One of prod, staging, or test.
 export CIVIFORM_MODE="staging"
 
 # REQUIRED
@@ -43,6 +43,8 @@ export CIVIFORM_VERSION="latest"
 # Using "latest" is recommended.
 export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="latest"
 
+
+
 # Terraform configuration
 #################################################
 
@@ -50,7 +52,6 @@ export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="latest"
 # A supported CiviForm cloud provider, lower case.
 # "aws" or "azure"
 export CIVIFORM_CLOUD_PROVIDER="aws"
-
 
 # REQUIRED
 # The template directory for this deployment.
@@ -75,6 +76,18 @@ export CIVIFORM_APPLICANT_AUTH_PROTOCOL=""
 
 # Deployment-specific Civiform configuration
 #################################################
+
+# REQUIRED
+# The short name for the civic entity. Ex. "Seattle"
+export CIVIC_ENTITY_SHORT_NAME=""
+
+# REQUIRED
+# The full name for the civic entity. Ex. "City of Seattle"
+export CIVIC_ENTITY_FULL_NAME=""
+
+# REQUIRED
+# The email address to contact for support with using Civiform. Ex. "civiform@seattle.gov"
+export CIVIC_ENTITY_SUPPORT_EMAIL_ADDRESS=""
 
 # REQUIRED
 # A link to an image of the civic entity logo that includes the entity name, to be used in the header for the "Get Benefits" page
@@ -284,6 +297,7 @@ export APPLICANT_OIDC_LAST_NAME_ATTRIBUTE=""
 # The name of the authentication provider applicants use to login.
 # This value is displayed to the applicants to help them understand which account to use.
 export APPLICANT_PORTAL_NAME=""
+
 
 
 # ADFS and Azure AD configuration
