@@ -15,7 +15,7 @@
 #################################################
 
 # REQUIRED
-# One of prod, staging, or test.
+# One of prod or staging.
 export CIVIFORM_MODE="staging"
 
 # REQUIRED
@@ -76,18 +76,6 @@ export CIVIFORM_APPLICANT_AUTH_PROTOCOL=""
 
 # Deployment-specific Civiform configuration
 #################################################
-
-# REQUIRED
-# The short name for the civic entity. Ex. "Seattle"
-export CIVIC_ENTITY_SHORT_NAME=""
-
-# REQUIRED
-# The full name for the civic entity. Ex. "City of Seattle"
-export CIVIC_ENTITY_FULL_NAME=""
-
-# REQUIRED
-# The email address to contact for support with using Civiform. Ex. "civiform@seattle.gov"
-export CIVIC_ENTITY_SUPPORT_EMAIL_ADDRESS=""
 
 # REQUIRED
 # A link to an image of the civic entity logo that includes the entity name, to be used in the header for the "Get Benefits" page
