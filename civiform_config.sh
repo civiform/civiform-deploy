@@ -250,14 +250,9 @@ export COMMON_INTAKE_MORE_RESOURCES_LINK_HREF="https://www.affordableseattle.org
 # Email
 export AWS_SES_SENDER="civiform.staging@seattle.gov"
 
-export CIVIFORM_SUPPORTED_LANGUAGES="en-US, am, zh-TW, ko, lo, so, es-US, tl, vi"
+export CIVIFORM_SUPPORTED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
 
 # Feature Flags
 export FEATURE_FLAG_OVERRIDES_ENABLED=true
 export ALLOW_CIVIFORM_ADMIN_ACCESS_PROGRAMS=true
 export PHONE_QUESTION_TYPE_ENABLED=true
-
-# Nonsense to delete in the future
-export LOGIN_RADIUS_API_KEY=""
-export LOGIN_RADIUS_METADATA_URI=""
-export LOGIN_RADIUS_SAML_APP_NAME=""
