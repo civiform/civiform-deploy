@@ -15,7 +15,7 @@
 #################################################
 
 # REQUIRED
-# One of prod, staging, or dev.
+# One of prod or staging.
 export CIVIFORM_MODE="staging"
 
 # REQUIRED
@@ -43,6 +43,8 @@ export CIVIFORM_VERSION="latest"
 # Using "latest" is recommended.
 export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="latest"
 
+
+
 # Terraform configuration
 #################################################
 
@@ -50,7 +52,6 @@ export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="latest"
 # A supported CiviForm cloud provider, lower case.
 # "aws" or "azure"
 export CIVIFORM_CLOUD_PROVIDER="aws"
-
 
 # REQUIRED
 # The template directory for this deployment.
@@ -303,6 +304,7 @@ export APPLICANT_OIDC_LAST_NAME_ATTRIBUTE=""
 # The name of the authentication provider applicants use to login.
 # This value is displayed to the applicants to help them understand which account to use.
 export APPLICANT_PORTAL_NAME=""
+
 
 
 # ADFS and Azure AD configuration
