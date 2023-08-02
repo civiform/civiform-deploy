@@ -231,15 +231,21 @@ export FARGATE_DESIRED_TASK_COUNT=1
 # The AWS RDS instance type for the Postgres database. For possible values, see:
 # https://github.com/civiform/cloud-deploy-infra/blob/main/cloud/aws/templates/aws_oidc/variable_definitions.json
 #
-# Changes to this value will result in database downtime, and should be applied during a
-# maintenance window.
+# Changes to this value will result in database downtime. AWS applies the
+# requested change during the next maintenance window.
 # export POSTGRES_INSTANCE_CLASS="db.t3.micro"
 
 # OPTIONAL
-# The storage capacity of the AWS RDS instance in GiB.
+# The storage capacity of the AWS RDS instance in GiB. Note:
 #
-# Changes to this value should not result in database degradation or downtime.
-# export POSTGRES_STORAGE_GB=6
+# - The capacity cannot be decreased after storage has been allocated.
+# - Capacity increases of less than 10% are not allowed.
+#
+# Changes to this value will result in database downtime. AWS applies the
+# requested change during the next maintenance window. Storage optimization
+# will take 6+ hours, during which further storage modifications are not
+# allowed.
+# export POSTGRES_STORAGE_GB=5
 
 
 # generic-oidc Auth configuration
