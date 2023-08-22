@@ -17,5 +17,8 @@ for i in "$@"; do
     --force-unlock=*)
       export FORCE_UNLOCK_ID="${i#*=}"
       ;;
+    --fix-digest=*)
+      export DIGEST_VALUE="${i#*=}"
+      ;;
   esac
 done
