@@ -180,11 +180,6 @@ export APPLICANT_OIDC_ADDITIONAL_SCOPES=""
 export APPLICANT_OIDC_LOCALE_ATTRIBUTE=""
 
 # OPTIONAL
-# The name of the profile field where the user's email is stored.
-# Defaults to "email"
-export APPLICANT_OIDC_EMAIL_ATTRIBUTE="email"
-
-# OPTIONAL
 # The name of the profile field where the user's name is stored.
 # If there is only one name field(the display name) use APPLICANT_OIDC_FIRST_NAME_ATTRIBUTE.
 # If the name is split into multiple fields, use the APPLICANT_OIDC_MIDDLE_NAME_ATTRIBUTE
