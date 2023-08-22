@@ -48,6 +48,9 @@ function checkout::exec_delegated_command_at_path() {
       CONFIG_FILE_ABSOLUTE_PATH="../${CONFIG}"
     fi
     args=("-c${CMD_NAME}" "-t${CIVIFORM_VERSION}" "-s${CONFIG_FILE_ABSOLUTE_PATH}")
+    if [[ -n "${FORCE_UNLOCK_ID}" ]]; then
+      args=("${args[@]}" "-u${FORCE_UNLOCK_ID}")
+    fi
     echo "Running ${CMD_NAME_PATH} ${args[@]}"
     exec "${CMD_NAME_PATH}" "${args[@]}"
   )
