@@ -259,7 +259,11 @@ export CIVIFORM_APPLICANT_IDP="generic-oidc"
 
 # REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc"
 # The name of the OIDC provider. Must be URL-safe.
-# Gets appended to the auth callback URL.
+#
+# Gets appended to the auth callback URL, as in:
+#   ${BASE_URL}/callback/${APPLICANT_OIDC_PROVIDER_NAME}"
+#
+# The callback URL may need to be provisioned in the auth provider for applicants.
 export APPLICANT_OIDC_PROVIDER_NAME="OidcClient"
 
 # REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc"
@@ -306,6 +310,10 @@ export APPLICANT_OIDC_LAST_NAME_ATTRIBUTE=""
 export APPLICANT_PORTAL_NAME=""
 
 
+# OPTIONAL
+# Identity provider to use to authenticate and authorize admins.
+# Valid values are "adfs" and "generic-oidc-admin". Default is "adfs".
+# export CIVIFORM_ADMIN_IDP="adfs"
 
 # ADFS and Azure AD configuration
 # More information on https://docs.civiform.us/contributor-guide/developer-guide/authentication-providers
@@ -328,3 +336,47 @@ export AD_GROUPS_ATTRIBUTE_NAME="group"
 # The ADFS group name for specifying CiviForm admins. If using Azure AD this is
 # the group's object ID
 export ADFS_ADMIN_GROUP=""
+
+# REQUIRED if CIVIFORM_ADMIN_IDP="generic-oidc-admin"
+# The name of the OIDC provider. Must be URL-safe.
+#
+# Gets appended to the auth callback URL, as in:
+#   ${BASE_URL}/callback/${ADMIN_OIDC_PROVIDER_NAME}"
+#
+# The callback URL may need to be provisioned in the auth provider.
+export ADMIN_OIDC_PROVIDER_NAME=""
+
+# REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc-admin"
+# The discovery metadata URI provideded by the OIDC provider for admins.
+# Usually ends in .well-known/openid-configuration
+export ADMIN_OIDC_DISCOVERY_URI=""
+
+# REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc-admin"
+# The type of OIDC flow to execute, and how the data is encoded.
+# See https://auth0.com/docs/authenticate/protocols/oauth#authorization-endpoint
+export ADMIN_OIDC_RESPONSE_MODE="form_post"
+export ADMIN_OIDC_RESPONSE_TYPE="id_token token"
+
+# REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc-admin"
+#
+# Set to "true" if the identity provider should protect against CSRF attacks
+# by setting the "state" parameter.
+# export ADMIN_OIDC_USE_CSRF="true"
+
+# REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc-admin"
+#
+# The name of the attribute that holds the list of groups/roles associated with
+# the account.
+export ADMIN_OIDC_ID_GROUPS_ATTRIBUTE_NAME=""
+
+# REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc-admin"
+#
+# The value of the group/role that must be present for the account to be
+# considered an administrator.
+export ADMIN_OIDC_ADMIN_GROUP_NAME=""
+
+# OPTIONAL if CIVIFORM_APPLICANT_IDP="generic-oidc-admin"
+#
+# Additional scopes should be retrieved as part of the request to the identity
+# provider. If present, should be space-separated values.
+# export ADMIN_OIDC_ADDITIONAL_SCOPES=""
