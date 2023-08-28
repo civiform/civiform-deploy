@@ -344,18 +344,18 @@ export ADFS_ADMIN_GROUP=""
 #   ${BASE_URL}/callback/${ADMIN_OIDC_PROVIDER_NAME}"
 #
 # The callback URL may need to be provisioned in the auth provider.
-export ADMIN_OIDC_PROVIDER_NAME=""
+# export ADMIN_OIDC_PROVIDER_NAME=""
 
 # REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc-admin"
 # The discovery metadata URI provideded by the OIDC provider for admins.
 # Usually ends in .well-known/openid-configuration
-export ADMIN_OIDC_DISCOVERY_URI=""
+# export ADMIN_OIDC_DISCOVERY_URI=""
 
 # REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc-admin"
 # The type of OIDC flow to execute, and how the data is encoded.
 # See https://auth0.com/docs/authenticate/protocols/oauth#authorization-endpoint
-export ADMIN_OIDC_RESPONSE_MODE="form_post"
-export ADMIN_OIDC_RESPONSE_TYPE="id_token token"
+# export ADMIN_OIDC_RESPONSE_MODE="form_post"
+# export ADMIN_OIDC_RESPONSE_TYPE="id_token token"
 
 # REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc-admin"
 #
@@ -367,13 +367,13 @@ export ADMIN_OIDC_RESPONSE_TYPE="id_token token"
 #
 # The name of the attribute that holds the list of groups/roles associated with
 # the account.
-export ADMIN_OIDC_ID_GROUPS_ATTRIBUTE_NAME=""
+# export ADMIN_OIDC_ID_GROUPS_ATTRIBUTE_NAME=""
 
 # REQUIRED if CIVIFORM_APPLICANT_IDP="generic-oidc-admin"
 #
 # The value of the group/role that must be present for the account to be
 # considered an administrator.
-export ADMIN_OIDC_ADMIN_GROUP_NAME=""
+# export ADMIN_OIDC_ADMIN_GROUP_NAME=""
 
 # OPTIONAL if CIVIFORM_APPLICANT_IDP="generic-oidc-admin"
 #
