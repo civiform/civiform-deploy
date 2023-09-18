@@ -134,6 +134,10 @@ export CIVIFORM_TIME_ZONE_ID="America/Los_Angeles"
 # Defaults to false.
 # export CIVIFORM_SERVER_METRICS_ENABLED=false
 
+# OPTIONAL
+# Whether to add a robots=noindex meta tag, which causes search engines to not list the website.
+# This can be removed for production deployments that should be searchable.
+export STAGING_ADD_NOINDEX_META_TAG=true
 
 
 ###########################################################################
