@@ -113,6 +113,12 @@ export STAGING_TI_NOTIFICATION_MAILING_LIST="civiform.staging@seattle.gov"
 # sending it to the applicant's email, as would happen in prod.
 export STAGING_APPLICANT_NOTIFICATION_MAILING_LIST="civiform.staging@seattle.gov"
 
+# OPTIONAL
+# If this is a staging deployment and this variable is set to true, a robots 
+# noindex metadata tag is added to the CiviForm pages. This causes the staging 
+# site to not be listed on search engines. 
+export STAGING_ADD_NOINDEX_META_TAG=true
+
 # REQUIRED
 # The domain name for this CiviForm deployment, including the protocol.
 # E.g. "https://civiform.seattle.gov"
@@ -243,7 +249,7 @@ export COMMON_INTAKE_MORE_RESOURCES_LINK_TEXT="Affordable Seattle"
 export COMMON_INTAKE_MORE_RESOURCES_LINK_HREF="https://www.affordableseattle.org"
 
 # Email
-export AWS_SES_SENDER="civiform.staging@seattle.gov"
+export SENDER_EMAIL_ADDRESS="civiform.staging@seattle.gov"
 
 export CIVIFORM_SUPPORTED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
 
