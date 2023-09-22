@@ -87,6 +87,9 @@ export CIVIC_ENTITY_LOGO_WITH_NAME_URL="https://raw.githubusercontent.com/seattl
 export CIVIC_ENTITY_SMALL_LOGO_URL="https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-small-logo.png"
 
 # OPTIONAL
+export APPLICANT_PORTAL_NAME="Seattle"
+
+# OPTIONAL
 # A link to an 16x16 of 32x32 pixel favicon of the civic entity,
 # in format .ico, .png, or .gif.
 export FAVICON_URL="https://seattle.gov/favicon.ico"
