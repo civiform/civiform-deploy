@@ -27,7 +27,11 @@ function get_cmd_args::get_config_file() {
     esac
   done
 
-  export CONFIG="civiform_config.sh"
+  # If we set CONFIG in config::choose, or it's already been set, use that.
+  # Otherwise, default to civiform_config.sh.
+  if [[ -z "${CONFIG}" ]]; then
+    export CONFIG="civiform_config.sh"
+  fi
   get_cmd_args::verify_config_file_exists
 }
 
