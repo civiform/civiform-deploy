@@ -1,0 +1,86 @@
+name: Seattle Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      probers_enabled:
+        description: 'Runs probers when checked'
+        default: true
+        required: true
+        type: boolean
+  schedule:
+    - cron: '0 12 1/1 * *'
+
+permissions:
+  id-token: write
+  contents: read
+
+# Two probers running at once can break each other.
+concurrency:
+  group: stagingenvironment
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      SKIP_CONFIRMATIONS: true
+      SKIP_TAG_CHECK: true
+      SLACK_CHANNEL: 'C03UXPUEXU4'
+      DEPLOY_TARGET: 'staging'
+      DEPLOY_SUBDOMAIN: 'civiformstage'
+    
+    steps:
+      - name: Notify Slack Start
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          channel-id: ${{ env.SLACK_CHANNEL }}
+          slack-message: ":space-needle: Starting deploy for Seattle ${{ env.DEPLOY_TARGET }}. Probers enabled: ${{ github.event.inputs.probers_enabled }}"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          
+      - name: Checkout
+        uses: actions/checkout@v4
+
+
+
+
+
+      
+      - name: resolve latest snapshot tag
+        run: source bin/resolve-latest-snapshot-tag
+        
+      - name: Run deployment with latest on ${{ env.DEPLOY_TARGET }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+        run: bin/deploy --config="civiform_config.${{ env.DEPLOY_TARGET }}.sh"
+
+
+
+
+
+      - name: Run Prober tests
+        if: github.event.inputs == null || github.event.inputs.probers_enabled == 'true'
+        env:
+          TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
+          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
+          TEST_USER_DISPLAY_NAME: "TEST, UATAPP"
+          TEST_CIVIC_ENTITY_SHORT_NAME: "Seattle"          
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 70
+          max_attempts: 1
+          retry_wait_seconds: 30
+          command: bin/run-prober "https://${{ env.DEPLOY_SUBDOMAIN }}.seattle.gov"
+      
+      - name: Notify Slack Complete
+        if: always()
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          channel-id: ${{ env.SLACK_CHANNEL }}
+          slack-message: ":space-needle: ${{ env.STATUS_ICON }} Seattle Staging Deploy for ${{ env.LATEST_SNAPSHOT_TAG }}: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }}>"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          STATUS_ICON: ${{fromJSON('[":no_entry:", ":white_check_mark:"]')[job.status == 'success']}}
