@@ -253,9 +253,7 @@ export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES="CITYNAME"
 export COMMON_INTAKE_MORE_RESOURCES_LINK_TEXT="Affordable Seattle"
 export COMMON_INTAKE_MORE_RESOURCES_LINK_HREF="https://www.affordableseattle.org"
 
-# Email
-export SENDER_EMAIL_ADDRESS="civiform.staging@seattle.gov"
-
+# Language Settings
 export CIVIFORM_SUPPORTED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
 
 # Feature Flags
