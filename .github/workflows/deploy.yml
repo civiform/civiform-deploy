@@ -46,6 +46,17 @@ jobs:
       - name: resolve latest snapshot tag
         run: source bin/resolve-latest-snapshot-tag
         
+
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: us-west-2
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+
+          
       - name: Run deployment with latest on ${{ env.DEPLOY_TARGET }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
