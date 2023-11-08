@@ -43,23 +43,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-
-
-
-
-      
       - name: resolve latest snapshot tag
         run: source bin/resolve-latest-snapshot-tag
         
       - name: Run deployment with latest on ${{ env.DEPLOY_TARGET }}
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: bin/deploy --config="civiform_config.${{ env.DEPLOY_TARGET }}.sh"
-
-
-
-
 
       - name: Run Prober tests
         if: github.event.inputs == null || github.event.inputs.probers_enabled == 'true'
