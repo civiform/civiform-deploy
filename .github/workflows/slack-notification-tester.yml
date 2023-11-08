@@ -1,0 +1,20 @@
+name: Slack Notification Tester
+
+on:
+  workflow_dispatch: {}
+
+permissions: read-all
+
+jobs:
+  run_prober:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Slack Complete
+        if: always()
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          channel-id:  'C03UXPUEXU4'
+          slack-message: ":space-needle: Test Message from Seattle Staging Deploy:  ${{ job.status }} ${{ env.ICON }} <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }} TEST>"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          ICON: ${{fromJSON('[":no_entry:", ":white_check_mark:"]')[job.status == 'success']}}
