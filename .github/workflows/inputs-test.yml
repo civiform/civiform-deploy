@@ -3,6 +3,17 @@ name: Inputs Test
 on:
   workflow_dispatch:
     inputs:
+      site-env:
+        type: choice
+        description: Site location
+        options: 
+        - test
+        - staging
+
+      environment:
+        type: environment
+
+        
       probers_enabled:
         description: 'Runs probers when checked'
         default: true
@@ -15,5 +26,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Notify Slack Start
+      - name: Display value
         run: "echo ${{ github.event.inputs.probers_enabled }}"
