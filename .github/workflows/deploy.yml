@@ -35,13 +35,20 @@ jobs:
       SKIP_CONFIRMATIONS: true
       SKIP_TAG_CHECK: true
       SLACK_CHANNEL: 'C03UXPUEXU4'
+      # When run by the schedule github.event.inputs are not set. It's easier to normalize these here into environment variables
+      # than to have the extra logic all over and duplicated.
+      # If environment is null default to the staging site
+      ENVIRONMENT: ${{ github.event.inputs.environment || 'staging' }}
+      # Consider probers to be enabled if manually checked or if run from a schedule, but only run them on the staging site
+      # beause we don't want to wipe test site data.
+      PROBERS_ENABLED: ${{ (github.event.inputs == null || github.event.inputs.probers_enabled == 'true') && ((github.event.inputs.environment || 'staging') == 'staging')  }}
     
     steps:
       - name: Notify Slack Start
         uses: slackapi/slack-github-action@v1.24.0
         with:
           channel-id: ${{ env.SLACK_CHANNEL }}
-          slack-message: ":space-needle: Starting Seattle Deploy [Env: ${{ github.event.inputs.environment }}]. Probers enabled: ${{ github.event.inputs.probers_enabled }}"
+          slack-message: ":space-needle: Starting Seattle Deploy [Env: ${{ env.ENVIRONMENT }}]. Probers enabled: ${{ env.PROBERS_ENABLED }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           
@@ -62,14 +69,14 @@ jobs:
       - name: Get caller identity
         run: aws sts get-caller-identity
         
-      - name: Run deployment with latest on ${{ github.event.inputs.environment }}
+      - name: Run deployment with latest on ${{ env.ENVIRONMENT }}
         env:
           AWS_ACCESS_KEY_ID: ${{ steps.credentials.outputs.aws-access-key-id }}
           AWS_SECRET_ACCESS_KEY: ${{ steps.credentials.outputs.aws-secret-access-key }}
-        run: bin/deploy --config="civiform_config.${{ github.event.inputs.environment }}.sh"
+        run: bin/deploy --config="civiform_config.${{ env.ENVIRONMENT }}.sh"
 
       - name: Run Prober tests
-        if: github.event.inputs == null || github.event.inputs.probers_enabled == 'true'
+        if: PROBERS_ENABLED == 'true'
         env:
           TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
@@ -88,7 +95,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.24.0
         with:
           channel-id: ${{ env.SLACK_CHANNEL }}
-          slack-message: ":space-needle: ${{ env.STATUS_ICON }} Seattle Deploy [Env: ${{ github.event.inputs.environment }}] for ${{ env.LATEST_SNAPSHOT_TAG }}: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }}>"
+          slack-message: ":space-needle: ${{ env.STATUS_ICON }} Seattle Deploy [Env: ${{ env.ENVIRONMENT }}] for ${{ env.LATEST_SNAPSHOT_TAG }}: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }}>"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           STATUS_ICON: ${{fromJSON('[":no_entry:", ":white_check_mark:"]')[job.status == 'success']}}
