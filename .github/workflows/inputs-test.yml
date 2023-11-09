@@ -14,8 +14,8 @@ on:
         default: true
         required: true
 
-  schedule:
-    - cron: '*/5 * * * *'
+  #schedule:
+  #  - cron: '*/5 * * * *'
       
 jobs:
   test-job:
