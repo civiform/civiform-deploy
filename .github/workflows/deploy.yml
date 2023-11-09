@@ -47,6 +47,7 @@ jobs:
         run: source bin/resolve-latest-snapshot-tag
 
       - name: Configure AWS Credentials
+        id: credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-region: us-west-2
@@ -54,8 +55,8 @@ jobs:
 
       - name: Run deployment with latest on ${{ env.DEPLOY_TARGET }}
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ steps.credentials.outputs.aws-access-key-id }}
+          AWS_SECRET_ACCESS_KEY: ${{ steps.credentials.outputs.aws-secret-access-key }}
         run: bin/deploy --config="civiform_config.${{ env.DEPLOY_TARGET }}.sh"
 
       - name: Run Prober tests
