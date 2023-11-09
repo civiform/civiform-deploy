@@ -24,8 +24,8 @@ jobs:
       - name: Display github.event.inputs.environment
         run: "echo ${{ github.event.inputs.environment }}"
 
-      - name: Display env.DEPLOY_SUBDOMAIN
-        run: "echo ${{ env.DEPLOY_SUBDOMAIN }}"
+      - name: Display vars.DEPLOY_SUBDOMAIN
+        run: "echo ${{ vars.DEPLOY_SUBDOMAIN }}"
 
-      - name: Display env.DEPLOY_TARGET
-        run: "echo ${{ env.DEPLOY_TARGET }}"
+      - name: Display vars.DEPLOY_TARGET
+        run: "echo ${{ vars.DEPLOY_TARGET }}"
