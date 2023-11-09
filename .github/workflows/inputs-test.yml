@@ -18,9 +18,15 @@ jobs:
   test-job:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment || 'staging' }}
+    env:
+      ENVIRONMENT: ${{ github.event.inputs.environment || 'staging' }}
+      PROBERS_ENABLED: ${{ github.event.inputs == null || github.event.inputs.probers_enabled == 'true' }}
     steps:
       - name: Display 
+        if: (github.event.inputs == null || github.event.inputs.probers_enabled == 'true') && 
         run: |
           echo "github.event.inputs.probers_enabled: ${{ github.event.inputs.probers_enabled }}"
           echo "github.event.inputs.environment: ${{ github.event.inputs.environment }}"
           echo "vars.SUBDOMAIN: ${{ vars.SUBDOMAIN }}"
+          echo "env.ENVIRONMENT: ${{ env.ENVIRONMENT }}"
+          echo "env.PROBERS_ENABLED: ${{ env.PROBERS_ENABLED }}"
