@@ -16,17 +16,11 @@ on:
 jobs:
   test-job:
     runs-on: ubuntu-latest
-    environment: ${{ vars.ENVIRONMENT_STAGE }}
+    environment: ${{ github.event.inputs.environment }}
     
     steps:
-      - name: A
-        run: echo "${{ vars }}"
-        
-      - name: B
-        run: echo "${{ env }}"
-        
       - name: C
-        run: echo "${{ github.event.inputs }}"
+        run: echo "${{ github.event.inputs.environment }}"
     
       - name: Display 
         run: |
