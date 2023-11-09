@@ -76,7 +76,7 @@ jobs:
         run: bin/deploy --config="civiform_config.${{ env.ENVIRONMENT }}.sh"
 
       - name: Run Prober tests
-        if: PROBERS_ENABLED == 'true'
+        if: (env.PROBERS_ENABLED == 'true')
         env:
           TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
