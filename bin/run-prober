@@ -2,15 +2,6 @@
 
 # DOC: Run the browser test suite in Docker against the staging environment.
 
-# Shards allow splitting the run into multiple chunks
-# See https://jestjs.io/docs/next/cli#--shard
-SHARD_NUM="${1}"
-SHARD_COMMAND=""
-
-if [[ -n "${SHARD_NUM}" ]]; then
-  SHARD_COMMAND=" -- --shard=${SHARD_NUM}"
-fi
-
 docker pull civiform/civiform-browser-test:latest
 
 # Enable video recording on CI tests as it will be helpful to debug test
@@ -28,4 +19,4 @@ docker run \
   -e DISABLE_BROWSER_ERROR_WATCHER=true \
   -e DISABLE_SCREENSHOTS=false \
   civiform/civiform-browser-test:latest \
-  -c "npm install && npm test ${SHARD_COMMAND}"
+  -c "npm install && npm test
