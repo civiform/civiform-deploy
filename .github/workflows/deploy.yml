@@ -3,11 +3,17 @@ name: Seattle Deploy
 on:
   workflow_dispatch:
     inputs:
+      environment:
+        type: environment
+        default: staging
+        required: true
+        
       probers_enabled:
+        type: boolean
         description: 'Runs probers when checked'
         default: true
         required: true
-        type: boolean
+
   schedule:
     - cron: '0 12 1/1 * *'
 
@@ -23,20 +29,19 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'staging' }}
 
     env:
       SKIP_CONFIRMATIONS: true
       SKIP_TAG_CHECK: true
       SLACK_CHANNEL: 'C03UXPUEXU4'
-      DEPLOY_TARGET: 'staging'
-      DEPLOY_SUBDOMAIN: 'civiformstage'
     
     steps:
       - name: Notify Slack Start
         uses: slackapi/slack-github-action@v1.24.0
         with:
           channel-id: ${{ env.SLACK_CHANNEL }}
-          slack-message: ":space-needle: Starting deploy for Seattle ${{ env.DEPLOY_TARGET }}. Probers enabled: ${{ github.event.inputs.probers_enabled }}"
+          slack-message: ":space-needle: Starting Seattle Deploy [Env: ${{ github.event.inputs.environment }}]. Probers enabled: ${{ github.event.inputs.probers_enabled }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           
@@ -57,11 +62,11 @@ jobs:
       - name: Get caller identity
         run: aws sts get-caller-identity
         
-      - name: Run deployment with latest on ${{ env.DEPLOY_TARGET }}
+      - name: Run deployment with latest on ${{ github.event.inputs.environment }}
         env:
           AWS_ACCESS_KEY_ID: ${{ steps.credentials.outputs.aws-access-key-id }}
           AWS_SECRET_ACCESS_KEY: ${{ steps.credentials.outputs.aws-secret-access-key }}
-        run: bin/deploy --config="civiform_config.${{ env.DEPLOY_TARGET }}.sh"
+        run: bin/deploy --config="civiform_config.${{ github.event.inputs.environment }}.sh"
 
       - name: Run Prober tests
         if: github.event.inputs == null || github.event.inputs.probers_enabled == 'true'
@@ -70,7 +75,7 @@ jobs:
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
           TEST_USER_DISPLAY_NAME: "TEST, UATAPP"
           TEST_CIVIC_ENTITY_SHORT_NAME: "Seattle"
-          BASE_URL: "https://${{ env.DEPLOY_SUBDOMAIN}}.seattle.gov"
+          BASE_URL: "https://${{ vars.SUBDOMAIN }}.seattle.gov"
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 70
@@ -83,7 +88,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.24.0
         with:
           channel-id: ${{ env.SLACK_CHANNEL }}
-          slack-message: ":space-needle: ${{ env.STATUS_ICON }} Seattle Staging Deploy for ${{ env.LATEST_SNAPSHOT_TAG }}: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }}>"
+          slack-message: ":space-needle: ${{ env.STATUS_ICON }} Seattle Deploy [Env: ${{ github.event.inputs.environment }}] for ${{ env.LATEST_SNAPSHOT_TAG }}: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }}>"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           STATUS_ICON: ${{fromJSON('[":no_entry:", ":white_check_mark:"]')[job.status == 'success']}}
