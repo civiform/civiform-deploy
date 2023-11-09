@@ -20,7 +20,7 @@ on:
 jobs:
   test-job:
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.environment || staging }}
+    environment: ${{ github.event.inputs.environment || 'staging' }}
     steps:
       - name: Display 
         run: |
