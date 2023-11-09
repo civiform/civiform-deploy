@@ -3,17 +3,9 @@ name: Inputs Test
 on:
   workflow_dispatch:
     inputs:
-      site-env:
-        type: choice
-        description: Site location
-        options: 
-        - test
-        - staging
-
       environment:
         type: environment
 
-        
       probers_enabled:
         description: 'Runs probers when checked'
         default: true
@@ -26,5 +18,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Display value
+      - name: Display github.event.inputs.probers_enabled
         run: "echo ${{ github.event.inputs.probers_enabled }}"
+
+      - name: Display github.event.inputs.environment
+        run: "echo ${{ github.event.inputs.environment }}"
+
+      - name: Display env.DEPLOY_SUBDOMAIN
+        run: "echo ${{ env.DEPLOY_SUBDOMAIN }}"
+
+      - name: Display env.DEPLOY_TARGET
+        run: "echo ${{ env.DEPLOY_TARGET }}"
