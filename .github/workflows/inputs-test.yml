@@ -16,16 +16,13 @@ on:
 jobs:
   test-job:
     runs-on: ubuntu-latest
-
+    environment: ${{ vars.ENVIRONMENT_STAGE }}
+    
     steps:
-      - name: Display github.event.inputs.probers_enabled
-        run: "echo ${{ github.event.inputs.probers_enabled }}"
-
-      - name: Display github.event.inputs.environment
-        run: "echo ${{ github.event.inputs.environment }}"
-
-      - name: Display vars.DEPLOY_SUBDOMAIN
-        run: "echo ${{ vars.DEPLOY_SUBDOMAIN }}"
-
-      - name: Display vars.DEPLOY_TARGET
-        run: "echo ${{ vars.DEPLOY_TARGET }}"
+      - name: Display 
+        run: |
+          echo "${{ vars.ENVIRONMENT_STAGE }}"
+          echo "${{ github.event.inputs.probers_enabled }}"
+          echo "${{ github.event.inputs.environment }}"
+          echo "${{ vars.DEPLOY_SUBDOMAIN }}"
+          echo "${{ vars.DEPLOY_TARGET }}"
