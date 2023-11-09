@@ -19,13 +19,9 @@ jobs:
     environment: ${{ github.event.inputs.environment }}
     
     steps:
-      - name: C
-        run: echo "${{ github.event.inputs.environment }}"
-    
       - name: Display 
         run: |
-          echo "vars.ENVIRONMENT_STAGE: ${{ vars.ENVIRONMENT_STAGE }}"
           echo "github.event.inputs.probers_enabled: ${{ github.event.inputs.probers_enabled }}"
           echo "github.event.inputs.environment: ${{ github.event.inputs.environment }}"
-          echo "vars.DEPLOY_SUBDOMAIN: ${{ vars.DEPLOY_SUBDOMAIN }}"
           echo "vars.DEPLOY_TARGET: ${{ vars.DEPLOY_TARGET }}"
+          echo "vars.DEPLOY_SUBDOMAIN: ${{ vars.DEPLOY_SUBDOMAIN }}"
