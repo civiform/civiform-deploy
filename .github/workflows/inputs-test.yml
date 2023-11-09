@@ -5,7 +5,7 @@ on:
     inputs:
       environment:
         type: environment
-        default: test
+        default: staging
         required: true
         
       probers_enabled:
@@ -13,6 +13,9 @@ on:
         description: 'Runs probers when checked'
         default: true
         required: true
+        
+  schedule:
+    - cron: '*/5 * * * *'
         
 jobs:
   test-job:
