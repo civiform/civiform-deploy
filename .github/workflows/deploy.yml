@@ -48,10 +48,11 @@ jobs:
 
       - name: Configure AWS Credentials
         id: credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: us-west-2
           role-to-assume: ${{ secrets.AWS_ROLE_IAM }}
+          output-credentials: true
           
       - name: Get caller identity
         run: aws sts get-caller-identity
