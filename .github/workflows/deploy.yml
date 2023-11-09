@@ -52,7 +52,10 @@ jobs:
         with:
           aws-region: us-west-2
           role-to-assume: ${{ secrets.AWS_ROLE_IAM }}
-
+          
+      - name: Get caller identity
+        run: aws sts get-caller-identity
+        
       - name: Run deployment with latest on ${{ env.DEPLOY_TARGET }}
         env:
           AWS_ACCESS_KEY_ID: ${{ steps.credentials.outputs.aws-access-key-id }}
