@@ -68,19 +68,15 @@ export CIVIFORM_APPLICANT_AUTH_PROTOCOL="oidc"
 
 # REQUIRED
 # The short name for the civic entity. Ex. "Rochester"
-export CIVIC_ENTITY_SHORT_NAME="Seattle"
+export WHITELABEL_CIVIC_ENTITY_SHORT_NAME="Seattle"
 
 # REQUIRED
 # The full name for the civic entity. Ex. "City of Rochester"
-export CIVIC_ENTITY_FULL_NAME="City of Seattle"
+export WHITELABEL_CIVIC_ENTITY_FULL_NAME="City of Seattle"
 
 # REQUIRED
 # The email address to contact for support with using Civiform. Ex. "Civiform@CityOfRochester.gov
-export CIVIC_ENTITY_SUPPORT_EMAIL_ADDRESS="civiform.staging@seattle.gov"
-
-# REQUIRED
-# A link to an image of the civic entity logo that includes the entity name, to be used in the header for the "Get Benefits" page
-export CIVIC_ENTITY_LOGO_WITH_NAME_URL="https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-long-logo.png"
+export SUPPORT_EMAIL_ADDRESS="civiform.staging@seattle.gov"
 
 # REQUIRED
 # A link to an image of the civic entity logo, to be used on the login page
@@ -255,10 +251,15 @@ export COMMON_INTAKE_MORE_RESOURCES_LINK_HREF="https://www.affordableseattle.org
 
 # Language Settings
 export CIVIFORM_SUPPORTED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
+# Don't need to bother with this until we have new languages
+# export CIVIFORM_APPLICANT_ENABLED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
 
 # Feature Flags
-export FEATURE_FLAG_OVERRIDES_ENABLED=true
 export ALLOW_CIVIFORM_ADMIN_ACCESS_PROGRAMS=true
-export PHONE_QUESTION_TYPE_ENABLED=true
 export APPLICATION_EXPORTABLE=true
+
+# I think these are obsolete
+#export FEATURE_FLAG_OVERRIDES_ENABLED=true
+#export PHONE_QUESTION_TYPE_ENABLED=true
+
 
