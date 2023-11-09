@@ -5,23 +5,19 @@ on:
     inputs:
       environment:
         type: environment
-
       probers_enabled:
         description: 'Runs probers when checked'
         default: true
         required: true
         type: boolean
-
-
+        
 jobs:
   test-job:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
-    
     steps:
       - name: Display 
         run: |
           echo "github.event.inputs.probers_enabled: ${{ github.event.inputs.probers_enabled }}"
           echo "github.event.inputs.environment: ${{ github.event.inputs.environment }}"
-          echo "vars.DEPLOY_TARGET: ${{ vars.DEPLOY_TARGET }}"
-          echo "vars.DEPLOY_SUBDOMAIN: ${{ vars.DEPLOY_SUBDOMAIN }}"
+          echo "vars.SUBDOMAIN: ${{ vars.SUBDOMAIN }}"
