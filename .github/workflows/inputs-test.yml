@@ -5,11 +5,14 @@ on:
     inputs:
       environment:
         type: environment
+        default: test
+        required: true
+        
       probers_enabled:
+        type: boolean
         description: 'Runs probers when checked'
         default: true
         required: true
-        type: boolean
         
 jobs:
   test-job:
