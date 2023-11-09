@@ -1,0 +1,19 @@
+name: Inputs Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      probers_enabled:
+        description: 'Runs probers when checked'
+        default: true
+        required: true
+        type: boolean
+
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Notify Slack Start
+        run: "echo ${{ github.event.inputs.probers_enabled }}"
