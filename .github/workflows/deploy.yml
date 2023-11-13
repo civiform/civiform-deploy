@@ -56,7 +56,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.24.0
         with:
           channel-id: ${{ env.SLACK_CHANNEL }}
-          slack-message: ":space-needle: Starting Seattle Deploy\nEnvironment: ${{ env.ENVIRONMENT }}.\nDeploy: ${{ env.DEPLOY_ENABLED }}\nProbers: ${{ env.PROBERS_ENABLED }}"
+          slack-message: ":space-needle: Starting Seattle Deploy\nEnv: ${{ env.ENVIRONMENT }}.\nDeploy: ${{ env.DEPLOY_ENABLED }}\nProbers: ${{ env.PROBERS_ENABLED }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
@@ -104,7 +104,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.24.0
         with:
           channel-id: ${{ env.SLACK_CHANNEL }}
-          slack-message: ":space-needle: ${{ env.STATUS_ICON }} Seattle Deploy <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }}>\nEnvironment: ${{ env.ENVIRONMENT }}\nDeploy: ${{ env.DEPLOY_ENABLED }}\nProbers: ${{ env.PROBERS_ENABLED }}\nVersion: ${{ env.LATEST_SNAPSHOT_TAG }}"
+          slack-message: ":space-needle: ${{ env.STATUS_ICON }} Completed Seattle Deploy <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }}>\nEnv: ${{ env.ENVIRONMENT }}\nVersion: ${{ env.LATEST_SNAPSHOT_TAG }}\nDeploy: ${{ env.DEPLOY_ENABLED }}\nProbers: ${{ env.PROBERS_ENABLED }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           STATUS_ICON: ${{fromJSON('[":no_entry:", ":white_check_mark:"]')[job.status == 'success']}}
