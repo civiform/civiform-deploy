@@ -7,7 +7,13 @@ on:
         type: environment
         default: staging
         required: true
-        
+
+      deploy_enabled:
+        type: boolean
+        description: 'Deploy when checked'
+        default: true
+        required: true
+
       probers_enabled:
         type: boolean
         description: 'Runs probers when checked'
@@ -39,19 +45,21 @@ jobs:
       # than to have the extra logic all over and duplicated.
       # If environment is null default to the staging site
       ENVIRONMENT: ${{ github.event.inputs.environment || 'staging' }}
+      # Consider deployment to be enabled if manually checked or if run from a schedule
+      DEPLOY_ENABLED: ${{ (github.event.inputs == null || github.event.inputs.deploy_enabled == 'true') }}
       # Consider probers to be enabled if manually checked or if run from a schedule, but only run them on the staging site
       # beause we don't want to wipe test site data.
       PROBERS_ENABLED: ${{ (github.event.inputs == null || github.event.inputs.probers_enabled == 'true') && ((github.event.inputs.environment || 'staging') == 'staging')  }}
-    
+
     steps:
       - name: Notify Slack Start
         uses: slackapi/slack-github-action@v1.24.0
         with:
           channel-id: ${{ env.SLACK_CHANNEL }}
-          slack-message: ":space-needle: Starting Seattle Deploy [Env: ${{ env.ENVIRONMENT }}]. Probers enabled: ${{ env.PROBERS_ENABLED }}"
+          slack-message: ":space-needle: Starting Seattle Deploy\nEnvironment: ${{ env.ENVIRONMENT }}.\nDeploy: ${{ env.DEPLOY_ENABLED }}\nProbers: ${{ env.PROBERS_ENABLED }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-          
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -65,11 +73,12 @@ jobs:
           aws-region: us-west-2
           role-to-assume: ${{ secrets.AWS_ROLE_IAM }}
           output-credentials: true
-          
+
       - name: Get caller identity
         run: aws sts get-caller-identity
-        
+
       - name: Run deployment with latest on ${{ env.ENVIRONMENT }}
+        if: (env.DEPLOY_ENABLED == 'true')
         env:
           AWS_ACCESS_KEY_ID: ${{ steps.credentials.outputs.aws-access-key-id }}
           AWS_SECRET_ACCESS_KEY: ${{ steps.credentials.outputs.aws-secret-access-key }}
@@ -80,22 +89,22 @@ jobs:
         env:
           TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
-          TEST_USER_DISPLAY_NAME: "TEST, UATAPP"
-          TEST_CIVIC_ENTITY_SHORT_NAME: "Seattle"
-          BASE_URL: "https://${{ vars.SUBDOMAIN }}.seattle.gov"
+          TEST_USER_DISPLAY_NAME: 'TEST, UATAPP'
+          TEST_CIVIC_ENTITY_SHORT_NAME: 'Seattle'
+          BASE_URL: 'https://${{ vars.SUBDOMAIN }}.seattle.gov'
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 70
           max_attempts: 1
           retry_wait_seconds: 30
           command: bin/run-prober
-      
+
       - name: Notify Slack Complete
         if: always()
         uses: slackapi/slack-github-action@v1.24.0
         with:
           channel-id: ${{ env.SLACK_CHANNEL }}
-          slack-message: ":space-needle: ${{ env.STATUS_ICON }} Seattle Deploy [Env: ${{ env.ENVIRONMENT }}] for ${{ env.LATEST_SNAPSHOT_TAG }}: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }}>"
+          slack-message: ":space-needle: ${{ env.STATUS_ICON }} Seattle Deploy <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }}>\nEnvironment: ${{ env.ENVIRONMENT }}\nDeploy: ${{ env.DEPLOY_ENABLED }}\nProbers: ${{ env.PROBERS_ENABLED }}\nVersion: ${{ env.LATEST_SNAPSHOT_TAG }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           STATUS_ICON: ${{fromJSON('[":no_entry:", ":white_check_mark:"]')[job.status == 'success']}}
