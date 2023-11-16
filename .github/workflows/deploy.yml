@@ -1,4 +1,5 @@
 name: Seattle Deploy
+run-name: Seattle Deploy for ${{ github.event.inputs.environment || 'staging' }}
 
 on:
   workflow_dispatch:
