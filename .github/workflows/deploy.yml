@@ -29,8 +29,7 @@ permissions:
 
 # Two probers running at once can break each other.
 concurrency:
-  group: stagingenvironment
-  cancel-in-progress: true
+  group: group-${{ github.event.inputs.environment || 'staging' }}
 
 jobs:
   deploy:
