@@ -309,6 +309,18 @@ export APPLICANT_OIDC_FIRST_NAME_ATTRIBUTE="name"
 export APPLICANT_OIDC_MIDDLE_NAME_ATTRIBUTE=""
 export APPLICANT_OIDC_LAST_NAME_ATTRIBUTE=""
 
+# OPTIONAL
+# This setting should *only* be enabled if the applicant identity provider supports the
+# id_token_hint parameter in OIDC logout requests.
+#
+# ADFS: supported
+# Auth0: supported
+# IDCS: supported
+# Login.gov: not supported
+# Okta: required
+#
+# export APPLICANT_OIDC_ENHANCED_LOGOUT_ENABLED="false"
+
 # The name of the authentication provider applicants use to login.
 # This value is displayed to the applicants to help them understand which account to use.
 export APPLICANT_PORTAL_NAME=""
@@ -384,3 +396,15 @@ export ADFS_ADMIN_GROUP=""
 # Additional scopes should be retrieved as part of the request to the identity
 # provider. If present, should be space-separated values.
 # export ADMIN_OIDC_ADDITIONAL_SCOPES=""
+
+# OPTIONAL
+# This setting should *only* be enabled if the admin identity provider supports the
+# id_token_hint parameter in OIDC logout requests.
+#
+# ADFS: supported
+# Auth0: supported
+# IDCS: supported
+# Login.gov: not supported
+# Okta: required
+#
+# export ADMIN_OIDC_ENHANCED_LOGOUT_ENABLED="false"
