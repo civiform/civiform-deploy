@@ -14,9 +14,6 @@
 # Global variables for all CiviForm deployments
 #################################################
 
-# TEMP SETTING WHILE RESTORING DATABASE
-export DURABLE_JOBS_POLL_INTERVAL_SECONDS=5000
-
 # REQUIRED
 # One of prod, staging, or dev.
 export CIVIFORM_MODE="staging"
