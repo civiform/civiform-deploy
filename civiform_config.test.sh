@@ -255,6 +255,7 @@ export COMMON_INTAKE_MORE_RESOURCES_LINK_HREF="https://www.affordableseattle.org
 
 # Language Settings
 export CIVIFORM_SUPPORTED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
+export CIVIFORM_APPLICANT_ENABLED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
 
 # Feature Flags
 export FEATURE_FLAG_OVERRIDES_ENABLED=true
