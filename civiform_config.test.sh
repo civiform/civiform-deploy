@@ -86,7 +86,7 @@ export CIVIC_ENTITY_LOGO_WITH_NAME_URL="https://raw.githubusercontent.com/seattl
 # A link to an image of the civic entity logo, to be used on the login page
 export CIVIC_ENTITY_SMALL_LOGO_URL="https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-small-logo.png"
 
-# OPTIONAL
+# REQUIRED
 export APPLICANT_PORTAL_NAME="Seattle"
 
 # OPTIONAL
