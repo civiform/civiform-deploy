@@ -227,6 +227,11 @@ export ADFS_ADMIN_GROUP="5909e7f3-3f4c-4ad1-93e8-17e6ba6ab8a3"
 # Additional settings
 #################################################
 
+# Caching
+export VERSION_CACHE_ENABLED=true
+export PROGRAM_CACHE_ENABLED=true
+export QUESTION_CACHE_ENABLED=true
+
 # API
 export CIVIFORM_API_KEYS_BAN_GLOBAL_SUBNET=false
 

@@ -231,6 +231,11 @@ export ADFS_ADMIN_GROUP="f8c8e6c8-a5d7-4476-91bd-7f1691d16625"
 # Additional settings
 #################################################
 
+# Caching
+export VERSION_CACHE_ENABLED=true
+export PROGRAM_CACHE_ENABLED=true
+export QUESTION_CACHE_ENABLED=true
+
 # Prod overrides
 export POSTGRES_INSTANCE_CLASS="db.m5.large"
 
