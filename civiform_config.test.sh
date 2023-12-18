@@ -79,10 +79,6 @@ export CIVIC_ENTITY_FULL_NAME="City of Seattle [TEST]"
 export CIVIC_ENTITY_SUPPORT_EMAIL_ADDRESS="civiform.staging@seattle.gov"
 
 # REQUIRED
-# A link to an image of the civic entity logo that includes the entity name, to be used in the header for the "Get Benefits" page
-export CIVIC_ENTITY_LOGO_WITH_NAME_URL="https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-long-logo.png"
-
-# REQUIRED
 # A link to an image of the civic entity logo, to be used on the login page
 export CIVIC_ENTITY_SMALL_LOGO_URL="https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-small-logo.png"
 
@@ -263,8 +259,8 @@ export CIVIFORM_SUPPORTED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
 export CIVIFORM_APPLICANT_ENABLED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
 
 # Feature Flags
-export FEATURE_FLAG_OVERRIDES_ENABLED=true
 export ALLOW_CIVIFORM_ADMIN_ACCESS_PROGRAMS=true
-export PHONE_QUESTION_TYPE_ENABLED=true
 export APPLICATION_EXPORTABLE=true
-
+export API_GENERATED_DOCS_ENABLED=true
+export ADMIN_OIDC_ENHANCED_LOGOUT_ENABLED=true
+export APPLICANT_OIDC_ENHANCED_LOGOUT_ENABLED=true

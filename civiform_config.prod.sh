@@ -79,10 +79,6 @@ export WHITELABEL_CIVIC_ENTITY_FULL_NAME="City of Seattle"
 export SUPPORT_EMAIL_ADDRESS="CiviForm@seattle.gov"
 
 # REQUIRED
-# A link to an image of the civic entity logo that includes the entity name, to be used in the header for the "Get Benefits" page
-export CIVIC_ENTITY_LOGO_WITH_NAME_URL="https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-long-logo.png"
-
-# REQUIRED
 # A link to an image of the civic entity logo, to be used on the login page
 export CIVIC_ENTITY_SMALL_LOGO_URL="https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-small-logo.png"
 
@@ -236,9 +232,6 @@ export VERSION_CACHE_ENABLED=true
 export PROGRAM_CACHE_ENABLED=true
 export QUESTION_CACHE_ENABLED=true
 
-# Prod overrides
-export POSTGRES_INSTANCE_CLASS="db.m5.large"
-
 # API
 export CIVIFORM_API_KEYS_BAN_GLOBAL_SUBNET=false
 
@@ -269,3 +262,5 @@ export CIVIFORM_APPLICANT_ENABLED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl
 export ALLOW_CIVIFORM_ADMIN_ACCESS_PROGRAMS=true
 export APPLICATION_EXPORTABLE=true
 
+# Prod overrides
+export POSTGRES_INSTANCE_CLASS="db.m5.large"
