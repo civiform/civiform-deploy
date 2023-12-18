@@ -146,6 +146,10 @@ export MONITORING_STACK_ENABLED=false
 # REQUIRED
 export AWS_REGION="us-west-2"
 
+# OPTIONAL
+# Database size
+export POSTGRES_INSTANCE_CLASS="db.t3.micro"
+
 # REQUIRED
 # The name to prefix all resources with.
 export APP_PREFIX="cf-test" # max 19 chars, only numbers, letters, dashes, and underscores

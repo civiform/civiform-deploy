@@ -146,6 +146,10 @@ export MONITORING_STACK_ENABLED=false
 # REQUIRED
 export AWS_REGION="us-west-2"
 
+# OPTIONAL
+# Database size
+export POSTGRES_INSTANCE_CLASS="db.m5.large"
+
 # REQUIRED
 # The name to prefix all resources with.
 export APP_PREFIX="cf-prod" # max 19 chars, only numbers, letters, dashes, and underscores
@@ -261,6 +265,6 @@ export CIVIFORM_APPLICANT_ENABLED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl
 # Feature Flags
 export ALLOW_CIVIFORM_ADMIN_ACCESS_PROGRAMS=true
 export APPLICATION_EXPORTABLE=true
-
-# Prod overrides
-export POSTGRES_INSTANCE_CLASS="db.m5.large"
+export API_GENERATED_DOCS_ENABLED=true
+export ADMIN_OIDC_ENHANCED_LOGOUT_ENABLED=false
+export APPLICANT_OIDC_ENHANCED_LOGOUT_ENABLED=false
