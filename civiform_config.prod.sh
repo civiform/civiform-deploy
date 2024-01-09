@@ -122,7 +122,7 @@ export STAGING_ADD_NOINDEX_META_TAG=false
 # The domain name for this CiviForm deployment, including the protocol.
 # E.g. "https://civiform.seattle.gov"
 export BASE_URL="https://civiform.seattle.gov"
-export STAGING_HOSTNAME="civiform.seattle.gov"
+export STAGING_HOSTNAME="civiformstage.seattle.gov"
 
 # OPTIONAL
 # The time zone to be used when rendering any times within the CiviForm
