@@ -17,3 +17,9 @@ jobs:
 
       - name: Run gis testing script
         run: bin/test_gis.sh
+              
+      - name: Send message to ms teams
+        uses: dhollerbach/actions.send-message-to-ms-teams@1.0.10
+        with:
+          webhook: '${{ secrets.MICROSOFT_TEAMS_WEBHOOK_URI }}'
+          message: 'test message!'
