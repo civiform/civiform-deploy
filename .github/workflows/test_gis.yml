@@ -20,7 +20,7 @@ jobs:
               
       - name: Send message to ms teams   
         if: failure()
-        uses: dhollerbach/actions.send-message-to-ms-teams@v3
+        uses: dhollerbach/github-action-send-message-to-ms-teams@v3
         with:
           webhook: '${{ secrets.MICROSOFT_TEAMS_WEBHOOK_URI }}'
-          message: 'Testing GIS failed. There *may* be issues afoot. <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }}>'
+          message: 'Testing GIS failed. There *may* be issues afoot. ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
