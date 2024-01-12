@@ -13,13 +13,6 @@ function test_url {
     local expected_array_size="${3}"
 
     response="$(curl \
-        -H "User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0" \
-        -H "Accept: application/json" \
-        -H "DNT: 1" \
-        -H "Connection: keep-alive" \
-        -H "Pragma: no-cache" \
-        -H "Cache-Control: no-cache" \
-        --retry 0 \
         --silent \
         "${url}")"
 
@@ -54,6 +47,4 @@ test_url "${serviceAreaUrl}" ".fields" 8
 
 echo "Test ssl certficate"
 echo | openssl s_client -servername gisdata.seattle.gov -connect gisdata.seattle.gov:443
-echo $?
-
 
