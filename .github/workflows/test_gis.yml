@@ -1,20 +1,19 @@
 name: Test GIS
 
 on:
-  workflow_dispatch:
-
-  # schedule:
-  # - cron: '0 12 1/1 * *'
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 * * * *'
 
 permissions: {}
 
 jobs:
-  deploy:
+  test-gis:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Run deployment with latest on ${{ env.ENVIRONMENT }}
+      - name: Run gis testing script
         run: bin/test_gis.sh
