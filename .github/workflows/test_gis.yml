@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '0 * * * *'
 
-permissions: read-all
+permissions: {}
 
 jobs:
   test-gis:
@@ -15,18 +15,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      #- name: Run gis testing script
-      #  run: bin/test_gis.sh
+      - name: Run gis testing script
+        run: bin/test_gis.sh
               
-      #- name: Send message to ms teams   
-      #  if: success()
-      #  uses: dhollerbach/github-action-send-message-to-ms-teams@v3
-      #  with:
-      #    webhook: '${{ secrets.MICROSOFT_TEAMS_WEBHOOK_URI }}'
-      #    message: 'Testing GIS failed. There *may* be issues afoot. ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
-
-      - name: Send message to Microsoft Teams
-        uses: dhollerbach/github-action-send-message-to-ms-teams@v3
+      - name: Send message to ms teams   
+        if: success()
+        uses: dhollerbach/actions.send-message-to-ms-teams@1.0.10
         with:
           webhook: '${{ secrets.MICROSOFT_TEAMS_WEBHOOK_URI }}'
-          message: 'test!'
+          message: 'Testing GIS failed. There *may* be issues afoot. ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
