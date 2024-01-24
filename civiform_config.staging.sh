@@ -174,6 +174,7 @@ export APPLICANT_OIDC_PROVIDER_NAME="OidcClient"
 # The discovery metadata URI provideded by the OIDC provider.
 # Usually ends in .well-known/openid-configuration
 export APPLICANT_OIDC_DISCOVERY_URI="https://idcs-f582fefb879b4db5a88a370e8f2f6013.identity.oraclecloud.com/.well-known/openid-configuration"
+export IDCS_DISCOVERY_URI="https://idcs-f582fefb879b4db5a88a370e8f2f6013.identity.oraclecloud.com/.well-known/openid-configuration"
 
 # OPTIONAL
 # The type of OIDC flow to execute, and how the data is encoded.
