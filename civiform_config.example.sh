@@ -252,6 +252,11 @@ export FARGATE_DESIRED_TASK_COUNT=1
 # allowed.
 # export POSTGRES_STORAGE_GB=5
 
+# OPTIONAL
+# Length of the random generated password to use for app_secret_key.
+# Some legacy deployments may be using a shorter length, but going forward 64 will be the default.
+export RANDOM_PASSWORD_LENGTH=64
+
 
 # generic-oidc Auth configuration
 #################################################
