@@ -156,6 +156,7 @@ export APP_PREFIX="cf-test" # max 19 chars, only numbers, letters, dashes, and u
 
 export SSL_CERTIFICATE_ARN="arn:aws:acm:us-west-2:405662711265:certificate/fc9201c7-c715-4c8e-bd1f-a20ae1828e8f"
 export FARGATE_DESIRED_TASK_COUNT=1
+export ECS_SCALE_TARGET_MIN_CAPACITY=1
 
 # REQUIRED
 # Which auth provider to use for applicants to login.
