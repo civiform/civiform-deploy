@@ -155,7 +155,7 @@ export POSTGRES_INSTANCE_CLASS="db.m5.large"
 export APP_PREFIX="cf-prod" # max 19 chars, only numbers, letters, dashes, and underscores
 
 export SSL_CERTIFICATE_ARN="arn:aws:acm:us-west-2:405662711265:certificate/fc9201c7-c715-4c8e-bd1f-a20ae1828e8f"
-export FARGATE_DESIRED_TASK_COUNT=1
+export FARGATE_DESIRED_TASK_COUNT=2
 
 # REQUIRED
 # Which auth provider to use for applicants to login.
