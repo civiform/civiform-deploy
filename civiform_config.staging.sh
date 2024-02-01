@@ -150,6 +150,10 @@ export AWS_REGION="us-west-2"
 # Database size
 export POSTGRES_INSTANCE_CLASS="db.t3.micro"
 
+# OPTIONAL
+# Number of days to keep backups
+export POSTGRES_BACKUP_RETENTION_DAYS=3
+
 # REQUIRED
 # The name to prefix all resources with.
 export APP_PREFIX="cf-staging" # max 19 chars, only numbers, letters, dashes, and underscores
