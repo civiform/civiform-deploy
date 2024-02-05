@@ -326,11 +326,6 @@ export APPLICANT_OIDC_LAST_NAME_ATTRIBUTE=""
 #
 # export APPLICANT_OIDC_ENHANCED_LOGOUT_ENABLED="false"
 
-# The name of the authentication provider applicants use to login.
-# This value is displayed to the applicants to help them understand which account to use.
-export APPLICANT_PORTAL_NAME=""
-
-
 # OPTIONAL
 # Identity provider to use to authenticate and authorize admins.
 # Valid values are "adfs" and "generic-oidc-admin". Default is "adfs".
