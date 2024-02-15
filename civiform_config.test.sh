@@ -76,7 +76,7 @@ export CIVIC_ENTITY_FULL_NAME="City of Seattle [TEST]"
 
 # REQUIRED
 # The email address to contact for support with using Civiform. Ex. "Civiform@CityOfRochester.gov
-export CIVIC_ENTITY_SUPPORT_EMAIL_ADDRESS="civiform.staging@seattle.gov"
+export SUPPORT_EMAIL_ADDRESS="civiform.staging@seattle.gov"
 
 # REQUIRED
 # A link to an image of the civic entity logo, to be used on the login page
