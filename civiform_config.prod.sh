@@ -133,10 +133,10 @@ export CIVIFORM_TIME_ZONE_ID="America/Los_Angeles"
 # OPTIONAL
 # If enabled, allows exporting Prometheus server metrics over HTTP at "/metrics"
 # Defaults to false.
-export CIVIFORM_SERVER_METRICS_ENABLED=false
+export CIVIFORM_SERVER_METRICS_ENABLED=true
 
 # Don't deploy of Prometheus and Graphana
-export MONITORING_STACK_ENABLED=false
+export MONITORING_STACK_ENABLED=true
 
 
 #################################################
