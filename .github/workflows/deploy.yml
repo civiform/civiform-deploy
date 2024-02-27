@@ -92,12 +92,28 @@ jobs:
           TEST_USER_DISPLAY_NAME: 'TEST, UATAPP'
           TEST_CIVIC_ENTITY_SHORT_NAME: '${{ vars.CIVIC_ENTITY_SHORT_NAME }}'
           BASE_URL: 'https://${{ vars.SUBDOMAIN }}.seattle.gov'
-        uses: nick-fields/retry@v2
+        run: bin/run-prober
+
+      - name: Upload image diff outputs
+        if: failure()
+        uses: actions/upload-artifact@v4
         with:
-          timeout_minutes: 70
-          max_attempts: 1
-          retry_wait_seconds: 30
-          command: bin/run-prober
+          name: image diff output directory
+          path: browser-test/diff_output
+        
+      - name: Upload updated snapshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: updated snapshots output directory
+          path: browser-test/updated_snapshots
+        
+      - name: Upload test videos and traces on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests videos and traces
+          path: browser-test/tmp
 
       - name: Notify Slack Complete
         if: always()
