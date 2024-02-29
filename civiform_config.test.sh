@@ -23,7 +23,7 @@ export CIVIFORM_MODE="staging"
 #
 # For dev and staging civiform modes, can be "latest". For prod, must be a version from
 # https://github.com/civiform/civiform/releases, for example "v1.2.3".
-export CIVIFORM_VERSION="v1.52.0"
+export CIVIFORM_VERSION="v1.53.0"
 
 # REQUIRED
 # Version of the infrastructure to use.
@@ -158,7 +158,7 @@ export POSTGRES_BACKUP_RETENTION_DAYS=5
 # The name to prefix all resources with.
 export APP_PREFIX="cf-test" # max 19 chars, only numbers, letters, dashes, and underscores
 
-export SSL_CERTIFICATE_ARN="arn:aws:acm:us-west-2:405662711265:certificate/fc9201c7-c715-4c8e-bd1f-a20ae1828e8f"
+export SSL_CERTIFICATE_ARN="arn:aws:acm:us-west-2:405662711265:certificate/c62046c2-ac1c-4131-8a1d-3c91d2b81a21"
 export FARGATE_DESIRED_TASK_COUNT=1
 export ECS_SCALE_TARGET_MIN_CAPACITY=1
 
