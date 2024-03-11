@@ -99,21 +99,21 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: image diff output directory
-          path: browser-test/diff_output
+          path: diff_output
         
       - name: Upload updated snapshots
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: updated snapshots output directory
-          path: browser-test/updated_snapshots
+          path: updated_snapshots
         
       - name: Upload test videos and traces on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: tests videos and traces
-          path: browser-test/tmp
+          path: tmp
 
       - name: Notify Slack Complete
         if: always()
