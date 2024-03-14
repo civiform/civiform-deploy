@@ -139,6 +139,12 @@ export CIVIFORM_TIME_ZONE_ID="America/Los_Angeles"
 # This can be removed for production deployments that should be searchable.
 export STAGING_ADD_NOINDEX_META_TAG=true
 
+# OPTIONAL
+# The number of reverse proxies between the internet and the server.
+# This value is used to extract the client IP address from HTTP headers.
+# In typical deployments, this value is 1.
+# export NUM_TRUSTED_PROXIES=1
+
 
 ###########################################################################
 # Template variables for Azure. Skip if deploying to other cloud providers.
