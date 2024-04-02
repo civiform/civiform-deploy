@@ -39,7 +39,7 @@ jobs:
 
     env:
       SKIP_CONFIRMATIONS: true
-      SKIP_TAG_CHECK: true
+      SKIP_USER_INPUT: true
       SLACK_CHANNEL: 'C03UXPUEXU4'
       # When run by the schedule github.event.inputs are not set. It's easier to normalize these here into environment variables
       # than to have the extra logic all over and duplicated.
