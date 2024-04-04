@@ -20,4 +20,4 @@ docker run \
   -e DISABLE_BROWSER_ERROR_WATCHER=true \
   -e DISABLE_SCREENSHOTS=false \
   civiform/civiform-browser-test:latest \
-  -c "npm install && npm test"
+  -c "npm install && npm test -- --grep-invert @northstar $@"
