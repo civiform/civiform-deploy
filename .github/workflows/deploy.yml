@@ -93,27 +93,16 @@ jobs:
           TEST_CIVIC_ENTITY_SHORT_NAME: '${{ vars.CIVIC_ENTITY_SHORT_NAME }}'
           BASE_URL: 'https://${{ vars.SUBDOMAIN }}.seattle.gov'
         run: bin/run-prober
-
-      - name: Upload image diff outputs
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: image diff output directory
-          path: diff_output
-        
-      - name: Upload updated snapshots
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: updated snapshots output directory
-          path: updated_snapshots
         
       - name: Upload test videos and traces on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: tests videos and traces
-          path: tmp
+          retention-days: 3
+          path: |
+            tmp/html-output/
+            tmp/videos/
 
       - name: Notify Slack Complete
         if: always()
