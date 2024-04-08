@@ -88,6 +88,7 @@ function checkout::initialize() {
   echo "/cloud" >> .git/info/sparse-checkout
   echo "/bin" >> .git/info/sparse-checkout
 
+  git fetch --quiet --tags
   git pull --quiet origin main
 
   popd > /dev/null
