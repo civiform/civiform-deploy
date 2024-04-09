@@ -36,12 +36,14 @@ export CIVIFORM_VERSION="latest"
 # Version of the infrastructure to use.
 # Needs to be either:
 # - Label from https://hub.docker.com/r/civiform/civiform-cloud-deployment if USE_DOCKER=true
-# - Commit sha from https://github.com/civiform/cloud-deploy-infra if USE_DOCKER=false
+# - Commit SHA or tag from https://github.com/civiform/cloud-deploy-infra if USE_DOCKER=false
 # - "latest" to use latest version of either docker image or code from the repo, 
 #    depending on USE_DOCKER flag.
 #
-# Using "latest" is recommended.
-export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="latest"
+# If deploy version 1.55.0 or later, setting this to the CIVIFORM_VERSION value is
+# recommended in order to use the version of the deployment system tested with
+# the CiviForm release.
+export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="${CIVIFORM_VERSION}"
 
 
 
