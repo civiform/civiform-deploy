@@ -23,7 +23,7 @@ export CIVIFORM_MODE="staging"
 #
 # For dev and staging civiform modes, can be "latest". For prod, must be a version from
 # https://github.com/civiform/civiform/releases, for example "v1.2.3".
-export CIVIFORM_VERSION="v1.57.0"
+export CIVIFORM_VERSION="v1.59.0"
 
 # REQUIRED
 # Version of the infrastructure to use.
@@ -241,9 +241,6 @@ export ADFS_ADMIN_GROUP="5909e7f3-3f4c-4ad1-93e8-17e6ba6ab8a3"
 export VERSION_CACHE_ENABLED=true
 export PROGRAM_CACHE_ENABLED=true
 export QUESTION_CACHE_ENABLED=true
-
-# API
-export CIVIFORM_API_KEYS_BAN_GLOBAL_SUBNET=false
 
 # Evolutions
 export DATABASE_APPLY_DESTRUCTIVE_CHANGES=true
