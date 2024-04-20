@@ -74,7 +74,13 @@ export DOCKER_USERNAME="civiform"
 # Supported values: "oidc", "saml"
 export CIVIFORM_APPLICANT_AUTH_PROTOCOL=""
 
-
+# OPTIONAL
+# Enable this flag to allow rolling back to previous release versions that may require
+# destructive database changes.
+# By default, CiviForm will refuse to apply destructive database changes such as dropping
+# tables, columns, and incices when performing a deployment. This can be necessary though
+# when rolling back a bad release to mitigate a production incident.
+# export DATABASE_APPLY_DESTRUCTIVE_CHANGES=true
 
 # Deployment-specific Civiform configuration
 #################################################
