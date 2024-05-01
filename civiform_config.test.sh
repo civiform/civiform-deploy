@@ -23,7 +23,7 @@ export CIVIFORM_MODE="staging"
 #
 # For dev and staging civiform modes, can be "latest". For prod, must be a version from
 # https://github.com/civiform/civiform/releases, for example "v1.2.3".
-export CIVIFORM_VERSION="v1.62.0"
+export CIVIFORM_VERSION="DEV-4de53c3-play-2.9.0"  # post v1.62.0
 
 # REQUIRED
 # Version of the infrastructure to use.
@@ -34,7 +34,8 @@ export CIVIFORM_VERSION="v1.62.0"
 #    depending on USE_DOCKER flag.
 #
 # Using "latest" is recommended.
-export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="${CIVIFORM_VERSION}"
+export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="latest"
+# export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="${CIVIFORM_VERSION}"
 
 # Terraform configuration
 #################################################
