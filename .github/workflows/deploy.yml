@@ -18,7 +18,7 @@ on:
       probers_enabled:
         type: boolean
         description: 'Runs probers when checked'
-        default: true
+        default: false
         required: true
 
   schedule:
