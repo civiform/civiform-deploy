@@ -11,29 +11,32 @@ function test_url {
     local url="${1}"
     local jq_array_path="${2}"
     local expected_array_size="${3}"
+    local RED='\033[0;31m'
+    local GREEN='\033[0;32m'
+    local NC='\033[0m'
 
     response="$(curl \
         --silent \
         "${url}")"
 
     if ! jq --exit-status . >/dev/null 2>&1 <<<"${response}"; then
-        echo "Failed to parse response"
+        printf "${RED}Failed to parse response${NC}\n"
         echo "--------------------------------------------------------------------"
         echo "${response}"
         exit 1
-    # else
-    #     echo "Valid JSON"
+    else
+        printf "${GREEN}Valid JSON${NC}\n"
     fi
     
     actual_array_size="$(jq "${jq_array_path} | length" <<<"${response}")"
 
     if [[ "${expected_array_size}" != "${actual_array_size:0:1}" ]]; then
-        echo "Did not get the expected result count. Expected |${expected_array_size}|. Actual |${actual_array_size}|"
+        printf "${RED}Did not get the expected result count. Expected |${expected_array_size}|. Actual |${actual_array_size}|${NC}\n"
         echo "--------------------------------------------------------------------"
         echo "${response}" | jq
         exit 1
-    # else
-    #     echo "General array counts match"
+    else
+        printf "${GREEN}General array counts match${NC}\n"
     fi
 }
 
@@ -48,3 +51,4 @@ test_url "${serviceAreaUrl}" ".fields" 8
 echo "Test ssl certficate"
 echo | openssl s_client -servername gisdata.seattle.gov -connect gisdata.seattle.gov:443
 
+echo ""
