@@ -49,7 +49,8 @@ jobs:
       DEPLOY_ENABLED: ${{ (github.event.inputs == null || github.event.inputs.deploy_enabled == 'true') }}
       # Consider probers to be enabled if manually checked or if run from a schedule, but only run them on the staging site
       # beause we don't want to wipe test site data.
-      PROBERS_ENABLED: ${{ (github.event.inputs == null || github.event.inputs.probers_enabled == 'true') && ((github.event.inputs.environment || 'staging') == 'staging')  }}
+      # PROBERS_ENABLED: ${{ (github.event.inputs == null || github.event.inputs.probers_enabled == 'true') && ((github.event.inputs.environment || 'staging') == 'staging')  }}
+      PROBERS_ENABLED: ${{ (github.event.inputs.probers_enabled == 'true') && ((github.event.inputs.environment || 'staging') == 'staging')  }}
 
     steps:
       - name: Notify Slack Start
