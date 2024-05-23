@@ -23,7 +23,7 @@ export CIVIFORM_MODE="staging"
 #
 # For dev and staging civiform modes, can be "latest". For prod, must be a version from
 # https://github.com/civiform/civiform/releases, for example "v1.2.3".
-export CIVIFORM_VERSION="v2.0.0"
+export CIVIFORM_VERSION="v2.0.1"
 
 # REQUIRED
 # Version of the infrastructure to use.
@@ -68,23 +68,8 @@ export CIVIFORM_APPLICANT_AUTH_PROTOCOL="oidc"
 #################################################
 
 # REQUIRED
-# The short name for the civic entity. Ex. "Rochester"
-export CIVIC_ENTITY_SHORT_NAME="Seattle [TEST]"
-
-# REQUIRED
-# The full name for the civic entity. Ex. "City of Rochester"
-export CIVIC_ENTITY_FULL_NAME="City of Seattle [TEST]"
-
-# REQUIRED
-# The email address to contact for support with using Civiform. Ex. "Civiform@CityOfRochester.gov
-export SUPPORT_EMAIL_ADDRESS="civiform.staging@seattle.gov"
-
-# REQUIRED
 # A link to an image of the civic entity logo, to be used on the login page
 export CIVIC_ENTITY_SMALL_LOGO_URL="https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-small-logo.png"
-
-# REQUIRED
-export APPLICANT_PORTAL_NAME="Seattle"
 
 # OPTIONAL
 # A link to an 16x16 of 32x32 pixel favicon of the civic entity,
@@ -250,26 +235,17 @@ export DATABASE_APPLY_DESTRUCTIVE_CHANGES=true
 export MEASUREMENT_ID="G-HXM0Y35TGE"
 
 # ESRI
-export ESRI_ADDRESS_CORRECTION_ENABLED=true
 export ESRI_FIND_ADDRESS_CANDIDATES_URLS="https://gisdata.seattle.gov/cosgis/rest/services/locators/AddressPoints/GeocodeServer/findAddressCandidates, https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates"
-export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ENABLED=true
 export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_URLS="https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query"
 export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_LABELS="Seattle"
 export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_IDS="Seattle"
 export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES="CITYNAME"
-
-# Common Intake
-export COMMON_INTAKE_MORE_RESOURCES_LINK_TEXT="Affordable Seattle"
-export COMMON_INTAKE_MORE_RESOURCES_LINK_HREF="https://www.affordableseattle.org"
 
 # Language Settings
 export CIVIFORM_SUPPORTED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
 export CIVIFORM_APPLICANT_ENABLED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
 
 # Feature Flags
-export ALLOW_CIVIFORM_ADMIN_ACCESS_PROGRAMS=true
-export APPLICATION_EXPORTABLE=true
-export API_GENERATED_DOCS_ENABLED=true
 export ADMIN_OIDC_ENHANCED_LOGOUT_ENABLED=true
 export APPLICANT_OIDC_ENHANCED_LOGOUT_ENABLED=true
 export NEW_APPLICANT_URL_SCHEMA_ENABLED=true
