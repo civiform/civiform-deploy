@@ -14,5 +14,6 @@ docker run \
   -e TEST_CIVIC_ENTITY_SHORT_NAME="Seattle [STAGING]" \
   -e DISABLE_BROWSER_ERROR_WATCHER=true \
   -e DISABLE_SCREENSHOTS=false \
+  -e CI=true \
   civiform/civiform-browser-test:latest \
   -c "npm install && npm test -- --grep-invert @northstar $@"
