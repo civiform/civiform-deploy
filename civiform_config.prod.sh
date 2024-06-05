@@ -30,7 +30,7 @@ export CIVIFORM_VERSION="v2.0.1"
 # Needs to be either:
 # - Label from https://hub.docker.com/r/civiform/civiform-cloud-deployment if USE_DOCKER=true
 # - Commit sha from https://github.com/civiform/cloud-deploy-infra if USE_DOCKER=false
-# - "latest" to use latest version of either docker image or code from the repo, 
+# - "latest" to use latest version of either docker image or code from the repo,
 #    depending on USE_DOCKER flag.
 #
 # Using "latest" is recommended.
@@ -43,7 +43,6 @@ export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="${CIVIFORM_VERSION}"
 # A supported CiviForm cloud provider, lower case.
 # "aws" or "azure"
 export CIVIFORM_CLOUD_PROVIDER="aws"
-
 
 # REQUIRED
 # The template directory for this deployment.
@@ -98,9 +97,9 @@ export STAGING_TI_NOTIFICATION_MAILING_LIST="civiform.staging@seattle.gov"
 export STAGING_APPLICANT_NOTIFICATION_MAILING_LIST="civiform.staging@seattle.gov"
 
 # OPTIONAL
-# If this is a staging deployment and this variable is set to true, a robots 
-# noindex metadata tag is added to the CiviForm pages. This causes the staging 
-# site to not be listed on search engines. 
+# If this is a staging deployment and this variable is set to true, a robots
+# noindex metadata tag is added to the CiviForm pages. This causes the staging
+# site to not be listed on search engines.
 export STAGING_ADD_NOINDEX_META_TAG=false
 
 # REQUIRED
@@ -122,7 +121,6 @@ export CIVIFORM_SERVER_METRICS_ENABLED=true
 
 # Don't deploy of Prometheus and Graphana
 export MONITORING_STACK_ENABLED=true
-
 
 #################################################
 # Template variables for: aws_oidc
