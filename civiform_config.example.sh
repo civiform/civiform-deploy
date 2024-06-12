@@ -271,8 +271,8 @@ export RANDOM_PASSWORD_LENGTH=64
 # NOTE: Must set all of them for them to take effect.
 export EXTERNAL_VPC_DATABASE_SUBNET_GROUP_NAME=""
 export EXTERNAL_VPC_ID=""
-export EXTERNAL_VPC_PRIVATE_SUBNET_ID=""
-export EXTERNAL_VPC_PRIVATE_SUBNET_ID=""
+export EXTERNAL_VPC_PRIVATE_SUBNET_IDS=[]
+export EXTERNAL_VPC_PUBLIC_SUBNET_IDS=[]
 
 
 # generic-oidc Auth configuration
