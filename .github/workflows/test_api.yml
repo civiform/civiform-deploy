@@ -14,6 +14,10 @@ permissions: {}
 jobs:
   test-api:
     runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'staging' }}
+
+    env:
+      ENVIRONMENT: ${{ github.event.inputs.environment || 'staging' }}
 
     steps:
       - name: Checkout
