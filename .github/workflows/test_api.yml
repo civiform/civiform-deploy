@@ -6,7 +6,7 @@ on:
     inputs:
       environment:
         type: environment
-        default: staging
+        default: test
         required: true
 
 permissions: {}
@@ -29,4 +29,4 @@ jobs:
           BASE_URL: 'https://${{ vars.SUBDOMAIN }}.seattle.gov'
           API_TOKEN: ${{ secrets.API_TOKEN }}
           PROGRAM_SLUGS: ${{ secrets.PROGRAM_SLUGS }}
-        run: npx playwright test
+        run: cd qa && npx playwright test
