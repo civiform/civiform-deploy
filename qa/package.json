@@ -1,0 +1,8 @@
+{
+    "name": "seattle-civiform-smoke-tests",
+    "devDependencies": {
+        "@playwright/test": "1.44.1",
+        "@types/node": "20.14.2",
+        "typescript": "5.4.5"
+    }
+}
