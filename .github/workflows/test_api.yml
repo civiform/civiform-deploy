@@ -2,7 +2,12 @@ name: Test API
 run-name: Test API
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch: 
+    inputs:
+      environment:
+        type: environment
+        default: staging
+        required: true
 
 permissions: {}
 
