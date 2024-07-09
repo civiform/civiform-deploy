@@ -23,7 +23,8 @@ export CIVIFORM_MODE="staging"
 #
 # For dev and staging civiform modes, can be "latest". For prod, must be a version from
 # https://github.com/civiform/civiform/releases, for example "v1.2.3".
-export CIVIFORM_VERSION="v2.4.0"
+# export CIVIFORM_VERSION="v2.4.0"
+export CIVIFORM_VERSION="SNAPSHOT-8db0e82-1720559543"
 
 # REQUIRED
 # Version of the infrastructure to use.
