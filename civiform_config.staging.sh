@@ -14,6 +14,8 @@
 # Global variables for all CiviForm deployments
 #################################################
 
+export APPLICANT_OIDC_EMAIL_ATTRIBUTE="email"
+
 # REQUIRED
 # One of prod, staging, or dev.
 export CIVIFORM_MODE="staging"
