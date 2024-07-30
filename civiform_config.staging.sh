@@ -67,12 +67,11 @@ export CIVIFORM_APPLICANT_AUTH_PROTOCOL="oidc"
 
 # REQUIRED
 # The short name for the civic entity. Ex. "Rochester"
-#export WHITELABEL_CIVIC_ENTITY_SHORT_NAME="Seattle [STAGING]"
-export WHITELABEL_CIVIC_ENTITY_SHORT_NAME="Seattle"
+export WHITELABEL_CIVIC_ENTITY_SHORT_NAME="Seattle [STAGING]"
 
 # REQUIRED
 # The full name for the civic entity. Ex. "City of Rochester"
-export WHITELABEL_CIVIC_ENTITY_FULL_NAME="City of Seattle [STAGING]"
+export WHITELABEL_CIVIC_ENTITY_FULL_NAME="City of Seattle"
 
 # REQUIRED
 # The email address to contact for support with using Civiform. Ex. "Civiform@CityOfRochester.gov
