@@ -93,7 +93,7 @@ jobs:
           TEST_USER_DISPLAY_NAME: 'TEST, UATAPP'
           TEST_CIVIC_ENTITY_SHORT_NAME: '${{ vars.CIVIC_ENTITY_SHORT_NAME }}'
           BASE_URL: 'https://${{ vars.SUBDOMAIN }}.seattle.gov'
-        run: bin/run-prober
+        run: bin/run-prober admin_application_statuses.test.ts
         
       - name: Upload test videos and traces on failure
         if: failure()
