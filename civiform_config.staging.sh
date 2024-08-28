@@ -23,8 +23,8 @@ export CIVIFORM_MODE="staging"
 #
 # For dev and staging civiform modes, can be "latest". For prod, must be a version from
 # https://github.com/civiform/civiform/releases, for example "v1.2.3".
-export CIVIFORM_VERSION="latest" 
-#export CIVIFORM_VERSION="SNAPSHOT-fc2a8a6-1724710776" 
+export CIVIFORM_VERSION="latest"
+#export CIVIFORM_VERSION="SNAPSHOT-fc2a8a6-1724710776"
 
 # REQUIRED
 # Version of the infrastructure to use.
@@ -279,3 +279,4 @@ export ADMIN_OIDC_ENHANCED_LOGOUT_ENABLED=true
 export APPLICANT_OIDC_ENHANCED_LOGOUT_ENABLED=true
 export NEW_APPLICANT_URL_SCHEMA_ENABLED=true
 export SHOW_NOT_PRODUCTION_BANNER_ENABLED=true
+export CSP_REPORT_ONLY=false
