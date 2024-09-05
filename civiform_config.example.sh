@@ -74,7 +74,11 @@ export DOCKER_USERNAME="civiform"
 # Supported values: "oidc", "saml"
 export CIVIFORM_APPLICANT_AUTH_PROTOCOL=""
 
-
+# OPTIONAL
+# When true, deploys Grafana and Prometheus to collect server metrics.
+# Disabled by default in order to save costs. We recommend turning this
+# on for production instances.
+export MONITORING_STACK_ENABLED="false"
 
 # Deployment-specific Civiform configuration
 #################################################
