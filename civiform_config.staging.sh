@@ -24,7 +24,7 @@ export CIVIFORM_MODE="staging"
 # For dev and staging civiform modes, can be "latest". For prod, must be a version from
 # https://github.com/civiform/civiform/releases, for example "v1.2.3".
 #export CIVIFORM_VERSION="latest"
-export CIVIFORM_VERSION="DEV-c0532da-gwen-esri-addr-test"
+export CIVIFORM_VERSION="SNAPSHOT-d79716b-1726535107"
 
 # REQUIRED
 # Version of the infrastructure to use.
