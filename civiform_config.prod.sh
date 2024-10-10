@@ -23,7 +23,8 @@ export CIVIFORM_MODE="prod"
 #
 # For dev and staging civiform modes, can be "latest". For prod, must be a version from
 # https://github.com/civiform/civiform/releases, for example "v1.2.3".
-export CIVIFORM_VERSION="v2.15.0"
+# export CIVIFORM_VERSION="v2.15.0"
+export CIVIFORM_VERSION="SNAPSHOT-15270eb-1728593055"
 
 # REQUIRED
 # Version of the infrastructure to use.
@@ -34,8 +35,8 @@ export CIVIFORM_VERSION="v2.15.0"
 #    depending on USE_DOCKER flag.
 #
 # Using "latest" is recommended.
-# export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="latest"
-export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="${CIVIFORM_VERSION}"
+export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="latest"
+# export CIVIFORM_CLOUD_DEPLOYMENT_VERSION="${CIVIFORM_VERSION}"
 
 # Lock to this postgres version so it doesn't update unexpectedly
 export POSTGRESQL_VERSION="16.3"
