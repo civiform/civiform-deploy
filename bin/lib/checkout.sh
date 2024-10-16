@@ -48,6 +48,9 @@ function checkout::exec_delegated_command_at_path() {
       CONFIG_FILE_ABSOLUTE_PATH="../${CONFIG}"
     fi
     args=("-c${CMD_NAME}" "-t${CIVIFORM_VERSION}" "-s${CONFIG_FILE_ABSOLUTE_PATH}")
+    if [[ -n "${CERT_FILE}" ]]; then
+      args+=("-p${CERT_FILE}") 
+    fi
     echo "Running ${CMD_NAME_PATH} ${args[@]}"
     exec "${CMD_NAME_PATH}" "${args[@]}"
   )
@@ -127,8 +130,8 @@ function checkout::at_main() {
 
   pushd checkout > /dev/null
 
-  git checkout --quiet main
-  git pull --quiet origin main
+  git checkout --quiet clt-python
+  git pull --quiet origin clt-python
 
   popd > /dev/null
   echo "done"
