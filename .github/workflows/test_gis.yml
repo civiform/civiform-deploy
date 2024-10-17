@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      FORCE_SEND_TEAMS_MESSAGE: ${{ (github.event.inputs == null || github.event.inputs.force_send_teams_message == 'true') }}
+      FORCE_SEND_TEAMS_MESSAGE: ${{ (github.event.inputs != null && github.event.inputs.force_send_teams_message == 'true') }}
       
     steps:
       - name: Checkout
