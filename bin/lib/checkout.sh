@@ -130,8 +130,8 @@ function checkout::at_main() {
 
   pushd checkout > /dev/null
 
-  git checkout --quiet clt-python
-  git pull --quiet origin clt-python
+  git checkout --quiet main
+  git pull --quiet origin main
 
   popd > /dev/null
   echo "done"
