@@ -16,13 +16,16 @@ function get_cmd_args::verify_config_file_exists() {
   fi
 }
 
-function get_cmd_args::get_config_file() {
+function get_cmd_args::get_args() {
   for i in "$@"; do
     case "${i}" in
       --config=*)
         export CONFIG="${i#*=}"
         get_cmd_args::verify_config_file_exists
-        return
+        ;;
+      --cert=*) 
+        export CERT_FILE="${i#*=}"
+        echo "Certificate file specified: ${CERT_FILE}"
         ;;
     esac
   done
@@ -35,4 +38,4 @@ function get_cmd_args::get_config_file() {
   get_cmd_args::verify_config_file_exists
 }
 
-get_cmd_args::get_config_file "$@"
+get_cmd_args::get_args "$@"
