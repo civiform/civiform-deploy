@@ -16,6 +16,13 @@ function get_cmd_args::verify_config_file_exists() {
   fi
 }
 
+function get_cmd_args::verify_cert_file_exists() {
+  if [[ -z "${CERT_FILE}" || ! -r "${CERT_FILE}" ]]; then
+    echo "Certificate file '${CERT_FILE}' was not found or is not readable."
+    exit 1
+  fi
+}
+
 function get_cmd_args::get_args() {
   for i in "$@"; do
     case "${i}" in
@@ -26,6 +33,7 @@ function get_cmd_args::get_args() {
       --cert=*) 
         export CERT_FILE="${i#*=}"
         echo "Certificate file specified: ${CERT_FILE}"
+        get_cmd_args::verify_cert_file_exists
         ;;
     esac
   done
