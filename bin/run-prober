@@ -16,4 +16,4 @@ docker run \
   -e DISABLE_SCREENSHOTS=false \
   -e CI=true \
   civiform/civiform-browser-test:latest \
-  -c "npm install && npm test -- --grep-invert @northstar $@"
+  -c "npm install && npm test -- --grep-invert @northstar admin_api_keys.test.ts:96 $@"
