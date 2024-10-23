@@ -54,7 +54,7 @@ jobs:
 
     steps:
       - name: Notify Slack Start
-        uses: slackapi/slack-github-action@v1.26.0
+        uses: slackapi/slack-github-action@v1.27.0
         with:
           channel-id: ${{ env.SLACK_CHANNEL }}
           slack-message: ":space-needle: Starting Seattle Deploy\nEnv: ${{ env.ENVIRONMENT }}\nDeploy: ${{ env.DEPLOY_ENABLED }}\nProbers: ${{ env.PROBERS_ENABLED }}"
@@ -107,7 +107,7 @@ jobs:
 
       - name: Notify Slack Complete
         if: always()
-        uses: slackapi/slack-github-action@v1.26.0
+        uses: slackapi/slack-github-action@v1.27.0
         with:
           channel-id: ${{ env.SLACK_CHANNEL }}
           slack-message: ":space-needle: ${{ env.STATUS_ICON }} Completed Seattle Deploy <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }}>\nVersion: ${{ env.LATEST_SNAPSHOT_TAG }}\nEnv: ${{ env.ENVIRONMENT }}\nDeploy: ${{ env.DEPLOY_ENABLED }}\nProbers: ${{ env.PROBERS_ENABLED }}"
