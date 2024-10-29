@@ -240,6 +240,9 @@ export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_IDS="Seattle"
 export ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES="CITYNAME"
 export ESRI_WELLKNOWN_ID_OVERRIDE="2926"
 
+# Additional Customization
+export FILE_UPLOAD_ALLOWED_FILE_TYPE_SPECIFIERS="image/*,.pdf,.xlsx"
+
 # Language Settings
 export CIVIFORM_SUPPORTED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
 export CIVIFORM_APPLICANT_ENABLED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
