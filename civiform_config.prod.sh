@@ -23,8 +23,7 @@ export CIVIFORM_MODE="prod"
 #
 # For dev and staging civiform modes, can be "latest". For prod, must be a version from
 # https://github.com/civiform/civiform/releases, for example "v1.2.3".
-# export CIVIFORM_VERSION="v2.15.0"
-export CIVIFORM_VERSION="SNAPSHOT-15270eb-1728593055"
+export CIVIFORM_VERSION="v2.17.0"
 
 # REQUIRED
 # Version of the infrastructure to use.
@@ -247,6 +246,9 @@ export ESRI_WELLKNOWN_ID_OVERRIDE="2926"
 # Language Settings
 export CIVIFORM_SUPPORTED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
 export CIVIFORM_APPLICANT_ENABLED_LANGUAGES="en-US, am, zh-TW, ko, so, es-US, tl, vi"
+
+# Additional Customization
+export FILE_UPLOAD_ALLOWED_FILE_TYPE_SPECIFIERS="image/*,.pdf,.xlsx"
 
 # Feature Flags
 export ADMIN_OIDC_ENHANCED_LOGOUT_ENABLED=true
