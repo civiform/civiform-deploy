@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Notify Slack Complete
         if: always()
-        uses: slackapi/slack-github-action@v1.27.0
+        uses: slackapi/slack-github-action@v2.0.0
         with:
           channel-id: 'C03UXPUEXU4'
           slack-message: ":space-needle: Test Message from Seattle Staging Deploy:  \n${{ job.status }} ${{ env.ICON }} <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }} TEST>"
