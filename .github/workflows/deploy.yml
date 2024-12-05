@@ -67,6 +67,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install terraform cli
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
       - name: Resolve Latest Snapshot Tag
         run: source bin/resolve-latest-snapshot-tag
 
