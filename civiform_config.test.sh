@@ -194,6 +194,8 @@ export APPLICANT_REGISTER_URI="https://qalogin.seattle.gov:12443/#/registration?
 export APPLICANT_OIDC_OVERRIDE_LOGOUT_URL="https://qalogin.seattle.gov:12443/#/logout?appName=CIVIFORM_TEST"
 export APPLICANT_OIDC_POST_LOGOUT_REDIRECT_PARAM=""
 export APPLICANT_OIDC_PROVIDER_LOGOUT=true
+export APPLICANT_OIDC_ADDITIONAL_SCOPES="phone"
+export APPLICANT_OIDC_PHONE_NUMBER_ATTRIBUTE="mobile"
 
 # ADFS and Azure AD configuration
 # More information on https://docs.civiform.us/contributor-guide/developer-guide/authentication-providers
