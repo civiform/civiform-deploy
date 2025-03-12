@@ -23,7 +23,7 @@ export CIVIFORM_MODE="prod"
 #
 # For dev and staging civiform modes, can be "latest". For prod, must be a version from
 # https://github.com/civiform/civiform/releases, for example "v1.2.3".
-export CIVIFORM_VERSION="v2.27.0"
+export CIVIFORM_VERSION="v2.32.0"
 
 # REQUIRED
 # Version of the infrastructure to use.
@@ -197,6 +197,8 @@ export APPLICANT_REGISTER_URI="https://login.seattle.gov/#/registration?appName=
 export APPLICANT_OIDC_OVERRIDE_LOGOUT_URL="https://login.seattle.gov/#/logout?appName=CIVIFORM"
 export APPLICANT_OIDC_POST_LOGOUT_REDIRECT_PARAM=""
 export APPLICANT_OIDC_PROVIDER_LOGOUT=true
+export APPLICANT_OIDC_ADDITIONAL_SCOPES="phone"
+export APPLICANT_OIDC_PHONE_NUMBER_ATTRIBUTE="mobile"
 
 # ADFS and Azure AD configuration
 # More information on https://docs.civiform.us/contributor-guide/developer-guide/authentication-providers
