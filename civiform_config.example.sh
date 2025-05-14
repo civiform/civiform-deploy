@@ -16,7 +16,7 @@
 
 # REQUIRED
 # One of prod or staging.
-export CIVIFORM_MODE="staging"
+export CIVIFORM_MODE="prod"
 
 # REQUIRED
 # CiviForm server version to deploy.
@@ -125,8 +125,9 @@ export BASE_URL=""
 
 # OPTIONAL
 # When set enables demo mode for the civiform application. Should be set for
-# staging but not prod. The value is hostname without protocol and should correspond
-# BASE_URl. Example: "civiform.seattle.gov"
+# demo instances when you want access to "dev tools" but not prod or sites with data.
+# The value is hostname without protocol and should correspond to the BASE_URl.
+# Example: "civiform.seattle.gov"
 export STAGING_HOSTNAME=""
 
 # OPTIONAL
