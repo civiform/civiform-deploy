@@ -182,8 +182,8 @@ export AWS_USERNAME=""
 
 # REQUIRED
 # An Azure Storage Account name for storing the SAML keystore secrets.
-# Only letters and numbers allowed.
-# e.g. "civiformsamlkeystoresecrets"
+# Only letters and numbers allowed. Must be between 3-24 characters.
+# e.g. "cfsamlkeystoresecrets"
 export SAML_KEYSTORE_ACCOUNT_NAME=""
 
 # REQUIRED
