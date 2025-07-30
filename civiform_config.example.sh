@@ -16,7 +16,7 @@
 
 # REQUIRED
 # One of prod or staging.
-export CIVIFORM_MODE="prod"
+export CIVIFORM_MODE="v3.0.0"
 
 # REQUIRED
 # CiviForm server version to deploy.
