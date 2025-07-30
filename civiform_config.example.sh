@@ -16,7 +16,7 @@
 
 # REQUIRED
 # One of prod or staging.
-export CIVIFORM_MODE="v3.0.0"
+export CIVIFORM_MODE="prod"
 
 # REQUIRED
 # CiviForm server version to deploy.
@@ -30,7 +30,7 @@ export CIVIFORM_MODE="v3.0.0"
 #   for example "v1.2.3".
 # - In the case where you need to quickly deploy a fix, can also be
 #   specific snapshot tag from https://hub.docker.com/r/civiform/civiform/tags
-export CIVIFORM_VERSION="latest"
+export CIVIFORM_VERSION="v3.0.0"
 
 # REQUIRED
 # Version of the infrastructure to use.
