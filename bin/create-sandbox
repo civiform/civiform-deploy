@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+# bin/create-sandbox
+#
+# Generates a per-sandbox civiform_config.sh from sandbox_civiform_config.sh.template,
+# then invokes bin/setup to provision the CiviForm instance on AWS.
+#
+# Usage:
+#   bin/create-sandbox \
+#     --city-short="Burlington" \
+#     --city-full="Burlington, Vermont" \
+#     --slug="burlington-vt" \
+#     --version="v1.55.0" \
+#     --ssl-arn="arn:aws:acm:us-east-1:123456789:certificate/..." \
+#     --account-id="123456789012"
+#
+# Called by EcsFargateSandboxService (Sprint 2) or manually for testing.
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(dirname "$SCRIPT_DIR")"
+TEMPLATE="$REPO_ROOT/sandbox_civiform_config.sh.template"
+CONFIGS_DIR="$REPO_ROOT/configs"
+
+# ── Parse arguments ───────────────────────────────────────────────────────────
+
+CITY_SHORT=""
+CITY_FULL=""
+SLUG=""
+VERSION=""
+SSL_ARN=""
+ACCOUNT_ID=""
+
+for arg in "$@"; do
+  case $arg in
+    --city-short=*) CITY_SHORT="${arg#*=}" ;;
+    --city-full=*)  CITY_FULL="${arg#*=}" ;;
+    --slug=*)       SLUG="${arg#*=}" ;;
+    --version=*)    VERSION="${arg#*=}" ;;
+    --ssl-arn=*)    SSL_ARN="${arg#*=}" ;;
+    --account-id=*) ACCOUNT_ID="${arg#*=}" ;;
+    *) echo "Unknown argument: $arg" >&2; exit 1 ;;
+  esac
+done
+
+# ── Validate ──────────────────────────────────────────────────────────────────
+
+MISSING=()
+[[ -z "$CITY_SHORT" ]] && MISSING+=("--city-short")
+[[ -z "$CITY_FULL"  ]] && MISSING+=("--city-full")
+[[ -z "$SLUG"       ]] && MISSING+=("--slug")
+[[ -z "$VERSION"    ]] && MISSING+=("--version")
+[[ -z "$SSL_ARN"    ]] && MISSING+=("--ssl-arn")
+[[ -z "$ACCOUNT_ID" ]] && MISSING+=("--account-id")
+
+if [[ ${#MISSING[@]} -gt 0 ]]; then
+  echo "Error: missing required arguments: ${MISSING[*]}" >&2
+  echo "Run: bin/create-sandbox --help" >&2
+  exit 1
+fi
+
+# Slug: lowercase, letters/numbers/hyphens only, max 15 chars for APP_PREFIX (sb- + 15 = 17 chars)
+if [[ ! "$SLUG" =~ ^[a-z0-9-]{1,15}$ ]]; then
+  echo "Error: --slug must be lowercase letters, numbers, hyphens only, max 15 chars" >&2
+  exit 1
+fi
+
+# ── Generate config ───────────────────────────────────────────────────────────
+
+CONFIG_FILE="$CONFIGS_DIR/sandbox-${SLUG}.sh"
+mkdir -p "$CONFIGS_DIR"
+
+sed \
+  -e "s|SANDBOX_SLUG|${SLUG}|g" \
+  -e "s|SANDBOX_CITY_SHORT|${CITY_SHORT}|g" \
+  -e "s|SANDBOX_CITY_FULL|${CITY_FULL}|g" \
+  -e "s|SANDBOX_VERSION|${VERSION}|g" \
+  -e "s|SANDBOX_SSL_ARN|${SSL_ARN}|g" \
+  -e "s|SANDBOX_ACCOUNT_ID|${ACCOUNT_ID}|g" \
+  "$TEMPLATE" > "$CONFIG_FILE"
+
+chmod 600 "$CONFIG_FILE"  # contains secrets, restrict permissions
+
+echo "Generated config: $CONFIG_FILE"
+echo ""
+echo "Sandbox details:"
+echo "  URL:     https://${SLUG}.sandbox.civiform.dev"
+echo "  City:    ${CITY_FULL}"
+echo "  Version: ${VERSION}"
+echo ""
+
+# ── Run setup ─────────────────────────────────────────────────────────────────
+
+echo "Running bin/setup --config=${CONFIG_FILE} ..."
+exec "$SCRIPT_DIR/setup" --config="$CONFIG_FILE"
