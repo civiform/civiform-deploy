@@ -30,7 +30,7 @@ export CIVIFORM_MODE="prod"
 #   for example "v1.2.3".
 # - In the case where you need to quickly deploy a fix, can also be
 #   specific snapshot tag from https://hub.docker.com/r/civiform/civiform/tags
-export CIVIFORM_VERSION="latest"
+export CIVIFORM_VERSION="v3.37.0"
 
 # REQUIRED
 # Version of the infrastructure to use.
