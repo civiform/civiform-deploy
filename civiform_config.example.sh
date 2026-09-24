@@ -30,7 +30,7 @@ export CIVIFORM_MODE="prod"
 #   for example "v1.2.3".
 # - In the case where you need to quickly deploy a fix, can also be
 #   specific snapshot tag from https://hub.docker.com/r/civiform/civiform/tags
-export CIVIFORM_VERSION="v3.0.0"
+export CIVIFORM_VERSION="v3.37.0"
 
 # REQUIRED
 # Version of the infrastructure to use.
@@ -78,6 +78,8 @@ export CIVIFORM_APPLICANT_AUTH_PROTOCOL=""
 # When true, deploys Grafana and Prometheus to collect server metrics.
 # Disabled by default in order to save costs. We recommend turning this
 # on for production instances.
+# If you enable this, also set CIVIFORM_SERVER_METRICS_ENABLED=true below. Without it the
+# server returns 404 at "/metrics" and the scraper and both workspaces collect nothing.
 export MONITORING_STACK_ENABLED="false"
 
 # Deployment-specific Civiform configuration
